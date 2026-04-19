@@ -1,0 +1,475 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <title>Famiglia di Pasta - Live Stock</title>
+  <style>
+    body {
+      margin: 0;
+      padding: 0;
+      font-family: Georgia, serif;
+      font-size: 14px;
+      background-color: #f5f0eb;
+      color: #1a1a1a;
+    }
+
+    /* NAVBAR */
+    div#navbar {
+      background-color: #1a1a1a;
+      padding: 12px 24px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    div#navbar-left {
+      display: flex;
+      align-items: center;
+      gap: 14px;
+    }
+
+    div#logo-box {
+      background-color: #1a1a1a;
+      border: 2px solid #c8a96e;
+      padding: 6px 12px;
+    }
+
+    span#logo-text {
+      color: #ffffff;
+      font-size: 15px;
+      font-weight: bold;
+      letter-spacing: 1px;
+    }
+
+    span#logo-sub {
+      color: #c8a96e;
+      font-size: 11px;
+      display: block;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+    }
+
+    div#navbar-right {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+
+    span#user-name {
+      color: #ffffff;
+      font-size: 13px;
+    }
+
+    span#user-role {
+      color: #c8a96e;
+      font-size: 11px;
+    }
+
+    a#logout-btn {
+      color: #c8a96e;
+      text-decoration: none;
+      border: 1px solid #c8a96e;
+      padding: 4px 10px;
+      font-size: 12px;
+    }
+
+    a#logout-btn:hover {
+      background-color: #c8a96e;
+      color: #1a1a1a;
+    }
+
+    /* MAIN CONTENT */
+    div#main {
+      padding: 24px 32px;
+    }
+
+    /* PAGE HEADER */
+    div#page-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-start;
+      margin-bottom: 16px;
+      border-bottom: 2px solid #c8a96e;
+      padding-bottom: 12px;
+    }
+
+    h1#page-title {
+      margin: 0;
+      font-size: 22px;
+      color: #1a1a1a;
+      font-weight: bold;
+    }
+
+    p#page-subtitle {
+      margin: 4px 0 0 0;
+      font-size: 12px;
+      color: #666666;
+    }
+
+    span#live-badge {
+      background-color: #1a1a1a;
+      color: #c8a96e;
+      font-size: 11px;
+      padding: 5px 12px;
+      border: 1px solid #c8a96e;
+      letter-spacing: 1px;
+    }
+
+    /* ALERT BAR */
+    div#alert-bar {
+      background-color: #fff3cd;
+      border: 1px solid #c8a96e;
+      border-left: 4px solid #c8a96e;
+      padding: 10px 16px;
+      margin-bottom: 16px;
+      font-size: 13px;
+      color: #5a4000;
+    }
+
+    /* METRIC CARDS */
+    div#metrics {
+      display: flex;
+      gap: 12px;
+      margin-bottom: 20px;
+    }
+
+    div.metric-card {
+      background-color: #ffffff;
+      border: 1px solid #d4c5a9;
+      padding: 14px 18px;
+      flex: 1;
+      text-align: center;
+    }
+
+    p.metric-label {
+      margin: 0 0 6px 0;
+      font-size: 11px;
+      color: #888888;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+    }
+
+    p.metric-value {
+      margin: 0;
+      font-size: 26px;
+      font-weight: bold;
+      color: #1a1a1a;
+    }
+
+    p.metric-value-warn {
+      margin: 0;
+      font-size: 26px;
+      font-weight: bold;
+      color: #b87800;
+    }
+
+    p.metric-value-danger {
+      margin: 0;
+      font-size: 26px;
+      font-weight: bold;
+      color: #c0392b;
+    }
+
+    /* CONTROLS */
+    div#controls {
+      display: flex;
+      gap: 10px;
+      margin-bottom: 14px;
+      align-items: center;
+    }
+
+    input#search-box {
+      flex: 1;
+      padding: 7px 12px;
+      font-size: 13px;
+      border: 1px solid #c8a96e;
+      font-family: Georgia, serif;
+      background-color: #ffffff;
+    }
+
+    select.filter-select {
+      padding: 7px 10px;
+      font-size: 13px;
+      border: 1px solid #c8a96e;
+      font-family: Georgia, serif;
+      background-color: #ffffff;
+    }
+
+    input#pdf-btn {
+      padding: 7px 16px;
+      font-size: 12px;
+      background-color: #1a1a1a;
+      color: #c8a96e;
+      border: 1px solid #c8a96e;
+      cursor: pointer;
+      font-family: Georgia, serif;
+      letter-spacing: 1px;
+    }
+
+    input#pdf-btn:hover {
+      background-color: #c8a96e;
+      color: #1a1a1a;
+    }
+
+    /* TABLE */
+    div#table-wrap {
+      border: 1px solid #d4c5a9;
+      background-color: #ffffff;
+    }
+
+    table#stock-table {
+      width: 100%;
+      border-collapse: collapse;
+      font-size: 13px;
+    }
+
+    table#stock-table th {
+      background-color: #1a1a1a;
+      color: #c8a96e;
+      padding: 10px 14px;
+      text-align: left;
+      font-weight: normal;
+      font-size: 11px;
+      letter-spacing: 1px;
+      text-transform: uppercase;
+    }
+
+    table#stock-table td {
+      padding: 10px 14px;
+      border-bottom: 1px solid #f0e8da;
+      vertical-align: middle;
+      color: #1a1a1a;
+    }
+
+    table#stock-table tr:last-child td {
+      border-bottom: none;
+    }
+
+    table#stock-table tr:hover td {
+      background-color: #faf6f0;
+    }
+
+    span.code {
+      font-family: "Courier New", monospace;
+      font-size: 12px;
+      color: #888888;
+    }
+
+    span.qty-ok {
+      color: #1a5c1a;
+      font-weight: bold;
+    }
+
+    span.qty-low {
+      color: #b87800;
+      font-weight: bold;
+    }
+
+    span.qty-empty {
+      color: #c0392b;
+      font-weight: bold;
+    }
+
+    span.badge-ok {
+      background-color: #d4edda;
+      color: #155724;
+      padding: 2px 10px;
+      font-size: 11px;
+      border: 1px solid #c3e6cb;
+    }
+
+    span.badge-low {
+      background-color: #fff3cd;
+      color: #856404;
+      padding: 2px 10px;
+      font-size: 11px;
+      border: 1px solid #ffc107;
+    }
+
+    span.badge-empty {
+      background-color: #f8d7da;
+      color: #721c24;
+      padding: 2px 10px;
+      font-size: 11px;
+      border: 1px solid #f5c6cb;
+    }
+
+    span.timestamp {
+      font-size: 11px;
+      color: #aaaaaa;
+    }
+
+    /* FOOTER */
+    p#footer {
+      text-align: right;
+      font-size: 11px;
+      color: #aaaaaa;
+      margin-top: 12px;
+      border-top: 1px solid #d4c5a9;
+      padding-top: 8px;
+    }
+  </style>
+</head>
+<body>
+
+  <!-- ===== NAVBAR ===== -->
+  <div id="navbar">
+    <div id="navbar-left">
+      <div id="logo-box">
+        <span id="logo-text">FAMIGLIA DI PASTA</span>
+        <span id="logo-sub">Σύστημα Διαχείρισης Αποθεμάτων</span>
+      </div>
+    </div>
+    <div id="navbar-right">
+      <div>
+        <span id="user-name">Μ. Αθανασίου</span><br>
+        <span id="user-role">Υπεύθυνος Αποθήκης</span>
+      </div>
+      <a id="logout-btn" href="#">Αποσύνδεση</a>
+    </div>
+  </div>
+
+  <!-- ===== MAIN ===== -->
+  <div id="main">
+
+    <!-- Page Header -->
+    <div id="page-header">
+      <div>
+        <h1 id="page-title">Live Stock Αποθέματος</h1>
+        <p id="page-subtitle">Διαθεσιμότητα προϊόντων σε πραγματικό χρόνο</p>
+      </div>
+      <span id="live-badge">&#9679; ΖΩΝΤΑΝΑ &nbsp;&middot;&nbsp; ενημερώθηκε 14:32</span>
+    </div>
+
+    <!-- Alert Bar -->
+    <div id="alert-bar">
+      <strong>&#9888; Προσοχή:</strong> 2 προϊόντα με χαμηλό απόθεμα χρειάζονται προσοχή &nbsp;|&nbsp; 1 προϊόν έχει εξαντληθεί
+    </div>
+
+    <!-- Metric Cards -->
+    <div id="metrics">
+      <div class="metric-card">
+        <p class="metric-label">Σύνολο κωδικών</p>
+        <p class="metric-value">24</p>
+      </div>
+      <div class="metric-card">
+        <p class="metric-label">Διαθέσιμα</p>
+        <p class="metric-value">21</p>
+      </div>
+      <div class="metric-card">
+        <p class="metric-label">Χαμηλό απόθεμα</p>
+        <p class="metric-value-warn">2</p>
+      </div>
+      <div class="metric-card">
+        <p class="metric-label">Εξαντλημένα</p>
+        <p class="metric-value-danger">1</p>
+      </div>
+    </div>
+
+    <!-- Controls -->
+    <div id="controls">
+      <input id="search-box" type="text" placeholder="Αναζήτηση με κωδικό ή περιγραφή...">
+      <select class="filter-select">
+        <option>Όλες οι κατηγορίες</option>
+        <option>Ζυμαρικά</option>
+        <option>Σάλτσες</option>
+        <option>Αλεύρια</option>
+      </select>
+      <select class="filter-select">
+        <option>Όλες οι καταστάσεις</option>
+        <option>Διαθέσιμο</option>
+        <option>Χαμηλό</option>
+        <option>Εξαντλημένο</option>
+      </select>
+      <input id="pdf-btn" type="button" value="&#8595; Εξαγωγή PDF">
+    </div>
+
+    <!-- Stock Table -->
+    <div id="table-wrap">
+      <table id="stock-table">
+        <thead>
+          <tr>
+            <th>Κωδικός</th>
+            <th>Περιγραφή</th>
+            <th>Κατηγορία</th>
+            <th>Διαθέσιμο</th>
+            <th>Δεσμευμένο</th>
+            <th>Κατάσταση</th>
+            <th>Τελευταία καταχ.</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td><span class="code">FP-001</span></td>
+            <td>Σπαγγέτι Νο5</td>
+            <td>Ζυμαρικά</td>
+            <td><span class="qty-ok">1.240 kg</span></td>
+            <td>320 kg</td>
+            <td><span class="badge-ok">Διαθέσιμο</span></td>
+            <td><span class="timestamp">19/04 &middot; 13:41</span></td>
+          </tr>
+          <tr>
+            <td><span class="code">FP-002</span></td>
+            <td>Πένες Ριγκάτε</td>
+            <td>Ζυμαρικά</td>
+            <td><span class="qty-ok">890 kg</span></td>
+            <td>150 kg</td>
+            <td><span class="badge-ok">Διαθέσιμο</span></td>
+            <td><span class="timestamp">19/04 &middot; 11:20</span></td>
+          </tr>
+          <tr>
+            <td><span class="code">FP-007</span></td>
+            <td>Φαρφάλες</td>
+            <td>Ζυμαρικά</td>
+            <td><span class="qty-low">85 kg</span></td>
+            <td>60 kg</td>
+            <td><span class="badge-low">Χαμηλό</span></td>
+            <td><span class="timestamp">19/04 &middot; 09:05</span></td>
+          </tr>
+          <tr>
+            <td><span class="code">FP-012</span></td>
+            <td>Σάλτσα Τομάτας</td>
+            <td>Σάλτσες</td>
+            <td><span class="qty-low">40 τεμ.</span></td>
+            <td>40 τεμ.</td>
+            <td><span class="badge-low">Χαμηλό</span></td>
+            <td><span class="timestamp">18/04 &middot; 17:30</span></td>
+          </tr>
+          <tr>
+            <td><span class="code">FP-015</span></td>
+            <td>Αλεύρι Ολικής</td>
+            <td>Αλεύρια</td>
+            <td><span class="qty-empty">0 kg</span></td>
+            <td>&mdash;</td>
+            <td><span class="badge-empty">Εξαντλημένο</span></td>
+            <td><span class="timestamp">18/04 &middot; 08:12</span></td>
+          </tr>
+          <tr>
+            <td><span class="code">FP-019</span></td>
+            <td>Λαζάνια</td>
+            <td>Ζυμαρικά</td>
+            <td><span class="qty-ok">560 kg</span></td>
+            <td>80 kg</td>
+            <td><span class="badge-ok">Διαθέσιμο</span></td>
+            <td><span class="timestamp">19/04 &middot; 14:10</span></td>
+          </tr>
+          <tr>
+            <td><span class="code">FP-023</span></td>
+            <td>Ριγκατόνι</td>
+            <td>Ζυμαρικά</td>
+            <td><span class="qty-ok">430 kg</span></td>
+            <td>100 kg</td>
+            <td><span class="badge-ok">Διαθέσιμο</span></td>
+            <td><span class="timestamp">19/04 &middot; 10:55</span></td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <!-- Footer -->
+    <p id="footer">Σύστημα ενημερώνεται αυτόματα &nbsp;&middot;&nbsp; Τελευταία ανανέωση: 19/04/2026, 14:32:08</p>
+
+  </div><!-- end #main -->
+
+</body>
+</html>
