@@ -1,0 +1,472 @@
+/* ============================================================
+   FAMIGLIA DI PASTA - Warehouse System Stylesheet
+   Αρχείο: famiglia_style.css
+   ============================================================ */
+
+/* ===== RESET & ΒΑΣΗ ===== */
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    font-family: Verdana, Geneva, sans-serif;
+    font-size: 14px;
+    background-color: #F5F0E8;
+    color: #2A1A1A;
+}
+
+/* ============================================================
+   HEADER
+   ============================================================ */
+#header {
+    background-color: #8B1A1A;
+    padding: 16px 32px;
+    display: flex;
+    align-items: center;
+    gap: 18px;
+    border-bottom: 4px solid #5A0E0E;
+}
+
+#logo-placeholder {
+    width: 54px;
+    height: 54px;
+    background-color: #FFFFFF;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-family: Georgia, serif;
+    font-size: 11px;
+    color: #8B1A1A;
+    font-weight: bold;
+    text-align: center;
+    line-height: 1.3;
+    flex-shrink: 0;
+    border: 3px solid #F5C4C4;
+}
+
+#header-text h1 {
+    font-family: Georgia, "Times New Roman", serif;
+    color: #FFFFFF;
+    font-size: 22px;
+    font-weight: bold;
+    letter-spacing: 1px;
+}
+
+#header-text p {
+    color: #F5C4C4;
+    font-size: 12px;
+    margin-top: 3px;
+    letter-spacing: 0.5px;
+}
+
+/* ============================================================
+   NAVIGATION BAR
+   ============================================================ */
+#navbar {
+    background-color: #6B1313;
+    padding: 0 32px;
+    display: flex;
+    align-items: center;
+    gap: 4px;
+}
+
+#navbar a {
+    color: #F5E6D0;
+    text-decoration: none;
+    font-size: 12px;
+    padding: 10px 14px;
+    display: inline-block;
+    transition: background-color 0.2s;
+}
+
+#navbar a:hover {
+    background-color: #8B1A1A;
+    color: #FFFFFF;
+}
+
+#navbar a.active {
+    background-color: #5A0E0E;
+    color: #FFD580;
+    font-weight: bold;
+}
+
+#navbar .separator {
+    color: #9B4444;
+    padding: 0 2px;
+}
+
+/* ============================================================
+   BREADCRUMB
+   ============================================================ */
+#breadcrumb {
+    background-color: #EDE8DE;
+    border-bottom: 1px solid #D4CBBB;
+    padding: 9px 32px;
+    font-size: 11px;
+    color: #999999;
+}
+
+#breadcrumb a {
+    color: #8B1A1A;
+    text-decoration: none;
+}
+
+#breadcrumb a:hover {
+    text-decoration: underline;
+}
+
+#breadcrumb strong {
+    color: #2A1A1A;
+}
+
+/* ============================================================
+   ΚΥΡΙΟ ΠΕΡΙΕΧΟΜΕΝΟ
+   ============================================================ */
+#main {
+    padding: 26px 32px 60px 32px;
+    max-width: 980px;
+}
+
+#main h2 {
+    font-family: Georgia, "Times New Roman", serif;
+    font-size: 24px;
+    color: #5A0E0E;
+    margin-bottom: 5px;
+}
+
+#main > p {
+    font-size: 12px;
+    color: #999999;
+    margin-bottom: 24px;
+    border-left: 3px solid #D4CBBB;
+    padding-left: 10px;
+}
+
+/* ============================================================
+   ΜΗΝΥΜΑΤΑ (SUCCESS / ERROR)
+   ============================================================ */
+#msg-success {
+    display: none;
+    background-color: #DFF5E3;
+    border: 1px solid #5BB974;
+    border-left: 4px solid #2E8B45;
+    border-radius: 4px;
+    padding: 12px 18px;
+    color: #1E5C2F;
+    font-size: 13px;
+    margin-bottom: 18px;
+}
+
+#msg-error {
+    display: none;
+    background-color: #FDECEA;
+    border: 1px solid #C9342D;
+    border-left: 4px solid #8B1A1A;
+    border-radius: 4px;
+    padding: 12px 18px;
+    color: #8B1A1A;
+    font-size: 13px;
+    margin-bottom: 18px;
+}
+
+/* ============================================================
+   FIELDSET & LEGEND
+   ============================================================ */
+fieldset {
+    background-color: #FFFFFF;
+    border: 1px solid #D4CBBB;
+    border-top: 3px solid #8B1A1A;
+    border-radius: 6px;
+    padding: 20px 24px;
+    margin-bottom: 20px;
+}
+
+legend {
+    font-size: 11px;
+    font-weight: bold;
+    color: #8B1A1A;
+    text-transform: uppercase;
+    letter-spacing: 1.5px;
+    padding: 0 10px;
+    background-color: #FFFFFF;
+}
+
+/* ============================================================
+   LABELS
+   ============================================================ */
+label {
+    display: block;
+    font-size: 12px;
+    font-weight: bold;
+    color: #444444;
+    margin-top: 14px;
+    margin-bottom: 5px;
+}
+
+label:first-of-type {
+    margin-top: 0;
+}
+
+label .req {
+    color: #8B1A1A;
+    font-size: 13px;
+}
+
+/* ============================================================
+   INPUT / SELECT / TEXTAREA
+   ============================================================ */
+input[type="text"],
+input[type="number"],
+input[type="email"],
+input[type="url"],
+input[type="date"],
+select,
+textarea {
+    width: 100%;
+    padding: 9px 12px;
+    font-family: Verdana, Geneva, sans-serif;
+    font-size: 13px;
+    border: 1px solid #C8BFB0;
+    border-radius: 4px;
+    background-color: #FAF8F4;
+    color: #2A1A1A;
+    transition: border-color 0.2s, background-color 0.2s;
+}
+
+input[type="text"]:focus,
+input[type="number"]:focus,
+input[type="email"]:focus,
+input[type="url"]:focus,
+input[type="date"]:focus,
+select:focus,
+textarea:focus {
+    outline: none;
+    border-color: #8B1A1A;
+    background-color: #FFFFFF;
+    box-shadow: 0 0 0 3px rgba(139, 26, 26, 0.12);
+}
+
+input[type="text"]:hover,
+input[type="number"]:hover,
+select:hover,
+textarea:hover {
+    border-color: #A08070;
+}
+
+textarea {
+    resize: vertical;
+    min-height: 82px;
+    line-height: 1.5;
+}
+
+input[type="file"] {
+    width: 100%;
+    padding: 8px 0;
+    font-size: 12px;
+    color: #555555;
+    cursor: pointer;
+}
+
+/* ============================================================
+   ΓΡΑΜΜΕΣ ΔΥΟ / ΤΡΙΩΝ ΣΤΗΛΩΝ
+   ============================================================ */
+.row-2 {
+    display: table;
+    width: 100%;
+    border-spacing: 16px 0;
+    margin-left: -16px;
+}
+
+.col {
+    display: table-cell;
+    width: 50%;
+    vertical-align: top;
+}
+
+.row-3 {
+    display: table;
+    width: 100%;
+    border-spacing: 16px 0;
+    margin-left: -16px;
+}
+
+.col-3 {
+    display: table-cell;
+    width: 33.33%;
+    vertical-align: top;
+}
+
+/* ============================================================
+   BARCODE ROW
+   ============================================================ */
+.barcode-row {
+    display: table;
+    width: 100%;
+}
+
+.barcode-input {
+    display: table-cell;
+    width: 100%;
+    padding-right: 10px;
+}
+
+.barcode-btn-cell {
+    display: table-cell;
+    vertical-align: bottom;
+    white-space: nowrap;
+}
+
+/* ============================================================
+   ΚΟΥΜΠΙΑ
+   ============================================================ */
+input[type="submit"],
+input[type="reset"],
+.btn-scan {
+    padding: 10px 24px;
+    font-family: Verdana, Geneva, sans-serif;
+    font-size: 13px;
+    font-weight: bold;
+    border-radius: 4px;
+    cursor: pointer;
+    border: none;
+    transition: background-color 0.2s, transform 0.1s;
+}
+
+input[type="submit"] {
+    background-color: #8B1A1A;
+    color: #FFFFFF;
+    letter-spacing: 0.5px;
+}
+
+input[type="submit"]:hover {
+    background-color: #6B1313;
+}
+
+input[type="submit"]:active {
+    transform: scale(0.98);
+}
+
+input[type="reset"] {
+    background-color: #FFFFFF;
+    color: #8B1A1A;
+    border: 1px solid #8B1A1A;
+    margin-left: 10px;
+}
+
+input[type="reset"]:hover {
+    background-color: #F5EDED;
+}
+
+.btn-scan {
+    background-color: #8B1A1A;
+    color: #FFFFFF;
+    padding: 9px 16px;
+    font-size: 12px;
+}
+
+.btn-scan:hover {
+    background-color: #6B1313;
+}
+
+/* ============================================================
+   RADIO / CHECKBOX
+   ============================================================ */
+.radio-group,
+.checkbox-group {
+    margin-top: 6px;
+}
+
+.radio-group label,
+.checkbox-group label {
+    display: inline-block;
+    margin-top: 6px;
+    margin-right: 24px;
+    font-weight: normal;
+    font-size: 13px;
+    color: #333333;
+    cursor: pointer;
+}
+
+.radio-group input[type="radio"],
+.checkbox-group input[type="checkbox"] {
+    margin-right: 6px;
+    accent-color: #8B1A1A;
+    cursor: pointer;
+}
+
+/* ============================================================
+   PHOTO UPLOAD AREA
+   ============================================================ */
+#photo-area {
+    border: 2px dashed #C8BFB0;
+    border-radius: 6px;
+    background-color: #FBF7F2;
+    padding: 22px;
+    text-align: center;
+    margin-top: 4px;
+    transition: border-color 0.2s, background-color 0.2s;
+}
+
+#photo-area:hover {
+    border-color: #8B1A1A;
+    background-color: #F5EDED;
+}
+
+#photo-area p {
+    font-size: 12px;
+    color: #AAAAAA;
+    margin-top: 8px;
+}
+
+#photo-area p strong {
+    color: #8B1A1A;
+}
+
+#photo-preview {
+    max-width: 100%;
+    max-height: 200px;
+    border-radius: 4px;
+    display: none;
+    margin: 12px auto 0;
+    border: 1px solid #D4CBBB;
+}
+
+/* ============================================================
+   ΟΡΙΖΟΝΤΙΕΣ ΓΡΑΜΜΕΣ ΔΙΑΧΩΡΙΣΜΟΥ
+   ============================================================ */
+hr.divider {
+    border: none;
+    border-top: 1px solid #EDE8DE;
+    margin: 14px 0;
+}
+
+/* ============================================================
+   ΓΡΑΜΜΗ ΥΠΟΒΟΛΗΣ
+   ============================================================ */
+#submit-bar {
+    background-color: #FFFFFF;
+    border: 1px solid #D4CBBB;
+    border-top: 3px solid #8B1A1A;
+    border-radius: 6px;
+    padding: 18px 24px;
+    margin-bottom: 20px;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+/* ============================================================
+   FOOTER
+   ============================================================ */
+#footer {
+    background-color: #5A0E0E;
+    color: #F5C4C4;
+    text-align: center;
+    padding: 16px;
+    font-size: 11px;
+    letter-spacing: 0.5px;
+    margin-top: 40px;
+}
