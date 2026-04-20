@@ -29,22 +29,10 @@ body {
     border-bottom: 4px solid #5A0E0E;
 }
 
-#logo-placeholder {
-    width: 54px;
-    height: 54px;
-    background-color: #FFFFFF;
-    border-radius: 50%;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    font-family: Georgia, serif;
-    font-size: 11px;
-    color: #8B1A1A;
-    font-weight: bold;
-    text-align: center;
-    line-height: 1.3;
+#logo-img {
+    width: 58px;
+    height: 58px;
     flex-shrink: 0;
-    border: 3px solid #F5C4C4;
 }
 
 #header-text h1 {
