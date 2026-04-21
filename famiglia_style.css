@@ -470,3 +470,120 @@ hr.divider {
     letter-spacing: 0.5px;
     margin-top: 40px;
 }
+/* ============================================================
+   ====== STOCK HISTORY PAGE (ΝΕΟ SECTION) ======
+   ============================================================ */
+
+/* ===== METRICS ===== */
+#metrics {
+    display: flex;
+    gap: 12px;
+    margin-bottom: 20px;
+}
+
+.metric-card {
+    background-color: #FFFFFF;
+    border: 1px solid #D4CBBB;
+    border-top: 3px solid #8B1A1A;
+    padding: 14px;
+    flex: 1;
+    text-align: center;
+}
+
+.metric-label {
+    font-size: 11px;
+    color: #999;
+    text-transform: uppercase;
+}
+
+.metric-value       { font-size: 26px; font-weight: bold; }
+.metric-value-in    { font-size: 26px; font-weight: bold; color: #2E6B3A; }
+.metric-value-out   { font-size: 26px; font-weight: bold; color: #8B1A1A; }
+.metric-value-warn  { font-size: 26px; font-weight: bold; color: #7A5500; }
+
+/* ===== FILTERS ===== */
+#filters {
+    background: #fff;
+    border: 1px solid #D4CBBB;
+    border-top: 3px solid #8B1A1A;
+    padding: 16px;
+    margin-bottom: 18px;
+}
+
+#filters-row {
+    display: flex;
+    gap: 12px;
+    flex-wrap: wrap;
+}
+
+.filter-group {
+    display: flex;
+    flex-direction: column;
+}
+
+#filters-actions {
+    margin-left: auto;
+    display: flex;
+    gap: 8px;
+}
+
+/* ===== BUTTONS ===== */
+.btn-search {
+    background: #8B1A1A;
+    color: #fff;
+    padding: 9px 18px;
+    border: none;
+    cursor: pointer;
+}
+
+.btn-clear,
+.btn-pdf {
+    background: #fff;
+    color: #8B1A1A;
+    border: 1px solid #8B1A1A;
+    padding: 9px 14px;
+    cursor: pointer;
+}
+
+/* ===== TABLE ===== */
+#table-wrap {
+    border: 1px solid #D4CBBB;
+    overflow: hidden;
+}
+
+#history-table {
+    width: 100%;
+    border-collapse: collapse;
+    background: #fff;
+}
+
+#history-table th {
+    background: #F5F0E8;
+    font-size: 11px;
+    padding: 9px;
+    cursor: pointer;
+}
+
+#history-table td {
+    padding: 10px;
+    border-bottom: 1px solid #eee;
+}
+
+/* ===== BADGES ===== */
+.badge-in { background: #DFF5E3; padding: 3px 8px; }
+.badge-out { background: #FDECEA; padding: 3px 8px; }
+.badge-reserve { background: #FFF8E1; padding: 3px 8px; }
+.badge-correction { background: #EDE0F5; padding: 3px 8px; }
+
+/* ===== QTY ===== */
+.qty-in { color: green; font-weight: bold; }
+.qty-out { color: red; font-weight: bold; }
+
+/* ===== FOOTER ===== */
+#footer {
+    background-color: #5A0E0E;
+    color: #F5C4C4;
+    text-align: center;
+    padding: 16px;
+    font-size: 11px;
+}

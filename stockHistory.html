@@ -1,0 +1,326 @@
+<!DOCTYPE html>
+<html lang="el">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Famiglia di Pasta - Ιστορικό Κινήσεων Αποθέματος</title>
+
+  <!-- Σύνδεση με το κοινό αρχείο CSS -->
+  <link rel="stylesheet" href="famiglia_style.css">
+</head>
+<body>
+
+<!-- ===== HEADER ===== -->
+<div id="header">
+  <div id="logo-placeholder">F<br>di<br>P</div>
+  <div id="header-text">
+    <h1>Famiglia di Pasta</h1>
+    <p>Σύστημα Διαχείρισης Αποθήκης</p>
+  </div>
+</div>
+
+<!-- ===== NAVIGATION ===== -->
+<div id="navbar">
+  <a href="#">Κεντρική</a>
+  <span class="separator">|</span>
+  <a href="#">Εισαγωγές Αποθέματος</a>
+  <span class="separator">|</span>
+  <a href="#">Εξαγωγές Αποθέματος</a>
+  <span class="separator">|</span>
+  <a href="#">Νέο Προϊόν</a>
+  <span class="separator">|</span>
+  <a href="#" class="active">Ιστορικό Κινήσεων</a>
+  <span class="separator">|</span>
+  <a href="#">Αναφορές</a>
+</div>
+
+<!-- ===== BREADCRUMB ===== -->
+<div id="breadcrumb">
+  <a href="#">Κεντρική</a> &raquo;
+  <a href="#">Αναφορές</a> &raquo;
+  <strong>Ιστορικό Κινήσεων Αποθέματος</strong>
+</div>
+
+<!-- ===== ΚΥΡΙΟ ΠΕΡΙΕΧΟΜΕΝΟ ===== -->
+<div id="main">
+
+  <h2>Ιστορικό Κινήσεων Αποθέματος</h2>
+  <p>Πλήρες αρχείο εισροών, εκροών και δεσμεύσεων ανά κωδικό και χρονική περίοδο.</p>
+
+  <!-- Metric Cards -->
+  <div id="metrics">
+    <div class="metric-card">
+      <p class="metric-label">Συνολικές κινήσεις</p>
+      <p class="metric-value">348</p>
+    </div>
+    <div class="metric-card">
+      <p class="metric-label">Εισροές (μήνας)</p>
+      <p class="metric-value-in">↑ 124</p>
+    </div>
+    <div class="metric-card">
+      <p class="metric-label">Εκροές (μήνας)</p>
+      <p class="metric-value-out">↓ 198</p>
+    </div>
+    <div class="metric-card">
+      <p class="metric-label">Δεσμεύσεις ενεργές</p>
+      <p class="metric-value-warn">26</p>
+    </div>
+  </div>
+
+  <!-- Filters -->
+  <div id="filters">
+    <div id="filters-title">Φίλτρα Αναζήτησης</div>
+    <div id="filters-row">
+
+      <div class="filter-group">
+        <span>Αναζήτηση</span>
+        <input type="text" id="search-box" placeholder="Κωδικός ή περιγραφή...">
+      </div>
+
+      <div class="filter-group">
+        <span>Από</span>
+        <input type="date" id="date-from" value="2026-04-01">
+      </div>
+
+      <div class="filter-group">
+        <span>Έως</span>
+        <input type="date" id="date-to" value="2026-04-21">
+      </div>
+
+      <div class="filter-group">
+        <span>Τύπος κίνησης</span>
+        <select id="filter-type">
+          <option value="">Όλες</option>
+          <option value="εισροη">Εισροή</option>
+          <option value="εκροη">Εκροή</option>
+          <option value="δεσμευση">Δέσμευση</option>
+          <option value="διορθωση">Διόρθωση</option>
+        </select>
+      </div>
+
+      <div class="filter-group">
+        <span>Υπάλληλος</span>
+        <select id="filter-user">
+          <option value="">Όλοι</option>
+          <option value="παπαδ">Ν. Παπαδόπουλος</option>
+          <option value="γεωργ">Μ. Γεωργίου</option>
+          <option value="δημητρ">Κ. Δημητρίου</option>
+        </select>
+      </div>
+
+      <div id="filters-actions">
+        <button class="btn-search" onclick="filterTable()">&#128269; Αναζήτηση</button>
+        <button class="btn-clear"  onclick="resetFilters()">&#10005; Καθαρισμός</button>
+        <button class="btn-pdf">&#8595; PDF</button>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- Table -->
+  <div id="table-wrap">
+    <div id="table-header-bar">
+      <span>Κινήσεις Αποθέματος</span>
+      <span id="table-count">Εμφάνιση 1–10 από 348 εγγραφές</span>
+    </div>
+
+    <div id="no-results">Δεν βρέθηκαν εγγραφές με τα επιλεγμένα φίλτρα.</div>
+
+    <table id="history-table">
+      <thead>
+        <tr>
+          <th onclick="sortTable(this)" class="sorted">Ημ/νία &amp; Ώρα ▲</th>
+          <th onclick="sortTable(this)">Κωδικός</th>
+          <th onclick="sortTable(this)">Προϊόν</th>
+          <th onclick="sortTable(this)">Τύπος</th>
+          <th onclick="sortTable(this)">Ποσότητα</th>
+          <th onclick="sortTable(this)">Υπόλοιπο μετά</th>
+          <th onclick="sortTable(this)">Υπάλληλος</th>
+          <th>Σημειώσεις</th>
+        </tr>
+      </thead>
+      <tbody id="table-body">
+        <tr>
+          <td><span class="timestamp">19/04/2026</span><span class="timestamp-time">14:32:08</span></td>
+          <td><span class="code">FP-001</span></td>
+          <td>Σπαγγέτι Νο5</td>
+          <td><span class="badge-in">ΕΙΣΡΟΗ</span></td>
+          <td><span class="qty-in">+200 kg</span></td>
+          <td>1.240 kg</td>
+          <td><span class="user-badge">Ν. Παπαδόπουλος</span></td>
+          <td class="note-cell">Παραλαβή από αποθήκη παραγωγής</td>
+        </tr>
+        <tr>
+          <td><span class="timestamp">19/04/2026</span><span class="timestamp-time">13:41:22</span></td>
+          <td><span class="code">FP-002</span></td>
+          <td>Πένες Ριγκάτε</td>
+          <td><span class="badge-out">ΕΚΡΟΗ</span></td>
+          <td><span class="qty-out">−150 kg</span></td>
+          <td>890 kg</td>
+          <td><span class="user-badge">Μ. Γεωργίου</span></td>
+          <td class="note-cell">Παραγγελία #ORD-2041</td>
+        </tr>
+        <tr>
+          <td><span class="timestamp">19/04/2026</span><span class="timestamp-time">11:20:05</span></td>
+          <td><span class="code">FP-007</span></td>
+          <td>Φαρφάλες</td>
+          <td><span class="badge-reserve">ΔΕΣΜΕΥΣΗ</span></td>
+          <td><span class="qty-neutral">−60 kg</span></td>
+          <td>85 kg</td>
+          <td><span class="user-badge">Ν. Παπαδόπουλος</span></td>
+          <td class="note-cell">Δέσμευση για παραγγελία #ORD-2045</td>
+        </tr>
+        <tr>
+          <td><span class="timestamp">19/04/2026</span><span class="timestamp-time">10:55:44</span></td>
+          <td><span class="code">FP-023</span></td>
+          <td>Ριγκατόνι</td>
+          <td><span class="badge-in">ΕΙΣΡΟΗ</span></td>
+          <td><span class="qty-in">+100 kg</span></td>
+          <td>430 kg</td>
+          <td><span class="user-badge">Κ. Δημητρίου</span></td>
+          <td class="note-cell">Παραλαβή από παραγωγή</td>
+        </tr>
+        <tr>
+          <td><span class="timestamp">19/04/2026</span><span class="timestamp-time">09:05:17</span></td>
+          <td><span class="code">FP-019</span></td>
+          <td>Λαζάνια</td>
+          <td><span class="badge-out">ΕΚΡΟΗ</span></td>
+          <td><span class="qty-out">−80 kg</span></td>
+          <td>560 kg</td>
+          <td><span class="user-badge">Μ. Γεωργίου</span></td>
+          <td class="note-cell">Παραγγελία #ORD-2039</td>
+        </tr>
+        <tr>
+          <td><span class="timestamp">18/04/2026</span><span class="timestamp-time">17:30:00</span></td>
+          <td><span class="code">FP-012</span></td>
+          <td>Σάλτσα Τομάτας</td>
+          <td><span class="badge-out">ΕΚΡΟΗ</span></td>
+          <td><span class="qty-out">−40 τεμ.</span></td>
+          <td>40 τεμ.</td>
+          <td><span class="user-badge">Ν. Παπαδόπουλος</span></td>
+          <td class="note-cell">Παραγγελία #ORD-2038</td>
+        </tr>
+        <tr>
+          <td><span class="timestamp">18/04/2026</span><span class="timestamp-time">14:12:33</span></td>
+          <td><span class="code">FP-015</span></td>
+          <td>Αλεύρι Ολικής</td>
+          <td><span class="badge-correction">ΔΙΟΡΘΩΣΗ</span></td>
+          <td><span class="qty-out">−20 kg</span></td>
+          <td>0 kg</td>
+          <td><span class="user-badge">Κ. Δημητρίου</span></td>
+          <td class="note-cell">Διόρθωση απογραφής — φθορά προϊόντος</td>
+        </tr>
+        <tr>
+          <td><span class="timestamp">18/04/2026</span><span class="timestamp-time">08:12:50</span></td>
+          <td><span class="code">FP-015</span></td>
+          <td>Αλεύρι Ολικής</td>
+          <td><span class="badge-out">ΕΚΡΟΗ</span></td>
+          <td><span class="qty-out">−50 kg</span></td>
+          <td>20 kg</td>
+          <td><span class="user-badge">Μ. Γεωργίου</span></td>
+          <td class="note-cell">Παραγγελία #ORD-2035</td>
+        </tr>
+        <tr>
+          <td><span class="timestamp">17/04/2026</span><span class="timestamp-time">16:45:09</span></td>
+          <td><span class="code">FP-001</span></td>
+          <td>Σπαγγέτι Νο5</td>
+          <td><span class="badge-out">ΕΚΡΟΗ</span></td>
+          <td><span class="qty-out">−320 kg</span></td>
+          <td>1.040 kg</td>
+          <td><span class="user-badge">Ν. Παπαδόπουλος</span></td>
+          <td class="note-cell">Παραγγελία #ORD-2031</td>
+        </tr>
+        <tr>
+          <td><span class="timestamp">17/04/2026</span><span class="timestamp-time">09:20:41</span></td>
+          <td><span class="code">FP-002</span></td>
+          <td>Πένες Ριγκάτε</td>
+          <td><span class="badge-in">ΕΙΣΡΟΗ</span></td>
+          <td><span class="qty-in">+300 kg</span></td>
+          <td>1.040 kg</td>
+          <td><span class="user-badge">Κ. Δημητρίου</span></td>
+          <td class="note-cell">Παραλαβή από παραγωγή</td>
+        </tr>
+      </tbody>
+    </table>
+
+    <div id="pagination">
+      <span id="pagination-info">Εμφάνιση 1–10 από 348 εγγραφές</span>
+      <div id="pagination-btns">
+        <button class="page-btn" disabled>&laquo;</button>
+        <button class="page-btn active">1</button>
+        <button class="page-btn">2</button>
+        <button class="page-btn">3</button>
+        <button class="page-btn">...</button>
+        <button class="page-btn">35</button>
+        <button class="page-btn">&raquo;</button>
+      </div>
+    </div>
+  </div>
+
+  <p style="text-align:right; font-size:11px; color:#999999; margin-top:8px; border-top:1px solid #D4CBBB; padding-top:8px;">
+    Σύστημα ενημερώνεται αυτόματα &nbsp;&middot;&nbsp; Τελευταία ανανέωση: 19/04/2026, 14:32:08
+  </p>
+
+</div><!-- /main -->
+
+<div id="footer">
+  <p>Famiglia di Pasta &copy; 2025 &bull; Σύστημα Διαχείρισης Αποθήκης &bull; Έκδοση 1.0</p>
+</div>
+
+<script>
+  function filterTable() {
+    var search = document.getElementById('search-box').value.toLowerCase();
+    var type   = document.getElementById('filter-type').value.toLowerCase();
+    var user   = document.getElementById('filter-user').value.toLowerCase();
+    var rows   = document.getElementById('table-body').getElementsByTagName('tr');
+    var visible = 0;
+
+    for (var i = 0; i < rows.length; i++) {
+      var cells   = rows[i].getElementsByTagName('td');
+      var code    = cells[1].textContent.toLowerCase();
+      var name    = cells[2].textContent.toLowerCase();
+      var rowType = cells[3].textContent.toLowerCase();
+      var rowUser = cells[6].textContent.toLowerCase();
+
+      var matchSearch = !search || code.includes(search) || name.includes(search);
+      var matchType   = !type   || rowType.includes(type);
+      var matchUser   = !user   || rowUser.includes(user);
+
+      rows[i].style.display = (matchSearch && matchType && matchUser) ? '' : 'none';
+      if (matchSearch && matchType && matchUser) visible++;
+    }
+
+    document.getElementById('no-results').style.display = visible === 0 ? 'block' : 'none';
+    document.getElementById('table-count').textContent = 'Εμφάνιση ' + visible + ' εγγραφών';
+    document.getElementById('pagination-info').textContent = 'Εμφάνιση 1–' + visible + ' από ' + visible + ' εγγραφές';
+  }
+
+  function resetFilters() {
+    document.getElementById('search-box').value = '';
+    document.getElementById('filter-type').value = '';
+    document.getElementById('filter-user').value = '';
+    document.getElementById('date-from').value = '2026-04-01';
+    document.getElementById('date-to').value   = '2026-04-21';
+    var rows = document.getElementById('table-body').getElementsByTagName('tr');
+    for (var i = 0; i < rows.length; i++) rows[i].style.display = '';
+    document.getElementById('no-results').style.display = 'none';
+    document.getElementById('table-count').textContent = 'Εμφάνιση 1–10 από 348 εγγραφές';
+    document.getElementById('pagination-info').textContent = 'Εμφάνιση 1–10 από 348 εγγραφές';
+  }
+
+  function sortTable(th) {
+    document.querySelectorAll('#history-table th').forEach(function(t) { t.classList.remove('sorted'); });
+    th.classList.add('sorted');
+  }
+
+  document.querySelectorAll('.page-btn').forEach(function(btn) {
+    btn.addEventListener('click', function() {
+      if (this.disabled) return;
+      document.querySelectorAll('.page-btn').forEach(function(b) { b.classList.remove('active'); });
+      this.classList.add('active');
+    });
+  });
+</script>
+
+</body>
+</html>
