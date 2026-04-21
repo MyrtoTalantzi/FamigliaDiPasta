@@ -1,9 +1,15 @@
 /* ============================================================
-   FAMIGLIA DI PASTA - Warehouse System Stylesheet
-   Αρχείο: famiglia_style.css
+   FAMIGLIA DI PASTA — Unified Warehouse System Stylesheet
+   Αρχείο  : famiglia_style.css
+   Αφορά   : newProduct.html | IncomingStock.html |
+             stockHistory.html | LiveStock.html
+   Design  : Βασισμένο στο LiveStock & IncomingStock aesthetic
    ============================================================ */
 
-/* ===== RESET & ΒΑΣΗ ===== */
+
+/* ============================================================
+   1. RESET & ΒΑΣΗ
+   ============================================================ */
 * {
     box-sizing: border-box;
     margin: 0;
@@ -11,94 +17,126 @@
 }
 
 body {
-    font-family: Verdana, Geneva, sans-serif;
-    font-size: 14px;
-    background-color: #F5F0E8;
-    color: #2A1A1A;
-}
-
-/* ============================================================
-   HEADER
-   ============================================================ */
-#header {
-    background-color: #8B1A1A;
-    padding: 16px 32px;
-    display: flex;
-    align-items: center;
-    gap: 18px;
-    border-bottom: 4px solid #5A0E0E;
-}
-
-#logo-img {
-    width: 58px;
-    height: 58px;
-    flex-shrink: 0;
-}
-
-#header-text h1 {
     font-family: Georgia, "Times New Roman", serif;
-    color: #FFFFFF;
-    font-size: 22px;
-    font-weight: bold;
-    letter-spacing: 1px;
+    font-size: 14px;
+    background-color: #f5f0eb;
+    color: #1a1a1a;
 }
 
-#header-text p {
-    color: #F5C4C4;
-    font-size: 12px;
-    margin-top: 3px;
-    letter-spacing: 0.5px;
-}
 
 /* ============================================================
-   NAVIGATION BAR
+   2. NAVBAR / HEADER
    ============================================================ */
 #navbar {
-    background-color: #6B1313;
-    padding: 0 32px;
+    background-color: #1a1a1a;
+    padding: 12px 24px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+/* Logo box (LiveStock / IncomingStock style) */
+#logo-box {
+    background-color: #1a1a1a;
+    border: 2px solid #c8a96e;
+    padding: 6px 14px;
+    display: inline-block;
+}
+
+#logo-text {
+    color: #ffffff;
+    font-size: 15px;
+    font-weight: bold;
+    letter-spacing: 1px;
+    display: block;
+}
+
+#logo-sub {
+    color: #c8a96e;
+    font-size: 11px;
+    display: block;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    margin-top: 2px;
+}
+
+/* Navbar left / right grouping */
+#navbar-left {
     display: flex;
     align-items: center;
-    gap: 4px;
+    gap: 14px;
 }
 
-#navbar a {
-    color: #F5E6D0;
+#navbar-right {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+}
+
+/* Logged-in user info */
+#user-name {
+    color: #ffffff;
+    font-size: 13px;
+}
+
+#user-role {
+    color: #c8a96e;
+    font-size: 11px;
+    display: block;
+}
+
+/* Logout / back button */
+#logout-btn,
+a#logout-btn {
+    color: #c8a96e;
     text-decoration: none;
+    border: 1px solid #c8a96e;
+    padding: 4px 12px;
     font-size: 12px;
-    padding: 10px 14px;
+    letter-spacing: 0.5px;
+    transition: background-color 0.2s, color 0.2s;
+}
+
+#logout-btn:hover,
+a#logout-btn:hover {
+    background-color: #c8a96e;
+    color: #1a1a1a;
+}
+
+/* Gold outline button (IncomingStock) */
+.btn-gold {
+    color: #c8a96e;
+    border: 1px solid #c8a96e;
+    background: transparent;
+    font-size: 12px;
+    letter-spacing: 1px;
+    padding: 5px 12px;
+    cursor: pointer;
+    text-decoration: none;
     display: inline-block;
-    transition: background-color 0.2s;
+    transition: background-color 0.2s, color 0.2s;
 }
 
-#navbar a:hover {
-    background-color: #8B1A1A;
-    color: #FFFFFF;
+.btn-gold:hover {
+    background-color: #c8a96e;
+    color: #1a1a1a;
 }
 
-#navbar a.active {
-    background-color: #5A0E0E;
-    color: #FFD580;
-    font-weight: bold;
-}
-
-#navbar .separator {
-    color: #9B4444;
-    padding: 0 2px;
-}
 
 /* ============================================================
-   BREADCRUMB
+   3. BREADCRUMB  (stockHistory / newProduct)
    ============================================================ */
 #breadcrumb {
-    background-color: #EDE8DE;
-    border-bottom: 1px solid #D4CBBB;
-    padding: 9px 32px;
+    background-color: #f0e8da;
+    border-bottom: 1px solid #d4c5a9;
+    padding: 9px 28px;
     font-size: 11px;
     color: #999999;
+    letter-spacing: 0.3px;
 }
 
 #breadcrumb a {
-    color: #8B1A1A;
+    color: #a07040;
     text-decoration: none;
 }
 
@@ -107,120 +145,466 @@ body {
 }
 
 #breadcrumb strong {
-    color: #2A1A1A;
+    color: #1a1a1a;
 }
 
+
 /* ============================================================
-   ΚΥΡΙΟ ΠΕΡΙΕΧΟΜΕΝΟ
+   4. PAGE HEADER  (τίτλος σελίδας)
+   ============================================================ */
+#page-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    margin-bottom: 18px;
+    border-bottom: 2px solid #c8a96e;
+    padding-bottom: 12px;
+}
+
+#page-title,
+h1#page-title {
+    margin: 0;
+    font-size: 22px;
+    font-weight: bold;
+    color: #1a1a1a;
+}
+
+#page-sub,
+p#page-subtitle {
+    margin: 4px 0 0 0;
+    font-size: 12px;
+    color: #666666;
+}
+
+/* Live badge */
+#live-badge {
+    background-color: #1a1a1a;
+    color: #c8a96e;
+    font-size: 11px;
+    padding: 5px 12px;
+    border: 1px solid #c8a96e;
+    letter-spacing: 1px;
+    white-space: nowrap;
+}
+
+
+/* ============================================================
+   5. ΚΥΡΙΟ ΠΕΡΙΕΧΟΜΕΝΟ  (#main)
    ============================================================ */
 #main {
-    padding: 26px 32px 60px 32px;
+    padding: 24px 28px 60px 28px;
     max-width: 980px;
 }
 
 #main h2 {
-    font-family: Georgia, "Times New Roman", serif;
-    font-size: 24px;
-    color: #5A0E0E;
+    font-size: 22px;
+    font-weight: bold;
+    color: #1a1a1a;
     margin-bottom: 5px;
 }
 
 #main > p {
     font-size: 12px;
-    color: #999999;
-    margin-bottom: 24px;
-    border-left: 3px solid #D4CBBB;
+    color: #888888;
+    margin-bottom: 22px;
+    border-left: 3px solid #d4c5a9;
     padding-left: 10px;
 }
 
+
 /* ============================================================
-   ΜΗΝΥΜΑΤΑ (SUCCESS / ERROR)
+   6. SCANNER BANNER  (IncomingStock)
    ============================================================ */
-#msg-success {
-    display: none;
-    background-color: #DFF5E3;
-    border: 1px solid #5BB974;
-    border-left: 4px solid #2E8B45;
-    border-radius: 4px;
+#scanner-banner {
+    background-color: #1a1a1a;
+    border: 1px solid #c8a96e;
     padding: 12px 18px;
-    color: #1E5C2F;
-    font-size: 13px;
-    margin-bottom: 18px;
+    margin-bottom: 20px;
+    display: flex;
+    align-items: center;
+    gap: 14px;
 }
 
-#msg-error {
-    display: none;
-    background-color: #FDECEA;
-    border: 1px solid #C9342D;
-    border-left: 4px solid #8B1A1A;
-    border-radius: 4px;
-    padding: 12px 18px;
-    color: #8B1A1A;
+#scanner-banner strong {
+    color: #ffffff;
     font-size: 13px;
-    margin-bottom: 18px;
 }
+
+#scanner-banner span.sub {
+    color: #888888;
+    font-size: 12px;
+}
+
+.scanner-icon {
+    border: 1px solid #c8a96e;
+    color: #c8a96e;
+    padding: 6px 10px;
+    font-size: 20px;
+}
+
+.badge-scanner {
+    color: #c8a96e;
+    border: 1px solid #c8a96e;
+    font-size: 11px;
+    letter-spacing: 1px;
+    background: transparent;
+    padding: 3px 10px;
+    margin-left: auto;
+}
+
+/* Pulsing dot */
+.dot {
+    display: inline-block;
+    width: 7px;
+    height: 7px;
+    border-radius: 50%;
+    background-color: #7fff9a;
+    animation: pulse 1.8s ease-in-out infinite;
+    vertical-align: middle;
+    margin-right: 4px;
+}
+
+@keyframes pulse {
+    0%, 100% { opacity: 1; }
+    50%       { opacity: 0.3; }
+}
+
 
 /* ============================================================
-   FIELDSET & LEGEND
+   7. ALERT BAR
+   ============================================================ */
+#alert-bar {
+    background-color: #fff3cd;
+    border: 1px solid #c8a96e;
+    border-left: 4px solid #c8a96e;
+    padding: 10px 16px;
+    margin-bottom: 18px;
+    font-size: 13px;
+    color: #5a4000;
+}
+
+
+/* ============================================================
+   8. METRIC CARDS
+   ============================================================ */
+#metrics {
+    display: flex;
+    gap: 12px;
+    margin-bottom: 20px;
+}
+
+.metric-card {
+    background-color: #ffffff;
+    border: 1px solid #d4c5a9;
+    border-top: 3px solid #c8a96e;
+    padding: 14px 18px;
+    flex: 1;
+    text-align: center;
+}
+
+.metric-label {
+    margin: 0 0 6px 0;
+    font-size: 11px;
+    color: #888888;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+
+.metric-value        { margin: 0; font-size: 26px; font-weight: bold; color: #1a1a1a; }
+.metric-value-in     { margin: 0; font-size: 26px; font-weight: bold; color: #1a5c1a; }
+.metric-value-out    { margin: 0; font-size: 26px; font-weight: bold; color: #8B1A1A; }
+.metric-value-warn   { margin: 0; font-size: 26px; font-weight: bold; color: #b87800; }
+.metric-value-danger { margin: 0; font-size: 26px; font-weight: bold; color: #c0392b; }
+
+
+/* ============================================================
+   9. ΦΙΛΤΡΑ & CONTROLS
+   ============================================================ */
+
+/* stockHistory filters */
+#filters {
+    background-color: #ffffff;
+    border: 1px solid #d4c5a9;
+    border-top: 3px solid #c8a96e;
+    padding: 16px 18px;
+    margin-bottom: 18px;
+}
+
+#filters-title {
+    font-size: 11px;
+    font-weight: bold;
+    color: #a07040;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    margin-bottom: 12px;
+}
+
+#filters-row {
+    display: flex;
+    gap: 12px;
+    flex-wrap: wrap;
+    align-items: flex-end;
+}
+
+.filter-group {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+    font-size: 11px;
+    color: #888888;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+}
+
+#filters-actions {
+    margin-left: auto;
+    display: flex;
+    gap: 8px;
+    align-items: flex-end;
+}
+
+/* LiveStock controls bar */
+#controls {
+    display: flex;
+    gap: 10px;
+    margin-bottom: 14px;
+    align-items: center;
+}
+
+input#search-box,
+#search-box {
+    flex: 1;
+    padding: 8px 12px;
+    font-size: 13px;
+    font-family: Georgia, serif;
+    border: 1px solid #c8a96e;
+    background-color: #ffffff;
+    color: #1a1a1a;
+}
+
+input#search-box:focus,
+#search-box:focus {
+    outline: none;
+    border-color: #a07040;
+    box-shadow: 0 0 0 2px rgba(200, 169, 110, 0.2);
+}
+
+select.filter-select {
+    padding: 8px 10px;
+    font-size: 13px;
+    font-family: Georgia, serif;
+    border: 1px solid #c8a96e;
+    background-color: #ffffff;
+    color: #1a1a1a;
+}
+
+
+/* ============================================================
+   10. ΚΟΥΜΠΙΑ
+   ============================================================ */
+
+/* Κύριο κουμπί (σκούρο/χρυσό) */
+.btn-search,
+#btn-submit,
+input#pdf-btn {
+    background-color: #1a1a1a;
+    color: #c8a96e;
+    border: 1px solid #c8a96e;
+    padding: 9px 18px;
+    font-family: Georgia, serif;
+    font-size: 12px;
+    letter-spacing: 1px;
+    cursor: pointer;
+    transition: background-color 0.2s, color 0.2s;
+}
+
+.btn-search:hover,
+#btn-submit:hover,
+input#pdf-btn:hover {
+    background-color: #c8a96e;
+    color: #1a1a1a;
+}
+
+/* Δευτερεύον κουμπί (outline) */
+.btn-clear,
+.btn-pdf,
+#btn-clear {
+    background-color: #ffffff;
+    color: #a07040;
+    border: 1px solid #d4c5a9;
+    padding: 9px 14px;
+    font-family: Georgia, serif;
+    font-size: 12px;
+    cursor: pointer;
+    transition: border-color 0.2s, color 0.2s;
+}
+
+.btn-clear:hover,
+.btn-pdf:hover,
+#btn-clear:hover {
+    border-color: #a07040;
+    color: #1a1a1a;
+}
+
+/* Scanner / scan button */
+.btn-scan {
+    background-color: #1a1a1a;
+    color: #c8a96e;
+    border: 1px solid #c8a96e;
+    padding: 9px 16px;
+    font-family: Georgia, serif;
+    font-size: 12px;
+    letter-spacing: 0.5px;
+    cursor: pointer;
+    transition: background-color 0.2s, color 0.2s;
+}
+
+.btn-scan:hover {
+    background-color: #c8a96e;
+    color: #1a1a1a;
+}
+
+/* +/- ποσότητας (IncomingStock) */
+.btn-qty {
+    background-color: #1a1a1a;
+    color: #c8a96e;
+    border: 1px solid #c8a96e;
+    width: 36px;
+    padding: 8px 0;
+    font-size: 16px;
+    cursor: pointer;
+    transition: background-color 0.2s, color 0.2s;
+}
+
+.btn-qty:hover {
+    background-color: #c8a96e;
+    color: #1a1a1a;
+}
+
+/* Submit / Reset (φόρμα newProduct) */
+input[type="submit"] {
+    background-color: #1a1a1a;
+    color: #c8a96e;
+    border: 1px solid #c8a96e;
+    padding: 10px 26px;
+    font-family: Georgia, serif;
+    font-size: 13px;
+    letter-spacing: 0.5px;
+    cursor: pointer;
+    transition: background-color 0.2s, color 0.2s;
+}
+
+input[type="submit"]:hover  { background-color: #c8a96e; color: #1a1a1a; }
+input[type="submit"]:active { transform: scale(0.98); }
+
+input[type="reset"] {
+    background-color: #ffffff;
+    color: #a07040;
+    border: 1px solid #d4c5a9;
+    padding: 10px 20px;
+    font-family: Georgia, serif;
+    font-size: 13px;
+    cursor: pointer;
+    margin-left: 10px;
+    transition: border-color 0.2s;
+}
+
+input[type="reset"]:hover { border-color: #a07040; }
+
+/* PDF export button (LiveStock) */
+input#pdf-btn { padding: 8px 16px; }
+
+
+/* ============================================================
+   11. CARDS  (IncomingStock fp-card)
+   ============================================================ */
+.fp-card {
+    background-color: #ffffff;
+    border: 1px solid #d4c5a9;
+    margin-bottom: 16px;
+}
+
+.fp-card-header {
+    background-color: #1a1a1a;
+    color: #c8a96e;
+    padding: 9px 16px;
+    font-size: 11px;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+}
+
+.fp-card-header .num {
+    border: 1px solid #c8a96e;
+    padding: 1px 6px;
+    font-family: "Courier New", monospace;
+    margin-right: 8px;
+}
+
+.fp-card-body {
+    padding: 16px;
+}
+
+
+/* ============================================================
+   12. FIELDSET & LEGEND  (newProduct / stockHistory)
    ============================================================ */
 fieldset {
-    background-color: #FFFFFF;
-    border: 1px solid #D4CBBB;
-    border-top: 3px solid #8B1A1A;
-    border-radius: 6px;
-    padding: 20px 24px;
-    margin-bottom: 20px;
+    background-color: #ffffff;
+    border: 1px solid #d4c5a9;
+    border-top: 3px solid #c8a96e;
+    padding: 20px 22px;
+    margin-bottom: 18px;
 }
 
 legend {
     font-size: 11px;
     font-weight: bold;
-    color: #8B1A1A;
+    color: #a07040;
     text-transform: uppercase;
     letter-spacing: 1.5px;
     padding: 0 10px;
-    background-color: #FFFFFF;
+    background-color: #ffffff;
 }
 
+
 /* ============================================================
-   LABELS
+   13. LABELS & FORM ELEMENTS
    ============================================================ */
-label {
+label,
+.form-label {
     display: block;
-    font-size: 12px;
+    font-size: 11px;
     font-weight: bold;
-    color: #444444;
+    color: #888888;
+    text-transform: uppercase;
+    letter-spacing: 1px;
     margin-top: 14px;
     margin-bottom: 5px;
 }
 
-label:first-of-type {
-    margin-top: 0;
-}
+label:first-of-type { margin-top: 0; }
 
-label .req {
-    color: #8B1A1A;
-    font-size: 13px;
-}
+label .req,
+.form-label .req { color: #c8a96e; }
 
-/* ============================================================
-   INPUT / SELECT / TEXTAREA
-   ============================================================ */
 input[type="text"],
 input[type="number"],
 input[type="email"],
 input[type="url"],
 input[type="date"],
+input[type="datetime-local"],
 select,
-textarea {
+textarea,
+.form-control,
+.form-select {
     width: 100%;
     padding: 9px 12px;
-    font-family: Verdana, Geneva, sans-serif;
+    font-family: Georgia, serif;
     font-size: 13px;
-    border: 1px solid #C8BFB0;
-    border-radius: 4px;
-    background-color: #FAF8F4;
-    color: #2A1A1A;
+    border: 1px solid #c8a96e;
+    background-color: #faf8f4;
+    color: #1a1a1a;
+    border-radius: 0;
     transition: border-color 0.2s, background-color 0.2s;
 }
 
@@ -229,43 +613,91 @@ input[type="number"]:focus,
 input[type="email"]:focus,
 input[type="url"]:focus,
 input[type="date"]:focus,
+input[type="datetime-local"]:focus,
 select:focus,
-textarea:focus {
+textarea:focus,
+.form-control:focus,
+.form-select:focus {
     outline: none;
-    border-color: #8B1A1A;
-    background-color: #FFFFFF;
-    box-shadow: 0 0 0 3px rgba(139, 26, 26, 0.12);
+    border-color: #a07040;
+    background-color: #ffffff;
+    box-shadow: none;
 }
 
 input[type="text"]:hover,
 input[type="number"]:hover,
 select:hover,
 textarea:hover {
-    border-color: #A08070;
+    border-color: #a07040;
+}
+
+/* Scanned state (IncomingStock) */
+.form-control.scanned {
+    background-color: #f0f8f0;
+    border-color: #4a8a4a;
+    color: #1a4a1a;
 }
 
 textarea {
     resize: vertical;
-    min-height: 82px;
-    line-height: 1.5;
+    min-height: 80px;
+    line-height: 1.6;
 }
 
 input[type="file"] {
     width: 100%;
     padding: 8px 0;
     font-size: 12px;
-    color: #555555;
+    color: #666666;
+    cursor: pointer;
+    border: none;
+    background: transparent;
+}
+
+.form-text {
+    font-size: 11px;
+    color: #aaaaaa;
+    margin-top: 3px;
+}
+
+
+/* ============================================================
+   14. RADIO / CHECKBOX
+   ============================================================ */
+.radio-group,
+.checkbox-group {
+    margin-top: 6px;
+}
+
+.radio-group label,
+.checkbox-group label {
+    display: inline-block;
+    margin-top: 6px;
+    margin-right: 22px;
+    font-weight: normal;
+    font-size: 13px;
+    color: #333333;
+    text-transform: none;
+    letter-spacing: 0;
     cursor: pointer;
 }
 
+.radio-group input[type="radio"],
+.checkbox-group input[type="checkbox"] {
+    margin-right: 6px;
+    accent-color: #c8a96e;
+    cursor: pointer;
+}
+
+
 /* ============================================================
-   ΓΡΑΜΜΕΣ ΔΥΟ / ΤΡΙΩΝ ΣΤΗΛΩΝ
+   15. LAYOUT HELPERS  (δύο/τρεις στήλες)
    ============================================================ */
 .row-2 {
     display: table;
     width: 100%;
-    border-spacing: 16px 0;
-    margin-left: -16px;
+    border-spacing: 14px 0;
+    margin-left: -14px;
 }
 
 .col {
@@ -277,8 +709,8 @@ input[type="file"] {
 .row-3 {
     display: table;
     width: 100%;
-    border-spacing: 16px 0;
-    margin-left: -16px;
+    border-spacing: 14px 0;
+    margin-left: -14px;
 }
 
 .col-3 {
@@ -287,111 +719,24 @@ input[type="file"] {
     vertical-align: top;
 }
 
-/* ============================================================
-   BARCODE ROW
-   ============================================================ */
-.barcode-row {
-    display: table;
-    width: 100%;
-}
+/* Barcode row */
+.barcode-row       { display: table; width: 100%; }
+.barcode-input     { display: table-cell; width: 100%; padding-right: 10px; }
+.barcode-btn-cell  { display: table-cell; vertical-align: bottom; white-space: nowrap; }
 
-.barcode-input {
-    display: table-cell;
-    width: 100%;
-    padding-right: 10px;
-}
-
-.barcode-btn-cell {
-    display: table-cell;
-    vertical-align: bottom;
-    white-space: nowrap;
-}
-
-/* ============================================================
-   ΚΟΥΜΠΙΑ
-   ============================================================ */
-input[type="submit"],
-input[type="reset"],
-.btn-scan {
-    padding: 10px 24px;
-    font-family: Verdana, Geneva, sans-serif;
-    font-size: 13px;
-    font-weight: bold;
-    border-radius: 4px;
-    cursor: pointer;
+hr.divider {
     border: none;
-    transition: background-color 0.2s, transform 0.1s;
+    border-top: 1px solid #e8e0d0;
+    margin: 14px 0;
 }
 
-input[type="submit"] {
-    background-color: #8B1A1A;
-    color: #FFFFFF;
-    letter-spacing: 0.5px;
-}
-
-input[type="submit"]:hover {
-    background-color: #6B1313;
-}
-
-input[type="submit"]:active {
-    transform: scale(0.98);
-}
-
-input[type="reset"] {
-    background-color: #FFFFFF;
-    color: #8B1A1A;
-    border: 1px solid #8B1A1A;
-    margin-left: 10px;
-}
-
-input[type="reset"]:hover {
-    background-color: #F5EDED;
-}
-
-.btn-scan {
-    background-color: #8B1A1A;
-    color: #FFFFFF;
-    padding: 9px 16px;
-    font-size: 12px;
-}
-
-.btn-scan:hover {
-    background-color: #6B1313;
-}
 
 /* ============================================================
-   RADIO / CHECKBOX
-   ============================================================ */
-.radio-group,
-.checkbox-group {
-    margin-top: 6px;
-}
-
-.radio-group label,
-.checkbox-group label {
-    display: inline-block;
-    margin-top: 6px;
-    margin-right: 24px;
-    font-weight: normal;
-    font-size: 13px;
-    color: #333333;
-    cursor: pointer;
-}
-
-.radio-group input[type="radio"],
-.checkbox-group input[type="checkbox"] {
-    margin-right: 6px;
-    accent-color: #8B1A1A;
-    cursor: pointer;
-}
-
-/* ============================================================
-   PHOTO UPLOAD AREA
+   16. PHOTO UPLOAD AREA  (newProduct)
    ============================================================ */
 #photo-area {
-    border: 2px dashed #C8BFB0;
-    border-radius: 6px;
-    background-color: #FBF7F2;
+    border: 2px dashed #d4c5a9;
+    background-color: #faf8f4;
     padding: 22px;
     text-align: center;
     margin-top: 4px;
@@ -399,179 +744,393 @@ input[type="reset"]:hover {
 }
 
 #photo-area:hover {
-    border-color: #8B1A1A;
-    background-color: #F5EDED;
+    border-color: #c8a96e;
+    background-color: #f5f0e8;
 }
 
 #photo-area p {
     font-size: 12px;
-    color: #AAAAAA;
+    color: #aaaaaa;
     margin-top: 8px;
 }
 
-#photo-area p strong {
-    color: #8B1A1A;
-}
+#photo-area p strong { color: #a07040; }
 
 #photo-preview {
     max-width: 100%;
     max-height: 200px;
-    border-radius: 4px;
     display: none;
     margin: 12px auto 0;
-    border: 1px solid #D4CBBB;
+    border: 1px solid #d4c5a9;
 }
 
+
 /* ============================================================
-   ΟΡΙΖΟΝΤΙΕΣ ΓΡΑΜΜΕΣ ΔΙΑΧΩΡΙΣΜΟΥ
+   17. PRODUCT PREVIEW PANEL  (IncomingStock)
    ============================================================ */
-hr.divider {
-    border: none;
-    border-top: 1px solid #EDE8DE;
-    margin: 14px 0;
+#prod-preview {
+    display: none;
+    background-color: #f0f8f0;
+    border: 1px solid #4a8a4a;
+    border-left: 4px solid #4a8a4a;
+    padding: 10px 14px;
+    margin-top: 8px;
+    font-size: 13px;
 }
 
+#prod-preview.show {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+}
+
+#pp-name { font-weight: bold; color: #1a4a1a; }
+#pp-code { font-family: "Courier New", monospace; font-size: 11px; color: #888888; }
+#pp-stock-val { font-family: "Courier New", monospace; font-size: 20px; font-weight: bold; }
+
+#code-err       { display: none; font-size: 12px; }
+#code-err.show  { display: block; }
+
+
 /* ============================================================
-   ΓΡΑΜΜΗ ΥΠΟΒΟΛΗΣ
+   18. SUMMARY BAR  (IncomingStock)
+   ============================================================ */
+#summary-bar {
+    display: none;
+    background-color: #fff8ee;
+    border: 1px solid #c8a96e;
+    padding: 12px 16px;
+    margin-bottom: 12px;
+}
+
+#summary-bar.show {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    gap: 8px;
+    text-align: center;
+}
+
+.sum-label {
+    font-size: 10px;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    color: #888888;
+    margin-bottom: 3px;
+}
+
+.sum-val {
+    font-family: "Courier New", monospace;
+    font-size: 16px;
+    font-weight: bold;
+    color: #7a5010;
+}
+
+
+/* ============================================================
+   19. MESSAGES  (success / error / toast)
+   ============================================================ */
+#msg-success {
+    display: none;
+    background-color: #d4edda;
+    border: 1px solid #c3e6cb;
+    border-left: 4px solid #4a8a4a;
+    padding: 12px 18px;
+    color: #155724;
+    font-size: 13px;
+    margin-bottom: 18px;
+}
+
+#msg-error {
+    display: none;
+    background-color: #f8d7da;
+    border: 1px solid #f5c6cb;
+    border-left: 4px solid #8B1A1A;
+    padding: 12px 18px;
+    color: #721c24;
+    font-size: 13px;
+    margin-bottom: 18px;
+}
+
+/* Toast (IncomingStock) */
+#toast {
+    position: fixed;
+    bottom: 24px;
+    right: 24px;
+    background-color: #1a1a1a;
+    color: #c8a96e;
+    border: 1px solid #c8a96e;
+    padding: 12px 20px;
+    font-size: 13px;
+    letter-spacing: 1px;
+    opacity: 0;
+    transform: translateY(60px);
+    transition: all 0.3s ease;
+    z-index: 999;
+}
+
+#toast.show {
+    opacity: 1;
+    transform: none;
+}
+
+
+/* ============================================================
+   20. SUBMIT BAR  (newProduct)
    ============================================================ */
 #submit-bar {
-    background-color: #FFFFFF;
-    border: 1px solid #D4CBBB;
-    border-top: 3px solid #8B1A1A;
-    border-radius: 6px;
-    padding: 18px 24px;
+    background-color: #ffffff;
+    border: 1px solid #d4c5a9;
+    border-top: 3px solid #c8a96e;
+    padding: 18px 22px;
     margin-bottom: 20px;
     display: flex;
     align-items: center;
     gap: 8px;
 }
 
+
 /* ============================================================
-   FOOTER
+   21. ΠΙΝΑΚΕΣ  (LiveStock & stockHistory)
    ============================================================ */
-#footer {
-    background-color: #5A0E0E;
-    color: #F5C4C4;
+#table-wrap {
+    border: 1px solid #d4c5a9;
+    background-color: #ffffff;
+    overflow: hidden;
+}
+
+#table-header-bar {
+    background-color: #1a1a1a;
+    color: #c8a96e;
+    padding: 9px 14px;
+    font-size: 11px;
+    letter-spacing: 1px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+#table-count { font-size: 11px; color: #888888; }
+
+#no-results {
+    display: none;
+    padding: 20px;
+    text-align: center;
+    font-size: 13px;
+    color: #888888;
+    font-style: italic;
+}
+
+/* Stock table (LiveStock) */
+table#stock-table,
+table#history-table {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 13px;
+    background-color: #ffffff;
+}
+
+table#stock-table th,
+table#history-table th {
+    background-color: #1a1a1a;
+    color: #c8a96e;
+    padding: 10px 14px;
+    text-align: left;
+    font-weight: normal;
+    font-size: 11px;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    cursor: pointer;
+    white-space: nowrap;
+}
+
+table#stock-table th.sorted,
+table#history-table th.sorted {
+    color: #ffffff;
+}
+
+table#stock-table td,
+table#history-table td {
+    padding: 10px 14px;
+    border-bottom: 1px solid #f0e8da;
+    vertical-align: middle;
+    color: #1a1a1a;
+}
+
+table#stock-table tr:last-child td,
+table#history-table tr:last-child td {
+    border-bottom: none;
+}
+
+table#stock-table tr:hover td,
+table#history-table tr:hover td {
+    background-color: #faf6f0;
+}
+
+
+/* ============================================================
+   22. TABLE HELPER CLASSES
+   ============================================================ */
+
+/* Κωδικός προϊόντος */
+span.code {
+    font-family: "Courier New", monospace;
+    font-size: 12px;
+    color: #888888;
+}
+
+/* Timestamp */
+span.timestamp {
+    font-size: 12px;
+    color: #1a1a1a;
+    display: block;
+}
+
+span.timestamp-time {
+    font-size: 11px;
+    color: #aaaaaa;
+    font-family: "Courier New", monospace;
+}
+
+/* Υπάλληλος badge */
+span.user-badge {
+    font-size: 12px;
+    color: #5a4010;
+}
+
+/* Σημείωση */
+td.note-cell {
+    font-size: 12px;
+    color: #888888;
+    font-style: italic;
+}
+
+/* Ποσότητες */
+span.qty-ok,
+span.qty-in     { color: #1a5c1a; font-weight: bold; }
+span.qty-low,
+span.qty-warn   { color: #b87800; font-weight: bold; }
+span.qty-empty,
+span.qty-out    { color: #c0392b; font-weight: bold; }
+span.qty-neutral{ color: #555555; font-weight: bold; }
+
+
+/* ============================================================
+   23. BADGES
+   ============================================================ */
+span.badge-ok {
+    background-color: #d4edda;
+    color: #155724;
+    padding: 2px 10px;
+    font-size: 11px;
+    border: 1px solid #c3e6cb;
+    letter-spacing: 0.5px;
+}
+
+span.badge-low {
+    background-color: #fff3cd;
+    color: #856404;
+    padding: 2px 10px;
+    font-size: 11px;
+    border: 1px solid #ffc107;
+    letter-spacing: 0.5px;
+}
+
+span.badge-empty {
+    background-color: #f8d7da;
+    color: #721c24;
+    padding: 2px 10px;
+    font-size: 11px;
+    border: 1px solid #f5c6cb;
+    letter-spacing: 0.5px;
+}
+
+span.badge-in {
+    background-color: #d4edda;
+    color: #155724;
+    padding: 3px 8px;
+    font-size: 11px;
+    letter-spacing: 0.5px;
+}
+
+span.badge-out {
+    background-color: #f8d7da;
+    color: #721c24;
+    padding: 3px 8px;
+    font-size: 11px;
+    letter-spacing: 0.5px;
+}
+
+span.badge-reserve {
+    background-color: #fff8e1;
+    color: #7a5010;
+    padding: 3px 8px;
+    font-size: 11px;
+    letter-spacing: 0.5px;
+}
+
+span.badge-correction {
+    background-color: #ede0f5;
+    color: #4a1a6a;
+    padding: 3px 8px;
+    font-size: 11px;
+    letter-spacing: 0.5px;
+}
+
+
+/* ============================================================
+   24. PAGINATION  (stockHistory)
+   ============================================================ */
+#pagination {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px 14px;
+    border-top: 1px solid #f0e8da;
+    background-color: #faf8f4;
+}
+
+#pagination-info { font-size: 12px; color: #888888; }
+
+#pagination-btns { display: flex; gap: 4px; }
+
+.page-btn {
+    background-color: #ffffff;
+    border: 1px solid #d4c5a9;
+    color: #a07040;
+    padding: 5px 10px;
+    font-size: 12px;
+    font-family: Georgia, serif;
+    cursor: pointer;
+    transition: background-color 0.15s;
+}
+
+.page-btn:hover   { background-color: #f5f0e8; }
+.page-btn.active  { background-color: #1a1a1a; color: #c8a96e; border-color: #1a1a1a; }
+.page-btn:disabled{ opacity: 0.4; cursor: default; }
+
+
+/* ============================================================
+   25. FOOTER
+   ============================================================ */
+div#footer {
+    background-color: #1a1a1a;
+    color: #c8a96e;
     text-align: center;
     padding: 16px;
     font-size: 11px;
     letter-spacing: 0.5px;
     margin-top: 40px;
-}
-/* ============================================================
-   ====== STOCK HISTORY PAGE (ΝΕΟ SECTION) ======
-   ============================================================ */
-
-/* ===== METRICS ===== */
-#metrics {
-    display: flex;
-    gap: 12px;
-    margin-bottom: 20px;
+    border-top: 2px solid #c8a96e;
 }
 
-.metric-card {
-    background-color: #FFFFFF;
-    border: 1px solid #D4CBBB;
-    border-top: 3px solid #8B1A1A;
-    padding: 14px;
-    flex: 1;
-    text-align: center;
-}
+div#footer p { color: #c8a96e; }
 
-.metric-label {
+/* Inline footer (LiveStock / IncomingStock) */
+p#footer {
+    text-align: right;
     font-size: 11px;
-    color: #999;
-    text-transform: uppercase;
-}
-
-.metric-value       { font-size: 26px; font-weight: bold; }
-.metric-value-in    { font-size: 26px; font-weight: bold; color: #2E6B3A; }
-.metric-value-out   { font-size: 26px; font-weight: bold; color: #8B1A1A; }
-.metric-value-warn  { font-size: 26px; font-weight: bold; color: #7A5500; }
-
-/* ===== FILTERS ===== */
-#filters {
-    background: #fff;
-    border: 1px solid #D4CBBB;
-    border-top: 3px solid #8B1A1A;
-    padding: 16px;
-    margin-bottom: 18px;
-}
-
-#filters-row {
-    display: flex;
-    gap: 12px;
-    flex-wrap: wrap;
-}
-
-.filter-group {
-    display: flex;
-    flex-direction: column;
-}
-
-#filters-actions {
-    margin-left: auto;
-    display: flex;
-    gap: 8px;
-}
-
-/* ===== BUTTONS ===== */
-.btn-search {
-    background: #8B1A1A;
-    color: #fff;
-    padding: 9px 18px;
-    border: none;
-    cursor: pointer;
-}
-
-.btn-clear,
-.btn-pdf {
-    background: #fff;
-    color: #8B1A1A;
-    border: 1px solid #8B1A1A;
-    padding: 9px 14px;
-    cursor: pointer;
-}
-
-/* ===== TABLE ===== */
-#table-wrap {
-    border: 1px solid #D4CBBB;
-    overflow: hidden;
-}
-
-#history-table {
-    width: 100%;
-    border-collapse: collapse;
-    background: #fff;
-}
-
-#history-table th {
-    background: #F5F0E8;
-    font-size: 11px;
-    padding: 9px;
-    cursor: pointer;
-}
-
-#history-table td {
-    padding: 10px;
-    border-bottom: 1px solid #eee;
-}
-
-/* ===== BADGES ===== */
-.badge-in { background: #DFF5E3; padding: 3px 8px; }
-.badge-out { background: #FDECEA; padding: 3px 8px; }
-.badge-reserve { background: #FFF8E1; padding: 3px 8px; }
-.badge-correction { background: #EDE0F5; padding: 3px 8px; }
-
-/* ===== QTY ===== */
-.qty-in { color: green; font-weight: bold; }
-.qty-out { color: red; font-weight: bold; }
-
-/* ===== FOOTER ===== */
-#footer {
-    background-color: #5A0E0E;
-    color: #F5C4C4;
-    text-align: center;
-    padding: 16px;
-    font-size: 11px;
+    color: #aaaaaa;
+    margin-top: 12px;
+    border-top: 1px solid #d4c5a9;
+    padding-top: 8px;
 }
