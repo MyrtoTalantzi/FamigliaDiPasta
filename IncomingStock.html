@@ -1,0 +1,305 @@
+
+<!DOCTYPE html>
+<html lang="el">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Famiglia di Pasta – Καταχώρηση Εισροής Αποθεμάτων</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+  <style>
+    body { font-family: Georgia, serif; background-color: #f5f0eb; color: #1a1a1a; }
+ 
+    /* ── Navbar ── */
+    #navbar { background: #1a1a1a; padding: 12px 24px; }
+    #logo-box { border: 2px solid #c8a96e; padding: 5px 12px; display: inline-block; }
+    #logo-text { color: #fff; font-size: 15px; font-weight: bold; letter-spacing: 1px; }
+    #logo-sub  { color: #c8a96e; font-size: 11px; letter-spacing: 2px; text-transform: uppercase; }
+    #user-name { color: #fff; font-size: 13px; }
+    #user-role { color: #c8a96e; font-size: 11px; }
+    .btn-gold {
+      color: #c8a96e; border: 1px solid #c8a96e; background: transparent;
+      font-size: 12px; letter-spacing: 1px;
+    }
+    .btn-gold:hover { background: #c8a96e; color: #1a1a1a; }
+ 
+    /* ── Page header ── */
+    #page-header { border-bottom: 2px solid #c8a96e; padding-bottom: 12px; margin-bottom: 20px; }
+    #page-title  { font-size: 22px; font-weight: bold; margin: 0; }
+    #page-sub    { font-size: 12px; color: #666; margin: 4px 0 0; }
+ 
+    /* ── Scanner banner ── */
+    #scanner-banner { background: #1a1a1a; border: 1px solid #c8a96e; padding: 12px 18px; margin-bottom: 20px; }
+    #scanner-banner strong { color: #fff; font-size: 13px; }
+    #scanner-banner span.sub { color: #888; font-size: 12px; }
+    .scanner-icon { border: 1px solid #c8a96e; color: #c8a96e; padding: 6px 10px; font-size: 20px; }
+    .badge-scanner { color: #c8a96e; border: 1px solid #c8a96e; font-size: 11px; letter-spacing: 1px; background: transparent; }
+    .dot { display: inline-block; width: 7px; height: 7px; border-radius: 50%; background: #7fff9a; animation: pulse 1.8s ease-in-out infinite; vertical-align: middle; }
+    @keyframes pulse { 0%,100%{opacity:1} 50%{opacity:.3} }
+ 
+    /* ── Cards ── */
+    .fp-card { background: #fff; border: 1px solid #d4c5a9; border-radius: 0; margin-bottom: 16px; }
+    .fp-card-header { background: #1a1a1a; color: #c8a96e; padding: 9px 16px; font-size: 11px; letter-spacing: 1px; text-transform: uppercase; }
+    .fp-card-header .num { border: 1px solid #c8a96e; padding: 1px 6px; font-family: "Courier New", monospace; margin-right: 8px; }
+ 
+    /* ── Form ── */
+    .form-label { font-size: 11px; color: #888; letter-spacing: 1px; text-transform: uppercase; margin-bottom: 5px; }
+    .form-label .req { color: #c8a96e; }
+    .form-control, .form-select {
+      font-family: Georgia, serif; font-size: 13px;
+      border: 1px solid #c8a96e; background: #faf8f4;
+      border-radius: 0;
+    }
+    .form-control:focus, .form-select:focus {
+      border-color: #a07040; background: #fff;
+      box-shadow: none;
+    }
+    .form-control.scanned { background: #f0f8f0; border-color: #4a8a4a; color: #1a4a1a; }
+    .form-text { font-size: 11px; color: #aaa; }
+ 
+    /* ── Qty buttons ── */
+    .btn-qty { background: #1a1a1a; color: #c8a96e; border: 1px solid #c8a96e; border-radius: 0; width: 36px; }
+    .btn-qty:hover { background: #c8a96e; color: #1a1a1a; }
+ 
+    /* ── Product preview ── */
+    #prod-preview { display: none; background: #f0f8f0; border: 1px solid #4a8a4a; border-left: 4px solid #4a8a4a; padding: 10px 14px; margin-top: 8px; font-size: 13px; }
+    #prod-preview.show { display: flex; justify-content: space-between; align-items: flex-start; }
+    #pp-name { font-weight: bold; color: #1a4a1a; }
+    #pp-code { font-family: "Courier New", monospace; font-size: 11px; color: #888; }
+    #pp-stock-val { font-family: "Courier New", monospace; font-size: 20px; font-weight: bold; }
+ 
+    /* ── Alert / error ── */
+    #code-err { display: none; font-size: 12px; }
+    #code-err.show { display: block; }
+ 
+    /* ── Summary ── */
+    #summary-bar { display: none; background: #fff8ee; border: 1px solid #c8a96e; padding: 12px 16px; }
+    #summary-bar.show { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 8px; text-align: center; }
+    .sum-label { font-size: 10px; text-transform: uppercase; letter-spacing: 1px; color: #888; margin-bottom: 3px; }
+    .sum-val   { font-family: "Courier New", monospace; font-size: 16px; font-weight: bold; color: #7a5010; }
+ 
+    /* ── Action buttons ── */
+    #btn-submit { background: #1a1a1a; color: #c8a96e; border: 1px solid #c8a96e; letter-spacing: 1px; border-radius: 0; }
+    #btn-submit:hover { background: #c8a96e; color: #1a1a1a; }
+    #btn-clear  { background: transparent; color: #888; border: 1px solid #d4c5a9; border-radius: 0; }
+    #btn-clear:hover { border-color: #888; color: #1a1a1a; }
+ 
+    /* ── Toast ── */
+    #toast { position: fixed; bottom: 24px; right: 24px; background: #1a1a1a; color: #c8a96e; border: 1px solid #c8a96e; padding: 12px 20px; font-size: 13px; letter-spacing: 1px; opacity: 0; transform: translateY(60px); transition: all .3s ease; z-index: 999; }
+    #toast.show { opacity: 1; transform: none; }
+ 
+    /* ── Footer ── */
+    #footer { font-size: 11px; color: #aaa; border-top: 1px solid #d4c5a9; padding-top: 8px; text-align: right; }
+  </style>
+</head>
+<body>
+ 
+<!-- NAVBAR -->
+<div id="navbar" class="d-flex justify-content-between align-items-center">
+  <div id="logo-box">
+    <div id="logo-text">FAMIGLIA DI PASTA</div>
+    <div id="logo-sub">Σύστημα Διαχείρισης Αποθεμάτων</div>
+  </div>
+  <div class="d-flex align-items-center gap-3">
+    <div class="text-end">
+      <div id="user-name">Ν. Παπαδόπουλος</div>
+      <div id="user-role">Διαχειριστής Αποθέματος</div>
+    </div>
+    <a href="#" class="btn btn-gold btn-sm">Αποσύνδεση</a>
+  </div>
+</div>
+ 
+<!-- MAIN -->
+<div class="container-fluid px-4 py-4" style="max-width:780px">
+ 
+  <!-- Page Header -->
+  <div id="page-header" class="d-flex justify-content-between align-items-start">
+    <div>
+      <h1 id="page-title">Καταχώρηση Εισροής Αποθέματος</h1>
+      <p id="page-sub">Καταγραφή νέας παραλαβής προϊόντος στην αποθήκη</p>
+    </div>
+    <a href="#" class="btn btn-gold btn-sm">&#8592; Πίσω</a>
+  </div>
+ 
+  <!-- Scanner Banner -->
+  <div id="scanner-banner" class="d-flex align-items-center gap-3">
+    <div class="scanner-icon">&#9641;</div>
+    <div>
+      <strong>Σκανάρετε το barcode</strong><br>
+      <span class="sub">ή συμπληρώστε χειροκίνητα τον κωδικό παρακάτω</span>
+    </div>
+    <span class="badge badge-scanner ms-auto"><span class="dot me-1"></span>SCANNER ΕΝΕΡΓΟ</span>
+  </div>
+ 
+  <!-- Card 1: Προϊόν -->
+  <div class="fp-card">
+    <div class="fp-card-header"><span class="num">1</span>Στοιχεία Προϊόντος</div>
+    <div class="p-3">
+      <label class="form-label">Κωδικός Προϊόντος <span class="req">*</span></label>
+      <input type="text" id="prod-code" class="form-control" placeholder="π.χ. FP-001"
+             oninput="handleCode(this.value)" autocomplete="off">
+      <div class="form-text">Χρησιμοποιήστε το scanner ή πληκτρολογήστε τον κωδικό</div>
+      <div id="code-err" class="alert alert-danger py-2 mt-2 mb-0" role="alert">
+        &#9888; Ο κωδικός δεν βρέθηκε στο σύστημα
+      </div>
+      <div id="prod-preview">
+        <div>
+          <div id="pp-name">—</div>
+          <div id="pp-code">—</div>
+        </div>
+        <div class="text-end">
+          <div class="form-text">Τρέχον απόθεμα</div>
+          <span id="pp-stock-val">—</span>
+          <span class="form-text"> τεμ.</span>
+        </div>
+      </div>
+    </div>
+  </div>
+ 
+  <!-- Card 2: Ποσότητα & Ημερομηνία -->
+  <div class="fp-card">
+    <div class="fp-card-header"><span class="num">2</span>Ποσότητα &amp; Ημερομηνία</div>
+    <div class="p-3">
+      <div class="row g-3">
+ 
+        <div class="col-md-6">
+          <label class="form-label">Ποσότητα Παραλαβής <span class="req">*</span></label>
+          <div class="input-group">
+            <button class="btn btn-qty" onclick="changeQty(-1)">−</button>
+            <input type="number" id="qty" class="form-control text-center" min="1" placeholder="0" oninput="updateSummary()">
+            <button class="btn btn-qty" onclick="changeQty(1)">+</button>
+          </div>
+          <div class="form-text">Σε τεμάχια (τεμ.)</div>
+        </div>
+ 
+        <div class="col-md-6">
+          <label class="form-label">Ημ/νία &amp; Ώρα Παραλαβής <span class="req">*</span></label>
+          <input type="datetime-local" id="dt-field" class="form-control">
+        </div>
+ 
+      </div>
+ 
+      <hr class="my-3" style="border-color:#e8e0d0">
+ 
+      <div id="summary-bar" class="mb-3">
+        <div><div class="sum-label">Κωδικός</div><div class="sum-val" id="sum-code">—</div></div>
+        <div><div class="sum-label">Ποσ. Εισροής</div><div class="sum-val" id="sum-qty">—</div></div>
+        <div><div class="sum-label">Νέο Απόθεμα</div><div class="sum-val" id="sum-new">—</div></div>
+      </div>
+ 
+      <label class="form-label">Σχόλιο
+        <span style="text-transform:none;letter-spacing:0;font-size:11px;font-weight:normal">(προαιρετικό)</span>
+      </label>
+      <textarea class="form-control" rows="3" placeholder="π.χ. Παραλαβή από αποθήκη Μελιγαλά, παρτίδα #2025-04…"></textarea>
+    </div>
+  </div>
+ 
+  <!-- Actions -->
+  <div class="d-flex gap-2 mb-3">
+    <button id="btn-clear" class="btn px-4" onclick="clearForm()">Καθαρισμός</button>
+    <button id="btn-submit" class="btn flex-fill" onclick="submitForm()">✓ &nbsp;Καταχώρηση Εισροής</button>
+  </div>
+ 
+  <p id="footer">Σύστημα ενημερώνεται αυτόματα &middot; Famiglia di Pasta ΑΒΕΕ</p>
+</div>
+ 
+<div id="toast">&#10003; &nbsp;Η εισροή καταχωρήθηκε επιτυχώς!</div>
+ 
+<script>
+  const products = {
+    'FP-001': { name: 'Σπαγγέτι Νο5',    stock: 1240 },
+    'FP-002': { name: 'Πένες Ριγκάτε',    stock: 890  },
+    'FP-007': { name: 'Φαρφάλες',         stock: 85   },
+    'FP-012': { name: 'Σάλτσα Τομάτας',   stock: 40   },
+    'FP-015': { name: 'Αλεύρι Ολικής',    stock: 0    },
+    'FP-019': { name: 'Λαζάνια',          stock: 560  },
+    'FP-023': { name: 'Ριγκατόνι',        stock: 430  },
+  };
+ 
+  let currentStock = null;
+ 
+  // Προσυμπλήρωση τρέχοντος χρόνου
+  const now = new Date();
+  now.setMinutes(now.getMinutes() - now.getTimezoneOffset());
+  document.getElementById('dt-field').value = now.toISOString().slice(0, 16);
+ 
+  function handleCode(val) {
+    const code = val.trim().toUpperCase();
+    const inp  = document.getElementById('prod-code');
+    const prev = document.getElementById('prod-preview');
+    const err  = document.getElementById('code-err');
+ 
+    prev.classList.remove('show');
+    err.classList.remove('show');
+    inp.classList.remove('scanned');
+    currentStock = null;
+ 
+    if (code.length < 4) { updateSummary(); return; }
+ 
+    if (products[code]) {
+      const p = products[code];
+      document.getElementById('pp-name').textContent      = p.name;
+      document.getElementById('pp-code').textContent      = code;
+      document.getElementById('pp-stock-val').textContent = p.stock.toLocaleString('el-GR');
+      prev.classList.add('show');
+      inp.classList.add('scanned');
+      currentStock = p.stock;
+    } else {
+      err.classList.add('show');
+    }
+    updateSummary();
+  }
+ 
+  function changeQty(d) {
+    const el = document.getElementById('qty');
+    el.value = Math.max(1, (parseInt(el.value) || 0) + d);
+    updateSummary();
+  }
+ 
+  function updateSummary() {
+    const code = document.getElementById('prod-code').value.trim().toUpperCase();
+    const qty  = parseInt(document.getElementById('qty').value) || 0;
+    const bar  = document.getElementById('summary-bar');
+ 
+    if (currentStock !== null && qty > 0) {
+      document.getElementById('sum-code').textContent = code;
+      document.getElementById('sum-qty').textContent  = '+' + qty;
+      document.getElementById('sum-new').textContent  = (currentStock + qty).toLocaleString('el-GR');
+      bar.classList.add('show');
+    } else {
+      bar.classList.remove('show');
+    }
+  }
+ 
+  function clearForm() {
+    document.getElementById('prod-code').value = '';
+    document.getElementById('prod-code').classList.remove('scanned');
+    document.getElementById('qty').value = '';
+    document.getElementById('prod-preview').classList.remove('show');
+    document.getElementById('code-err').classList.remove('show');
+    document.getElementById('summary-bar').classList.remove('show');
+    const n = new Date();
+    n.setMinutes(n.getMinutes() - n.getTimezoneOffset());
+    document.getElementById('dt-field').value = n.toISOString().slice(0, 16);
+    currentStock = null;
+  }
+ 
+  function submitForm() {
+    const code = document.getElementById('prod-code').value.trim().toUpperCase();
+    const qty  = parseInt(document.getElementById('qty').value) || 0;
+    const dt   = document.getElementById('dt-field').value;
+ 
+    if (!products[code]) { document.getElementById('code-err').classList.add('show'); return; }
+    if (qty < 1)          { document.getElementById('qty').focus(); return; }
+    if (!dt)              { document.getElementById('dt-field').focus(); return; }
+ 
+    products[code].stock += qty;
+    const t = document.getElementById('toast');
+    t.classList.add('show');
+    setTimeout(() => t.classList.remove('show'), 3000);
+    setTimeout(clearForm, 400);
+  }
+</script>
+</body>
+</html>
+ 
+
