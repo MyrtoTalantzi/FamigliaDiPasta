@@ -5,6 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Famiglia di Pasta - Εισαγωγή Νέου Προϊόντος</title>
   <link rel="stylesheet" href="famiglia_style.css">
+  <style>#logo-box { text-decoration: none; }</style>
 </head>
 <body>
 
@@ -239,13 +240,11 @@
 </footer>
 
 <script>
-  /* Set today's date as default */
   (function() {
     var today = new Date().toISOString().slice(0, 10);
     document.getElementById('date_entry').value = today;
   })();
 
-  /* Photo preview */
   function previewPhoto(input) {
     var preview = document.getElementById('photo-preview');
     if (input.files && input.files[0]) {
@@ -264,14 +263,12 @@
     preview.style.display = 'none';
   }
 
-  /* Simulate barcode scan (fills a demo barcode) */
   function simulateScan() {
     var demo = '5200000' + String(Math.floor(Math.random() * 999999)).padStart(6, '0');
     document.getElementById('barcode').value = demo;
     document.getElementById('barcode').focus();
   }
 
-  /* Dynamic subcategories */
   var subcategories = {
     atomika: ['Σφολιάτες ατομικά','Σφολιάτες χειροποίητες πατητές','Χειροποίητες Σφολιάτες','Κρουασίνια','Ζύμες κουρού','Κουλούρια Θεσσαλονίκης','Κουλούρια','Φλογέρες ατομικά','Κρουασάν ατομικά','Μπριός','Αρτοζύμες','Πίτσες σκεπαστές','Χειροποίητα βέργας','Μπουγάτσες'],
     xyma: ['Σφολιάτες μίνι χύμα','Μίνι κουρού','Βέργας μίνι χύμα','Κρουασανάκια μίνι χύμα','Κουλουρίνια μίνι χύμα','Μπριός μίνι','Κροκέτες','Γλυκά μίνι'],
@@ -301,7 +298,6 @@
     });
   }
 
-  /* Form validation */
   document.getElementById('form-new-product').addEventListener('submit', function(e) {
     e.preventDefault();
     var msgOk  = document.getElementById('msg-success');
@@ -325,7 +321,6 @@
       return;
     }
 
-    /* Success — in production this would call an API */
     msgOk.style.display = 'block';
     msgOk.focus();
     window.scrollTo({ top: 0, behavior: 'smooth' });

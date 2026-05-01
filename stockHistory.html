@@ -5,12 +5,12 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Famiglia di Pasta - Ιστορικό Κινήσεων Αποθέματος</title>
   <link rel="stylesheet" href="famiglia_style.css">
+  <style>#logo-box { text-decoration: none; }</style>
 </head>
 <body>
 
 <a class="skip-nav" href="#main-content">Μετάβαση στο περιεχόμενο</a>
 
-<!-- ===== NAVBAR ===== -->
 <div id="navbar" role="banner">
   <div id="navbar-left">
     <a href="Home.html" id="logo-box" aria-label="Famiglia di Pasta - Αρχική">
@@ -260,17 +260,15 @@
   var currentPage  = 1;
   var sortCol      = -1;
   var sortAsc      = true;
-  var allRows      = [];   /* all <tr> elements in original DOM order */
-  var filteredRows = [];   /* rows currently passing filter */
+  var allRows      = [];
+  var filteredRows = [];
 
-  /* Collect all rows once */
   function init() {
     allRows = Array.from(document.querySelectorAll('#table-body tr'));
     filteredRows = allRows.slice();
     renderPage(1);
   }
 
-  /* ---- Filtering ---- */
   function applyFilters() {
     var search = document.getElementById('search-box').value.toLowerCase().trim();
     var type   = document.getElementById('filter-type').value;
@@ -298,20 +296,14 @@
     renderPage(1);
   }
 
-  /* ---- Sorting ---- */
   function sortTable(col) {
     var headers = document.querySelectorAll('#history-table th');
-    headers.forEach(function(th, i) {
+    headers.forEach(function(th) {
       th.classList.remove('sorted-asc', 'sorted-desc');
       th.removeAttribute('aria-sort');
     });
 
-    if (sortCol === col) {
-      sortAsc = !sortAsc;
-    } else {
-      sortCol = col;
-      sortAsc = true;
-    }
+    if (sortCol === col) { sortAsc = !sortAsc; } else { sortCol = col; sortAsc = true; }
 
     headers[col].classList.add(sortAsc ? 'sorted-asc' : 'sorted-desc');
     headers[col].setAttribute('aria-sort', sortAsc ? 'ascending' : 'descending');
@@ -327,7 +319,6 @@
     renderPage(1);
   }
 
-  /* ---- Pagination ---- */
   function renderPage(page) {
     currentPage = page;
     var total = filteredRows.length;
@@ -335,16 +326,13 @@
     var start = (page - 1) * ROWS_PER_PAGE;
     var end   = Math.min(start + ROWS_PER_PAGE, total);
 
-    /* Hide all rows, then show only those in current page */
     allRows.forEach(function(r) { r.style.display = 'none'; });
     for (var i = start; i < end; i++) {
       if (filteredRows[i]) filteredRows[i].style.display = '';
     }
 
-    /* No results */
     document.getElementById('no-results').style.display = total === 0 ? 'block' : 'none';
 
-    /* Count label */
     if (total > 0) {
       document.getElementById('table-count').textContent =
         'Εμφάνιση ' + (start+1) + '–' + end + ' από ' + total + ' εγγραφές';
@@ -355,7 +343,6 @@
       document.getElementById('pagination-info').textContent = '0 εγγραφές';
     }
 
-    /* Build pagination buttons */
     var btns = document.getElementById('pagination-btns');
     btns.innerHTML = '';
 
@@ -373,7 +360,6 @@
     btns.appendChild(makeBtn('«', 1, page === 1, false, 'Πρώτη σελίδα'));
     btns.appendChild(makeBtn('‹', page - 1, page === 1, false, 'Προηγούμενη σελίδα'));
 
-    /* Show up to 5 page numbers around current */
     var startP = Math.max(1, page - 2);
     var endP   = Math.min(pages, startP + 4);
     startP     = Math.max(1, endP - 4);

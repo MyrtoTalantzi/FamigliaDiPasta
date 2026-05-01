@@ -5,12 +5,12 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Famiglia di Pasta - Live Stock</title>
   <link rel="stylesheet" href="famiglia_style.css">
+  <style>#logo-box { text-decoration: none; }</style>
 </head>
 <body>
 
 <a class="skip-nav" href="#main-content">Μετάβαση στο περιεχόμενο</a>
 
-<!-- ===== NAVBAR ===== -->
 <div id="navbar" role="banner">
   <div id="navbar-left">
     <a href="Home.html" id="logo-box" aria-label="Famiglia di Pasta - Αρχική">
@@ -187,7 +187,6 @@
 </main>
 
 <script>
-  /* ---- Live clock ---- */
   function updateClock() {
     var now = new Date();
     var h = String(now.getHours()).padStart(2,'0');
@@ -199,7 +198,6 @@
   updateClock();
   setInterval(updateClock, 30000);
 
-  /* ---- Filter logic ---- */
   function applyFilters() {
     var search = document.getElementById('search-box').value.toLowerCase().trim();
     var cat    = document.getElementById('filter-cat').value;
@@ -224,7 +222,6 @@
   document.getElementById('filter-cat').addEventListener('change', applyFilters);
   document.getElementById('filter-status').addEventListener('change', applyFilters);
 
-  /* ---- PDF export ---- */
   document.getElementById('pdf-btn').addEventListener('click', function() {
     window.print();
   });
