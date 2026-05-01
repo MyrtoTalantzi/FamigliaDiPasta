@@ -1,446 +1,343 @@
 <!DOCTYPE html>
 <html lang="el">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Famiglia di Pasta - Εισαγωγή Νέου Προϊόντος</title>
-   <link rel="stylesheet" href="famiglia_style.css">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Famiglia di Pasta - Εισαγωγή Νέου Προϊόντος</title>
+  <link rel="stylesheet" href="famiglia_style.css">
 </head>
 <body>
 
-<!-- ===== HEADER ===== -->
-<div id="header">
-    <!-- Αντικατέστησε το src με το πραγματικό path του logo -->
-    <!-- <img src="images/famiglia_logo.png" alt="Famiglia di Pasta Logo"> -->
-    <div id="logo-placeholder">F<br>di<br>P</div>
-    <div id="header-text">
-        <h1>Famiglia di Pasta</h1>
-        <p>Σύστημα Διαχείρισης Αποθήκης</p>
-    </div>
-</div>
+<a class="skip-nav" href="#main-content">Μετάβαση στο περιεχόμενο</a>
 
-<!-- ===== NAVIGATION ===== -->
-<div id="navbar">
-    <a href="#">Κεντρική</a>
-    <span>|</span>
-    <a href="#">Εισαγωγές Αποθέματος</a>
-    <span>|</span>
-    <a href="#">Εξαγωγές Αποθέματος</a>
-    <span>|</span>
-    <a href="#" style="color:#FFD580; font-weight:bold;">Νέο Προϊόν</a>
-    <span>|</span>
-    <a href="#">Ιστορικό Κινήσεων</a>
-    <span>|</span>
-    <a href="#">Αναφορές</a>
+<!-- ===== NAVBAR ===== -->
+<div id="navbar" role="banner">
+  <div id="navbar-left">
+    <a href="Home.html" id="logo-box" aria-label="Famiglia di Pasta - Αρχική">
+      <span id="logo-text">FAMIGLIA DI PASTA</span>
+      <span id="logo-sub">Σύστημα Διαχείρισης Αποθεμάτων</span>
+    </a>
+    <nav id="navbar-links" aria-label="Κύρια πλοήγηση">
+      <a href="Home.html">Κεντρική</a>
+      <a href="LiveStock.html">Live Stock</a>
+      <a href="IncomingStock.html">Εισαγωγές</a>
+      <a href="stockHistory.html">Ιστορικό</a>
+      <a href="newProduct.html" class="active" aria-current="page">Νέο Προϊόν</a>
+    </nav>
+  </div>
+  <div id="navbar-right">
+    <div>
+      <span id="user-name">Μ. Αθανασίου</span>
+      <span id="user-role">Υπεύθυνος Αποθήκης</span>
+    </div>
+    <a id="logout-btn" href="#" aria-label="Αποσύνδεση">Αποσύνδεση</a>
+  </div>
 </div>
 
 <!-- ===== BREADCRUMB ===== -->
-<div id="breadcrumb">
-    <a href="#">Κεντρική</a> &raquo; <a href="#">Διαχείριση Προϊόντων</a> &raquo; <strong>Εισαγωγή Νέου Προϊόντος</strong>
-</div>
+<nav id="breadcrumb" aria-label="Breadcrumb">
+  <a href="Home.html">Κεντρική</a> &raquo;
+  <a href="newProduct.html">Διαχείριση Προϊόντων</a> &raquo;
+  <strong>Εισαγωγή Νέου Προϊόντος</strong>
+</nav>
 
-<!-- ===== ΚΥΡΙΟ ΠΕΡΙΕΧΟΜΕΝΟ ===== -->
+<!-- ===== MAIN ===== -->
+<main id="main-content">
 <div id="main">
 
-    <h2>Εισαγωγή Νέου Προϊόντος</h2>
-    <p>Συμπληρώστε τα παρακάτω πεδία για την καταχώρηση νέου προϊόντος στο σύστημα αποθήκης.</p>
+  <h2>Εισαγωγή Νέου Προϊόντος</h2>
+  <p>Συμπληρώστε τα παρακάτω πεδία για την καταχώρηση νέου προϊόντος στο σύστημα αποθήκης.</p>
 
-    <!-- Μηνύματα επιτυχίας / σφάλματος -->
-    <div id="msg-success">&#10003; Το προϊόν καταχωρήθηκε επιτυχώς!</div>
-    <div id="msg-error">&#9888; Παρακαλώ συμπληρώστε όλα τα υποχρεωτικά πεδία.</div>
+  <!-- Messages -->
+  <div id="msg-success" role="alert">&#10003; Το προϊόν καταχωρήθηκε επιτυχώς!</div>
+  <div id="msg-error"   role="alert">&#9888; Παρακαλώ συμπληρώστε όλα τα υποχρεωτικά πεδία.</div>
 
-    <!-- ===== ΦΟΡΜΑ ===== -->
-    <form action="save_product.php" method="POST" enctype="multipart/form-data" name="new_product_form" id="form-new-product">
+  <!-- Form -->
+  <form id="form-new-product" novalidate>
 
-        <!-- ===== 1. ΒΑΣΙΚΑ ΣΤΟΙΧΕΙΑ ===== -->
-        <fieldset>
-            <legend>1. Βασικά Στοιχεία Προϊόντος</legend>
+    <!-- 1. Βασικά Στοιχεία -->
+    <fieldset>
+      <legend>1. Βασικά Στοιχεία Προϊόντος</legend>
 
-            <!-- Barcode -->
-            <label for="barcode">Barcode (EAN-13) <span class="req">*</span></label>
-            <div class="barcode-row">
-                <div class="barcode-input">
-                    <input type="text"
-                           id="barcode"
-                           name="barcode"
-                           placeholder="πχ. 5200000123456"
-                           maxlength="13"
-                           required>
-                </div>
-                <div class="barcode-btn-cell">
-                    <button type="button" class="btn-scan" onclick="alert('Σύνδεση scanner...')">
-                        &#128247; Σκανάρισμα
-                    </button>
-                </div>
-            </div>
-
-            <hr class="divider">
-
-            <div class="row-2">
-                <div class="col">
-                    <!-- Κωδικός Προϊόντος -->
-                    <label for="product_code">Κωδικός Προϊόντος <span class="req">*</span></label>
-                    <input type="text"
-                           id="product_code"
-                           name="product_code"
-                           placeholder="πχ. FDP-001"
-                           required>
-                </div>
-                <div class="col">
-                    <!-- Κατάσταση -->
-                    <label for="status">Κατάσταση <span class="req">*</span></label>
-                    <select id="status" name="status" required>
-                        <option value="">-- Επιλέξτε --</option>
-                        <option value="active">Ενεργό</option>
-                        <option value="inactive">Ανενεργό</option>
-                        <option value="seasonal">Εποχιακό</option>
-                    </select>
-                </div>
-            </div>
-
-            <!-- Περιγραφή Προϊόντος -->
-            <label for="product_name">Ονομασία Προϊόντος <span class="req">*</span></label>
-            <input type="text"
-                   id="product_name"
-                   name="product_name"
-                   placeholder="πχ. Σφολιάτα Τυρόπιτα Ατομική 180γρ"
-                   required>
-
-            <!-- Κατηγορία / Υποκατηγορία -->
-            <div class="row-2">
-                <div class="col">
-                    <label for="category">Κατηγορία <span class="req">*</span></label>
-                    <select id="category" name="category" required onchange="updateSubcategory()">
-                        <option value="">-- Επιλέξτε κατηγορία --</option>
-                        <option value="atomika">Ατομικά</option>
-                        <option value="xyma">Χύμα</option>
-                        <option value="syskevasmena">Συσκευασμένα</option>
-                        <option value="artoskeyasmata">Αρτοσκευάσματα</option>
-                    </select>
-                </div>
-                <div class="col">
-                    <label for="subcategory">Υποκατηγορία</label>
-                    <select id="subcategory" name="subcategory">
-                        <option value="">-- Πρώτα επιλέξτε κατηγορία --</option>
-                    </select>
-                </div>
-            </div>
-
-            <!-- Περιγραφή -->
-            <label for="description">Περιγραφή / Σημειώσεις</label>
-            <textarea id="description"
-                      name="description"
-                      rows="3"
-                      placeholder="Προαιρετική περιγραφή ή σημειώσεις για το προϊόν..."></textarea>
-
-        </fieldset>
-
-        <!-- ===== 2. ΤΙΜΟΛΟΓΗΣΗ ===== -->
-        <fieldset>
-            <legend>2. Τιμολόγηση</legend>
-
-            <div class="row-3">
-                <div class="col-3">
-                    <label for="price_unit">Τιμή ανά Τεμάχιο (&euro;) <span class="req">*</span></label>
-                    <input type="number"
-                           id="price_unit"
-                           name="price_unit"
-                           placeholder="0.00"
-                           min="0"
-                           step="0.01"
-                           required>
-                </div>
-                <div class="col-3">
-                    <label for="price_box">Τιμή ανά Κιβώτιο (&euro;)</label>
-                    <input type="number"
-                           id="price_box"
-                           name="price_box"
-                           placeholder="0.00"
-                           min="0"
-                           step="0.01">
-                </div>
-                <div class="col-3">
-                    <label for="vat">ΦΠΑ (%) <span class="req">*</span></label>
-                    <select id="vat" name="vat" required>
-                        <option value="">-- Επιλέξτε --</option>
-                        <option value="13">13%</option>
-                        <option value="24">24%</option>
-                        <option value="6">6%</option>
-                        <option value="0">0%</option>
-                    </select>
-                </div>
-            </div>
-        </fieldset>
-
-        <!-- ===== 3. ΣΤΟΙΧΕΙΑ ΣΥΣΚΕΥΑΣΙΑΣ ===== -->
-        <fieldset>
-            <legend>3. Στοιχεία Συσκευασίας &amp; Αποθήκης</legend>
-
-            <div class="row-3">
-                <div class="col-3">
-                    <label for="per_box">Τεμάχια / Κιβώτιο <span class="req">*</span></label>
-                    <input type="number"
-                           id="per_box"
-                           name="per_box"
-                           placeholder="πχ. 12"
-                           min="1"
-                           step="1"
-                           required>
-                </div>
-                <div class="col-3">
-                    <label for="per_pallet">Κιβώτια / Παλέτα</label>
-                    <input type="number"
-                           id="per_pallet"
-                           name="per_pallet"
-                           placeholder="πχ. 60"
-                           min="1"
-                           step="1">
-                </div>
-                <div class="col-3">
-                    <label for="min_stock">Ελάχ. Απόθεμα (κιβ.)</label>
-                    <input type="number"
-                           id="min_stock"
-                           name="min_stock"
-                           placeholder="πχ. 10"
-                           min="0"
-                           step="1">
-                </div>
-            </div>
-
-            <div class="row-2">
-                <div class="col">
-                    <label for="weight_gr">Βάρος Τεμαχίου (γρ)</label>
-                    <input type="number"
-                           id="weight_gr"
-                           name="weight_gr"
-                           placeholder="πχ. 180"
-                           min="0"
-                           step="1">
-                </div>
-                <div class="col">
-                    <label for="storage_temp">Συνθήκες Αποθήκευσης</label>
-                    <select id="storage_temp" name="storage_temp">
-                        <option value="">-- Επιλέξτε --</option>
-                        <option value="frozen">Κατεψυγμένο (-18&deg;C)</option>
-                        <option value="chilled">Ψυγείο (0-4&deg;C)</option>
-                        <option value="ambient">Θερμοκρασία Δωματίου</option>
-                    </select>
-                </div>
-            </div>
-
-            <!-- Δέσμευση Stock -->
-            <label>Δέσμευση Stock</label>
-            <div class="checkbox-group">
-                <label>
-                    <input type="checkbox" name="allow_reserve" value="1" checked>
-                    Επιτρέπεται live δέσμευση αποθέματος
-                </label>
-            </div>
-
-        </fieldset>
-
-        <!-- ===== 4. ΦΩΤΟΓΡΑΦΙΑ ===== -->
-        <fieldset>
-            <legend>4. Φωτογραφία Προϊόντος</legend>
-
-            <label for="product_photo">Ανέβασμα Φωτογραφίας</label>
-            <div id="photo-area">
-                <input type="file"
-                       id="product_photo"
-                       name="product_photo"
-                       accept="image/jpeg, image/png, image/gif"
-                       onchange="previewPhoto(this)">
-                <p>Αποδεκτές μορφές: <strong>JPG, PNG, GIF</strong> &bull; Μέγ. μέγεθος: 5MB</p>
-                <img id="photo-preview" src="#" alt="Προεπισκόπηση φωτογραφίας">
-            </div>
-
-        </fieldset>
-
-        <!-- ===== 5. ΕΠΙΠΛΕΟΝ ΠΛΗΡΟΦΟΡΙΕΣ ===== -->
-        <fieldset>
-            <legend>5. Επιπλέον Πληροφορίες</legend>
-
-            <div class="row-2">
-                <div class="col">
-                    <label for="supplier">Προμηθευτής</label>
-                    <input type="text"
-                           id="supplier"
-                           name="supplier"
-                           placeholder="Όνομα προμηθευτή">
-                </div>
-                <div class="col">
-                    <label for="date_entry">Ημερομηνία Εισαγωγής</label>
-                    <input type="date"
-                           id="date_entry"
-                           name="date_entry">
-                </div>
-            </div>
-
-            <!-- Σύνδεσμος εικόνας URL (εναλλακτικά) -->
-            <label for="photo_url">ή URL Φωτογραφίας (εναλλακτικά)</label>
-            <input type="url"
-                   id="photo_url"
-                   name="photo_url"
-                   placeholder="https://...">
-
-            <!-- Διαθεσιμότητα -->
-            <label>Διαθεσιμότητα</label>
-            <div class="radio-group">
-                <label>
-                    <input type="radio" name="availability" value="available" checked>
-                    Διαθέσιμο
-                </label>
-                <label>
-                    <input type="radio" name="availability" value="unavailable">
-                    Μη Διαθέσιμο
-                </label>
-                <label>
-                    <input type="radio" name="availability" value="preorder">
-                    Κατόπιν Παραγγελίας
-                </label>
-            </div>
-
-        </fieldset>
-
-        <!-- ===== ΚΟΥΜΠΙΑ ΥΠΟΒΟΛΗΣ ===== -->
-        <div id="submit-bar">
-            <input type="submit" value="&nbsp;&nbsp;&#10003; Αποθήκευση Προϊόντος&nbsp;&nbsp;">
-            <input type="reset" value="&#10005; Καθαρισμός">
+      <label for="barcode">Barcode (EAN-13) <span class="req" aria-label="υποχρεωτικό">*</span></label>
+      <div class="barcode-row">
+        <div class="barcode-input">
+          <input type="text" id="barcode" name="barcode"
+                 placeholder="πχ. 5200000123456" maxlength="13"
+                 aria-describedby="barcode-hint" autocomplete="off">
+          <div class="form-text" id="barcode-hint">13 ψηφία EAN-13</div>
         </div>
+        <div class="barcode-btn-cell">
+          <button type="button" class="btn-scan" onclick="simulateScan()"
+                  aria-label="Εκκίνηση scanner barcode">
+            &#128247; Σκανάρισμα
+          </button>
+        </div>
+      </div>
 
-    </form>
+      <hr class="divider">
 
-</div><!-- /main -->
+      <div class="row-2">
+        <div class="col">
+          <label for="product_code">Κωδικός Προϊόντος <span class="req" aria-label="υποχρεωτικό">*</span></label>
+          <input type="text" id="product_code" name="product_code"
+                 placeholder="πχ. FP-001" autocomplete="off">
+        </div>
+        <div class="col">
+          <label for="status">Κατάσταση <span class="req" aria-label="υποχρεωτικό">*</span></label>
+          <select id="status" name="status">
+            <option value="">-- Επιλέξτε --</option>
+            <option value="active">Ενεργό</option>
+            <option value="inactive">Ανενεργό</option>
+            <option value="seasonal">Εποχιακό</option>
+          </select>
+        </div>
+      </div>
 
-<!-- ===== FOOTER ===== -->
-<div id="footer">
-    <p>Famiglia di Pasta &copy; 2025 &bull; Σύστημα Διαχείρισης Αποθήκης &bull; Έκδοση 1.0</p>
+      <label for="product_name">Ονομασία Προϊόντος <span class="req" aria-label="υποχρεωτικό">*</span></label>
+      <input type="text" id="product_name" name="product_name"
+             placeholder="πχ. Σφολιάτα Τυρόπιτα Ατομική 180γρ">
+
+      <div class="row-2">
+        <div class="col">
+          <label for="category">Κατηγορία <span class="req" aria-label="υποχρεωτικό">*</span></label>
+          <select id="category" name="category" onchange="updateSubcategory()">
+            <option value="">-- Επιλέξτε κατηγορία --</option>
+            <option value="atomika">Ατομικά</option>
+            <option value="xyma">Χύμα</option>
+            <option value="syskevasmena">Συσκευασμένα</option>
+            <option value="artoskeyasmata">Αρτοσκευάσματα</option>
+          </select>
+        </div>
+        <div class="col">
+          <label for="subcategory">Υποκατηγορία</label>
+          <select id="subcategory" name="subcategory">
+            <option value="">-- Πρώτα επιλέξτε κατηγορία --</option>
+          </select>
+        </div>
+      </div>
+
+      <label for="description">Περιγραφή / Σημειώσεις</label>
+      <textarea id="description" name="description" rows="3"
+                placeholder="Προαιρετική περιγραφή ή σημειώσεις για το προϊόν..."></textarea>
+    </fieldset>
+
+    <!-- 2. Τιμολόγηση -->
+    <fieldset>
+      <legend>2. Τιμολόγηση</legend>
+      <div class="row-3">
+        <div class="col-3">
+          <label for="price_unit">Τιμή ανά Τεμάχιο (&euro;) <span class="req" aria-label="υποχρεωτικό">*</span></label>
+          <input type="number" id="price_unit" name="price_unit"
+                 placeholder="0.00" min="0" step="0.01">
+        </div>
+        <div class="col-3">
+          <label for="price_box">Τιμή ανά Κιβώτιο (&euro;)</label>
+          <input type="number" id="price_box" name="price_box"
+                 placeholder="0.00" min="0" step="0.01">
+        </div>
+        <div class="col-3">
+          <label for="vat">ΦΠΑ (%) <span class="req" aria-label="υποχρεωτικό">*</span></label>
+          <select id="vat" name="vat">
+            <option value="">-- Επιλέξτε --</option>
+            <option value="13">13%</option>
+            <option value="24">24%</option>
+            <option value="6">6%</option>
+            <option value="0">0%</option>
+          </select>
+        </div>
+      </div>
+    </fieldset>
+
+    <!-- 3. Συσκευασία & Αποθήκη -->
+    <fieldset>
+      <legend>3. Στοιχεία Συσκευασίας &amp; Αποθήκης</legend>
+      <div class="row-3">
+        <div class="col-3">
+          <label for="per_box">Τεμάχια / Κιβώτιο <span class="req" aria-label="υποχρεωτικό">*</span></label>
+          <input type="number" id="per_box" name="per_box" placeholder="πχ. 12" min="1" step="1">
+        </div>
+        <div class="col-3">
+          <label for="per_pallet">Κιβώτια / Παλέτα</label>
+          <input type="number" id="per_pallet" name="per_pallet" placeholder="πχ. 60" min="1" step="1">
+        </div>
+        <div class="col-3">
+          <label for="min_stock">Ελάχ. Απόθεμα (κιβ.)</label>
+          <input type="number" id="min_stock" name="min_stock" placeholder="πχ. 10" min="0" step="1">
+        </div>
+      </div>
+      <div class="row-2">
+        <div class="col">
+          <label for="weight_gr">Βάρος Τεμαχίου (γρ)</label>
+          <input type="number" id="weight_gr" name="weight_gr" placeholder="πχ. 180" min="0" step="1">
+        </div>
+        <div class="col">
+          <label for="storage_location">Θέση Αποθήκευσης</label>
+          <input type="text" id="storage_location" name="storage_location" placeholder="πχ. Ράφι Β3">
+        </div>
+      </div>
+      <div class="checkbox-group" style="margin-top:14px">
+        <label>
+          <input type="checkbox" name="allow_reserve" value="1" checked>
+          Επιτρέπεται live δέσμευση αποθέματος
+        </label>
+      </div>
+    </fieldset>
+
+    <!-- 4. Φωτογραφία -->
+    <fieldset>
+      <legend>4. Φωτογραφία Προϊόντος</legend>
+      <label for="product_photo">Ανέβασμα Φωτογραφίας</label>
+      <div id="photo-area">
+        <input type="file" id="product_photo" name="product_photo"
+               accept="image/jpeg,image/png,image/gif"
+               onchange="previewPhoto(this)"
+               aria-describedby="photo-hint">
+        <p id="photo-hint">Αποδεκτές μορφές: <strong>JPG, PNG, GIF</strong> &bull; Μέγ. μέγεθος: 5MB</p>
+        <img id="photo-preview" src="#" alt="Προεπισκόπηση φωτογραφίας προϊόντος">
+      </div>
+    </fieldset>
+
+    <!-- 5. Επιπλέον Πληροφορίες -->
+    <fieldset>
+      <legend>5. Επιπλέον Πληροφορίες</legend>
+      <div class="row-2">
+        <div class="col">
+          <label for="supplier">Προμηθευτής</label>
+          <input type="text" id="supplier" name="supplier" placeholder="Όνομα προμηθευτή">
+        </div>
+        <div class="col">
+          <label for="date_entry">Ημερομηνία Εισαγωγής</label>
+          <input type="date" id="date_entry" name="date_entry">
+        </div>
+      </div>
+
+      <label for="photo_url">ή URL Φωτογραφίας (εναλλακτικά)</label>
+      <input type="url" id="photo_url" name="photo_url" placeholder="https://...">
+
+      <label>Διαθεσιμότητα</label>
+      <div class="radio-group" role="group" aria-label="Επιλογή διαθεσιμότητας">
+        <label><input type="radio" name="availability" value="available" checked> Διαθέσιμο</label>
+        <label><input type="radio" name="availability" value="unavailable"> Μη Διαθέσιμο</label>
+        <label><input type="radio" name="availability" value="preorder"> Κατόπιν Παραγγελίας</label>
+      </div>
+    </fieldset>
+
+    <!-- Submit -->
+    <div id="submit-bar">
+      <input type="submit" value="  &#10003; Αποθήκευση Προϊόντος  ">
+      <input type="reset"  value="&#10005; Καθαρισμός" onclick="resetPreview()">
+    </div>
+
+  </form>
+
 </div>
+</main>
 
-<!-- ===== JAVASCRIPT ===== -->
+<footer>
+  <p>Famiglia di Pasta &copy; 2025 &bull; Σύστημα Διαχείρισης Αποθήκης &bull; Έκδοση 2.0</p>
+</footer>
+
 <script>
+  /* Set today's date as default */
+  (function() {
+    var today = new Date().toISOString().slice(0, 10);
+    document.getElementById('date_entry').value = today;
+  })();
 
-    /* Προεπισκόπηση φωτογραφίας */
-    function previewPhoto(input) {
-        var preview = document.getElementById('photo-preview');
-        if (input.files && input.files[0]) {
-            var reader = new FileReader();
-            reader.onload = function(e) {
-                preview.src = e.target.result;
-                preview.style.display = 'block';
-            };
-            reader.readAsDataURL(input.files[0]);
-        }
+  /* Photo preview */
+  function previewPhoto(input) {
+    var preview = document.getElementById('photo-preview');
+    if (input.files && input.files[0]) {
+      var reader = new FileReader();
+      reader.onload = function(e) {
+        preview.src = e.target.result;
+        preview.style.display = 'block';
+      };
+      reader.readAsDataURL(input.files[0]);
+    }
+  }
+
+  function resetPreview() {
+    var preview = document.getElementById('photo-preview');
+    preview.src = '#';
+    preview.style.display = 'none';
+  }
+
+  /* Simulate barcode scan (fills a demo barcode) */
+  function simulateScan() {
+    var demo = '5200000' + String(Math.floor(Math.random() * 999999)).padStart(6, '0');
+    document.getElementById('barcode').value = demo;
+    document.getElementById('barcode').focus();
+  }
+
+  /* Dynamic subcategories */
+  var subcategories = {
+    atomika: ['Σφολιάτες ατομικά','Σφολιάτες χειροποίητες πατητές','Χειροποίητες Σφολιάτες','Κρουασίνια','Ζύμες κουρού','Κουλούρια Θεσσαλονίκης','Κουλούρια','Φλογέρες ατομικά','Κρουασάν ατομικά','Μπριός','Αρτοζύμες','Πίτσες σκεπαστές','Χειροποίητα βέργας','Μπουγάτσες'],
+    xyma: ['Σφολιάτες μίνι χύμα','Μίνι κουρού','Βέργας μίνι χύμα','Κρουασανάκια μίνι χύμα','Κουλουρίνια μίνι χύμα','Μπριός μίνι','Κροκέτες','Γλυκά μίνι'],
+    syskevasmena: ['Πίτσες Famiglia','Σφολιάτες Μίνι','Πίτες - ταψιά','Στριφτές Πίτες','Μίνι κουρού','Κουλουρίνια','Μπουγάτσες','Μπισκότα','Μίνι Βέργας','Ρολλίνια'],
+    artoskeyasmata: ['Μπαγκέτες 250γρ+','Μπαγκέτες Σάντουιτς 120-150γρ','Ψωμάκια Golden Selection 30-65γρ','Φρατζόλες 350-400γρ','Τσιαπάτα Σάντουιτς 70-130γρ','Μίνι Κουβέρ 30γρ','Φόρμες Τοστ','Ψωμάκια Burgers']
+  };
+
+  function updateSubcategory() {
+    var cat    = document.getElementById('category').value;
+    var subSel = document.getElementById('subcategory');
+    subSel.innerHTML = '';
+
+    var first = document.createElement('option');
+    if (!cat || !subcategories[cat]) {
+      first.text = '-- Πρώτα επιλέξτε κατηγορία --';
+      subSel.appendChild(first);
+      return;
+    }
+    first.text = '-- Επιλέξτε υποκατηγορία --';
+    subSel.appendChild(first);
+
+    subcategories[cat].forEach(function(item) {
+      var opt   = document.createElement('option');
+      opt.value = item.toLowerCase().replace(/\s+/g, '_');
+      opt.text  = item;
+      subSel.appendChild(opt);
+    });
+  }
+
+  /* Form validation */
+  document.getElementById('form-new-product').addEventListener('submit', function(e) {
+    e.preventDefault();
+    var msgOk  = document.getElementById('msg-success');
+    var msgErr = document.getElementById('msg-error');
+    msgOk.style.display  = 'none';
+    msgErr.style.display = 'none';
+
+    var barcode = document.getElementById('barcode').value.trim();
+    var name    = document.getElementById('product_name').value.trim();
+    var cat     = document.getElementById('category').value;
+    var price   = document.getElementById('price_unit').value;
+    var perbox  = document.getElementById('per_box').value;
+    var vat     = document.getElementById('vat').value;
+    var code    = document.getElementById('product_code').value.trim();
+    var status  = document.getElementById('status').value;
+
+    if (!barcode || !name || !cat || !price || !perbox || !vat || !code || !status) {
+      msgErr.style.display = 'block';
+      msgErr.focus();
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+      return;
     }
 
-    /* Υποκατηγορίες ανά κατηγορία */
-    var subcategories = {
-        atomika: [
-            'Σφολιάτες ατομικά',
-            'Σφολιάτες χειροποίητες πατητές',
-            'Χειροποίητες Σφολιάτες',
-            'Κρουασίνια',
-            'Ζύμες κουρού',
-            'Κουλούρια Θεσσαλονίκης',
-            'Κουλούρια',
-            'Φλογέρες ατομικά',
-            'Κρουασάν ατομικά',
-            'Μπριός',
-            'Αρτοζύμες',
-            'Πίτσες σκεπαστές',
-            'Χειροποίητα βέργας',
-            'Μπουγάτσες'
-        ],
-        xyma: [
-            'Σφολιάτες μίνι χύμα',
-            'Μίνι κουρού',
-            'Βέργας μίνι χύμα',
-            'Κρουασανάκια μίνι χύμα',
-            'Κουλουρίνια μίνι χύμα',
-            'Μπριός μίνι',
-            'Κροκέτες',
-            'Γλυκά μίνι'
-        ],
-        syskevasmena: [
-            'Πίτσες Famiglia',
-            'Σφολιάτες Μίνι',
-            'Πίτες - ταψιά',
-            'Στριφτές Πίτες',
-            'Μίνι κουρού',
-            'Κουλουρίνια',
-            'Μπουγάτσες',
-            'Μπισκότα',
-            'Μίνι Βέργας',
-            'Ρολλίνια'
-        ],
-        artoskeyasmata: [
-            'Μπαγκέτες 250γρ+',
-            'Μπαγκέτες Σάντουιτς 120-150γρ',
-            'Ψωμάκια Golden Selection 30-65γρ',
-            'Φρατζόλες 350-400γρ',
-            'Τσιαπάτα Σάντουιτς 70-130γρ',
-            'Μίνι Κουβέρ 30γρ',
-            'Φόρμες Τοστ',
-            'Ψωμάκια Burgers'
-        ]
-    };
-
-    function updateSubcategory() {
-        var cat = document.getElementById('category').value;
-        var subSel = document.getElementById('subcategory');
-
-        subSel.innerHTML = '';
-
-        if (!cat || !subcategories[cat]) {
-            var opt = document.createElement('option');
-            opt.value = '';
-            opt.text = '-- Πρώτα επιλέξτε κατηγορία --';
-            subSel.appendChild(opt);
-            return;
-        }
-
-        var first = document.createElement('option');
-        first.value = '';
-        first.text = '-- Επιλέξτε υποκατηγορία --';
-        subSel.appendChild(first);
-
-        var list = subcategories[cat];
-        for (var i = 0; i < list.length; i++) {
-            var opt = document.createElement('option');
-            opt.value = list[i].toLowerCase().replace(/\s+/g, '_');
-            opt.text = list[i];
-            subSel.appendChild(opt);
-        }
-    }
-
-    /* Validation φόρμας */
-    document.getElementById('form-new-product').onsubmit = function(e) {
-        var msgOk = document.getElementById('msg-success');
-        var msgErr = document.getElementById('msg-error');
-        msgOk.style.display = 'none';
-        msgErr.style.display = 'none';
-
-        var barcode = document.getElementById('barcode').value.trim();
-        var name = document.getElementById('product_name').value.trim();
-        var cat = document.getElementById('category').value;
-        var price = document.getElementById('price_unit').value;
-        var perbox = document.getElementById('per_box').value;
-        var vat = document.getElementById('vat').value;
-
-        if (!barcode || !name || !cat || !price || !perbox || !vat) {
-            e.preventDefault();
-            msgErr.style.display = 'block';
-            window.scrollTo(0, 0);
-            return false;
-        }
-
-        /* Εδώ θα γινόταν το submit στον server */
-        e.preventDefault();
-        msgOk.style.display = 'block';
-        window.scrollTo(0, 0);
-    };
-
+    /* Success — in production this would call an API */
+    msgOk.style.display = 'block';
+    msgOk.focus();
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  });
 </script>
+
+<style>
+  @media print {
+    #navbar, #navbar-links, #breadcrumb, footer { display: none; }
+    #main { padding: 0; }
+  }
+</style>
 
 </body>
 </html>

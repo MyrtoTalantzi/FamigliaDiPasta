@@ -1,156 +1,172 @@
 /* ============================================================
-   FAMIGLIA DI PASTA — Unified Warehouse System Stylesheet
-   Αρχείο  : famiglia_style.css
-   Αφορά   : newProduct.html | IncomingStock.html |
-             stockHistory.html | LiveStock.html
-   Design  : Βασισμένο στο LiveStock & IncomingStock aesthetic
+   FAMIGLIA DI PASTA — Unified Warehouse System Stylesheet v2
    ============================================================ */
-
 
 /* ============================================================
-   1. RESET & ΒΑΣΗ
+   1. RESET & BASE
    ============================================================ */
-* {
-    box-sizing: border-box;
-    margin: 0;
-    padding: 0;
-}
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
 body {
     font-family: Georgia, "Times New Roman", serif;
     font-size: 14px;
     background-color: #f5f0eb;
     color: #1a1a1a;
+    min-height: 100vh;
 }
 
+/* Skip nav for accessibility */
+.skip-nav {
+    position: absolute;
+    top: -40px;
+    left: 0;
+    background: #c8a96e;
+    color: #1a1a1a;
+    padding: 6px 14px;
+    font-size: 12px;
+    font-weight: bold;
+    z-index: 9999;
+    transition: top 0.2s;
+    text-decoration: none;
+}
+.skip-nav:focus { top: 0; }
 
 /* ============================================================
-   2. NAVBAR / HEADER
+   2. NAVBAR
    ============================================================ */
 #navbar {
     background-color: #1a1a1a;
-    padding: 12px 24px;
+    padding: 10px 24px;
     display: flex;
     justify-content: space-between;
     align-items: center;
+    gap: 12px;
+    flex-wrap: wrap;
 }
 
-/* Logo box (LiveStock / IncomingStock style) */
+/* Logo box */
 #logo-box {
     background-color: #1a1a1a;
     border: 2px solid #c8a96e;
-    padding: 6px 14px;
+    padding: 5px 12px;
     display: inline-block;
+    flex-shrink: 0;
 }
-
 #logo-text {
     color: #ffffff;
-    font-size: 15px;
+    font-size: 14px;
     font-weight: bold;
     letter-spacing: 1px;
     display: block;
 }
-
 #logo-sub {
     color: #c8a96e;
-    font-size: 11px;
+    font-size: 10px;
     display: block;
     letter-spacing: 2px;
     text-transform: uppercase;
     margin-top: 2px;
 }
 
-/* Navbar left / right grouping */
+/* Navbar left */
 #navbar-left {
     display: flex;
     align-items: center;
-    gap: 14px;
+    gap: 0;
+    flex-wrap: wrap;
+    gap: 8px;
 }
 
+/* Inline nav links inside navbar */
+#navbar-links {
+    display: flex;
+    align-items: center;
+    gap: 2px;
+    margin-left: 8px;
+}
+#navbar-links a {
+    color: #777777;
+    text-decoration: none;
+    font-size: 10px;
+    letter-spacing: 0.8px;
+    text-transform: uppercase;
+    padding: 4px 9px;
+    border-bottom: 2px solid transparent;
+    transition: color 0.2s, border-color 0.2s;
+}
+#navbar-links a:hover { color: #c8a96e; }
+#navbar-links a.active {
+    color: #c8a96e;
+    border-bottom-color: #c8a96e;
+}
+#navbar-links a:focus-visible {
+    outline: 2px solid #c8a96e;
+    outline-offset: 2px;
+    border-radius: 2px;
+}
+
+/* Navbar right */
 #navbar-right {
     display: flex;
     align-items: center;
     gap: 12px;
+    flex-shrink: 0;
 }
+#user-name { color: #ffffff; font-size: 12px; display: block; }
+#user-role  { color: #c8a96e; font-size: 10px; display: block; letter-spacing: 0.3px; }
 
-/* Logged-in user info */
-#user-name {
-    color: #ffffff;
-    font-size: 13px;
-}
-
-#user-role {
-    color: #c8a96e;
-    font-size: 11px;
-    display: block;
-}
-
-/* Logout / back button */
-#logout-btn,
-a#logout-btn {
+#logout-btn, a#logout-btn {
     color: #c8a96e;
     text-decoration: none;
     border: 1px solid #c8a96e;
     padding: 4px 12px;
-    font-size: 12px;
+    font-size: 11px;
     letter-spacing: 0.5px;
     transition: background-color 0.2s, color 0.2s;
+    white-space: nowrap;
+}
+#logout-btn:hover, a#logout-btn:hover { background-color: #c8a96e; color: #1a1a1a; }
+#logout-btn:focus-visible, a#logout-btn:focus-visible {
+    outline: 2px solid #c8a96e;
+    outline-offset: 2px;
 }
 
-#logout-btn:hover,
-a#logout-btn:hover {
-    background-color: #c8a96e;
-    color: #1a1a1a;
-}
-
-/* Gold outline button (IncomingStock) */
+/* Gold outline button */
 .btn-gold {
     color: #c8a96e;
     border: 1px solid #c8a96e;
     background: transparent;
-    font-size: 12px;
+    font-size: 11px;
     letter-spacing: 1px;
-    padding: 5px 12px;
+    padding: 4px 12px;
     cursor: pointer;
     text-decoration: none;
     display: inline-block;
     transition: background-color 0.2s, color 0.2s;
+    white-space: nowrap;
 }
-
-.btn-gold:hover {
-    background-color: #c8a96e;
-    color: #1a1a1a;
-}
+.btn-gold:hover { background-color: #c8a96e; color: #1a1a1a; }
+.btn-gold:focus-visible { outline: 2px solid #c8a96e; outline-offset: 2px; }
 
 
 /* ============================================================
-   3. BREADCRUMB  (stockHistory / newProduct)
+   3. BREADCRUMB
    ============================================================ */
 #breadcrumb {
     background-color: #f0e8da;
     border-bottom: 1px solid #d4c5a9;
-    padding: 9px 28px;
+    padding: 8px 28px;
     font-size: 11px;
     color: #999999;
     letter-spacing: 0.3px;
 }
-
-#breadcrumb a {
-    color: #a07040;
-    text-decoration: none;
-}
-
-#breadcrumb a:hover {
-    text-decoration: underline;
-}
-
-#breadcrumb strong {
-    color: #1a1a1a;
-}
+#breadcrumb a { color: #a07040; text-decoration: none; }
+#breadcrumb a:hover { text-decoration: underline; }
+#breadcrumb strong { color: #1a1a1a; }
 
 
 /* ============================================================
-   4. PAGE HEADER  (τίτλος σελίδας)
+   4. PAGE HEADER
    ============================================================ */
 #page-header {
     display: flex;
@@ -159,18 +175,16 @@ a#logout-btn:hover {
     margin-bottom: 18px;
     border-bottom: 2px solid #c8a96e;
     padding-bottom: 12px;
+    flex-wrap: wrap;
+    gap: 10px;
 }
-
-#page-title,
-h1#page-title {
+#page-title, h1#page-title {
     margin: 0;
     font-size: 22px;
     font-weight: bold;
     color: #1a1a1a;
 }
-
-#page-sub,
-p#page-subtitle {
+#page-sub, p#page-subtitle {
     margin: 4px 0 0 0;
     font-size: 12px;
     color: #666666;
@@ -185,24 +199,23 @@ p#page-subtitle {
     border: 1px solid #c8a96e;
     letter-spacing: 1px;
     white-space: nowrap;
+    flex-shrink: 0;
 }
 
 
 /* ============================================================
-   5. ΚΥΡΙΟ ΠΕΡΙΕΧΟΜΕΝΟ  (#main)
+   5. MAIN
    ============================================================ */
 #main {
     padding: 24px 28px 60px 28px;
     max-width: 980px;
 }
-
 #main h2 {
     font-size: 22px;
     font-weight: bold;
     color: #1a1a1a;
     margin-bottom: 5px;
 }
-
 #main > p {
     font-size: 12px;
     color: #888888;
@@ -213,7 +226,7 @@ p#page-subtitle {
 
 
 /* ============================================================
-   6. SCANNER BANNER  (IncomingStock)
+   6. SCANNER BANNER
    ============================================================ */
 #scanner-banner {
     background-color: #1a1a1a;
@@ -223,51 +236,25 @@ p#page-subtitle {
     display: flex;
     align-items: center;
     gap: 14px;
+    flex-wrap: wrap;
 }
-
-#scanner-banner strong {
-    color: #ffffff;
-    font-size: 13px;
-}
-
-#scanner-banner span.sub {
-    color: #888888;
-    font-size: 12px;
-}
-
-.scanner-icon {
-    border: 1px solid #c8a96e;
-    color: #c8a96e;
-    padding: 6px 10px;
-    font-size: 20px;
-}
-
+#scanner-banner strong { color: #ffffff; font-size: 13px; }
+#scanner-banner span.sub { color: #888888; font-size: 12px; }
+.scanner-icon { border: 1px solid #c8a96e; color: #c8a96e; padding: 6px 10px; font-size: 20px; flex-shrink: 0; }
 .badge-scanner {
-    color: #c8a96e;
-    border: 1px solid #c8a96e;
-    font-size: 11px;
-    letter-spacing: 1px;
-    background: transparent;
-    padding: 3px 10px;
-    margin-left: auto;
+    color: #c8a96e; border: 1px solid #c8a96e;
+    font-size: 11px; letter-spacing: 1px;
+    background: transparent; padding: 3px 10px; margin-left: auto; white-space: nowrap;
 }
 
 /* Pulsing dot */
 .dot {
-    display: inline-block;
-    width: 7px;
-    height: 7px;
-    border-radius: 50%;
-    background-color: #7fff9a;
+    display: inline-block; width: 7px; height: 7px;
+    border-radius: 50%; background-color: #7fff9a;
     animation: pulse 1.8s ease-in-out infinite;
-    vertical-align: middle;
-    margin-right: 4px;
+    vertical-align: middle; margin-right: 4px;
 }
-
-@keyframes pulse {
-    0%, 100% { opacity: 1; }
-    50%       { opacity: 0.3; }
-}
+@keyframes pulse { 0%, 100% { opacity: 1; } 50% { opacity: 0.3; } }
 
 
 /* ============================================================
@@ -291,17 +278,17 @@ p#page-subtitle {
     display: flex;
     gap: 12px;
     margin-bottom: 20px;
+    flex-wrap: wrap;
 }
-
 .metric-card {
     background-color: #ffffff;
     border: 1px solid #d4c5a9;
     border-top: 3px solid #c8a96e;
     padding: 14px 18px;
     flex: 1;
+    min-width: 120px;
     text-align: center;
 }
-
 .metric-label {
     margin: 0 0 6px 0;
     font-size: 11px;
@@ -309,7 +296,6 @@ p#page-subtitle {
     text-transform: uppercase;
     letter-spacing: 1px;
 }
-
 .metric-value        { margin: 0; font-size: 26px; font-weight: bold; color: #1a1a1a; }
 .metric-value-in     { margin: 0; font-size: 26px; font-weight: bold; color: #1a5c1a; }
 .metric-value-out    { margin: 0; font-size: 26px; font-weight: bold; color: #8B1A1A; }
@@ -318,10 +304,8 @@ p#page-subtitle {
 
 
 /* ============================================================
-   9. ΦΙΛΤΡΑ & CONTROLS
+   9. FILTERS & CONTROLS
    ============================================================ */
-
-/* stockHistory filters */
 #filters {
     background-color: #ffffff;
     border: 1px solid #d4c5a9;
@@ -329,263 +313,158 @@ p#page-subtitle {
     padding: 16px 18px;
     margin-bottom: 18px;
 }
-
 #filters-title {
-    font-size: 11px;
-    font-weight: bold;
-    color: #a07040;
-    text-transform: uppercase;
-    letter-spacing: 1px;
-    margin-bottom: 12px;
+    font-size: 11px; font-weight: bold; color: #a07040;
+    text-transform: uppercase; letter-spacing: 1px; margin-bottom: 12px;
 }
-
 #filters-row {
-    display: flex;
-    gap: 12px;
-    flex-wrap: wrap;
-    align-items: flex-end;
+    display: flex; gap: 12px; flex-wrap: wrap; align-items: flex-end;
 }
-
 .filter-group {
-    display: flex;
-    flex-direction: column;
-    gap: 4px;
-    font-size: 11px;
-    color: #888888;
-    text-transform: uppercase;
-    letter-spacing: 0.5px;
+    display: flex; flex-direction: column; gap: 4px;
+    font-size: 11px; color: #888888;
+    text-transform: uppercase; letter-spacing: 0.5px;
 }
-
-#filters-actions {
-    margin-left: auto;
-    display: flex;
-    gap: 8px;
-    align-items: flex-end;
-}
+#filters-actions { margin-left: auto; display: flex; gap: 8px; align-items: flex-end; flex-wrap: wrap; }
 
 /* LiveStock controls bar */
-#controls {
-    display: flex;
-    gap: 10px;
-    margin-bottom: 14px;
-    align-items: center;
-}
+#controls { display: flex; gap: 10px; margin-bottom: 14px; align-items: center; flex-wrap: wrap; }
 
-input#search-box,
-#search-box {
-    flex: 1;
-    padding: 8px 12px;
-    font-size: 13px;
+input#search-box, #search-box {
+    flex: 1; min-width: 180px;
+    padding: 8px 12px; font-size: 13px;
     font-family: Georgia, serif;
     border: 1px solid #c8a96e;
-    background-color: #ffffff;
-    color: #1a1a1a;
+    background-color: #ffffff; color: #1a1a1a;
 }
-
-input#search-box:focus,
-#search-box:focus {
+input#search-box:focus, #search-box:focus {
     outline: none;
     border-color: #a07040;
-    box-shadow: 0 0 0 2px rgba(200, 169, 110, 0.2);
+    box-shadow: 0 0 0 2px rgba(200,169,110,0.2);
 }
 
 select.filter-select {
-    padding: 8px 10px;
-    font-size: 13px;
+    padding: 8px 10px; font-size: 13px;
     font-family: Georgia, serif;
     border: 1px solid #c8a96e;
-    background-color: #ffffff;
-    color: #1a1a1a;
+    background-color: #ffffff; color: #1a1a1a;
 }
 
 
 /* ============================================================
-   10. ΚΟΥΜΠΙΑ
+   10. BUTTONS
    ============================================================ */
-
-/* Κύριο κουμπί (σκούρο/χρυσό) */
-.btn-search,
-#btn-submit,
-input#pdf-btn {
-    background-color: #1a1a1a;
-    color: #c8a96e;
+.btn-search, #btn-submit, input#pdf-btn {
+    background-color: #1a1a1a; color: #c8a96e;
     border: 1px solid #c8a96e;
-    padding: 9px 18px;
-    font-family: Georgia, serif;
-    font-size: 12px;
-    letter-spacing: 1px;
-    cursor: pointer;
-    transition: background-color 0.2s, color 0.2s;
+    padding: 9px 18px; font-family: Georgia, serif;
+    font-size: 12px; letter-spacing: 1px;
+    cursor: pointer; transition: background-color 0.2s, color 0.2s;
+}
+.btn-search:hover, #btn-submit:hover, input#pdf-btn:hover {
+    background-color: #c8a96e; color: #1a1a1a;
+}
+.btn-search:focus-visible, #btn-submit:focus-visible, input#pdf-btn:focus-visible {
+    outline: 2px solid #c8a96e; outline-offset: 2px;
 }
 
-.btn-search:hover,
-#btn-submit:hover,
-input#pdf-btn:hover {
-    background-color: #c8a96e;
-    color: #1a1a1a;
-}
-
-/* Δευτερεύον κουμπί (outline) */
-.btn-clear,
-.btn-pdf,
-#btn-clear {
-    background-color: #ffffff;
-    color: #a07040;
+.btn-clear, .btn-pdf, #btn-clear {
+    background-color: #ffffff; color: #a07040;
     border: 1px solid #d4c5a9;
-    padding: 9px 14px;
-    font-family: Georgia, serif;
-    font-size: 12px;
-    cursor: pointer;
+    padding: 9px 14px; font-family: Georgia, serif;
+    font-size: 12px; cursor: pointer;
     transition: border-color 0.2s, color 0.2s;
 }
-
-.btn-clear:hover,
-.btn-pdf:hover,
-#btn-clear:hover {
-    border-color: #a07040;
-    color: #1a1a1a;
+.btn-clear:hover, .btn-pdf:hover, #btn-clear:hover { border-color: #a07040; color: #1a1a1a; }
+.btn-clear:focus-visible, .btn-pdf:focus-visible, #btn-clear:focus-visible {
+    outline: 2px solid #a07040; outline-offset: 2px;
 }
 
-/* Scanner / scan button */
 .btn-scan {
-    background-color: #1a1a1a;
-    color: #c8a96e;
+    background-color: #1a1a1a; color: #c8a96e;
     border: 1px solid #c8a96e;
-    padding: 9px 16px;
-    font-family: Georgia, serif;
-    font-size: 12px;
-    letter-spacing: 0.5px;
-    cursor: pointer;
-    transition: background-color 0.2s, color 0.2s;
+    padding: 9px 16px; font-family: Georgia, serif;
+    font-size: 12px; letter-spacing: 0.5px;
+    cursor: pointer; transition: background-color 0.2s, color 0.2s;
 }
+.btn-scan:hover { background-color: #c8a96e; color: #1a1a1a; }
+.btn-scan:focus-visible { outline: 2px solid #c8a96e; outline-offset: 2px; }
 
-.btn-scan:hover {
-    background-color: #c8a96e;
-    color: #1a1a1a;
-}
-
-/* +/- ποσότητας (IncomingStock) */
 .btn-qty {
-    background-color: #1a1a1a;
-    color: #c8a96e;
+    background-color: #1a1a1a; color: #c8a96e;
     border: 1px solid #c8a96e;
-    width: 36px;
-    padding: 8px 0;
-    font-size: 16px;
-    cursor: pointer;
-    transition: background-color 0.2s, color 0.2s;
+    width: 36px; padding: 8px 0; font-size: 16px;
+    cursor: pointer; transition: background-color 0.2s, color 0.2s;
 }
+.btn-qty:hover { background-color: #c8a96e; color: #1a1a1a; }
+.btn-qty:focus-visible { outline: 2px solid #c8a96e; outline-offset: 2px; }
 
-.btn-qty:hover {
-    background-color: #c8a96e;
-    color: #1a1a1a;
-}
-
-/* Submit / Reset (φόρμα newProduct) */
 input[type="submit"] {
-    background-color: #1a1a1a;
-    color: #c8a96e;
+    background-color: #1a1a1a; color: #c8a96e;
     border: 1px solid #c8a96e;
-    padding: 10px 26px;
-    font-family: Georgia, serif;
-    font-size: 13px;
-    letter-spacing: 0.5px;
-    cursor: pointer;
-    transition: background-color 0.2s, color 0.2s;
+    padding: 10px 26px; font-family: Georgia, serif;
+    font-size: 13px; letter-spacing: 0.5px;
+    cursor: pointer; transition: background-color 0.2s, color 0.2s;
 }
-
 input[type="submit"]:hover  { background-color: #c8a96e; color: #1a1a1a; }
 input[type="submit"]:active { transform: scale(0.98); }
+input[type="submit"]:focus-visible { outline: 2px solid #c8a96e; outline-offset: 2px; }
 
 input[type="reset"] {
-    background-color: #ffffff;
-    color: #a07040;
+    background-color: #ffffff; color: #a07040;
     border: 1px solid #d4c5a9;
-    padding: 10px 20px;
-    font-family: Georgia, serif;
-    font-size: 13px;
-    cursor: pointer;
-    margin-left: 10px;
+    padding: 10px 20px; font-family: Georgia, serif;
+    font-size: 13px; cursor: pointer; margin-left: 10px;
     transition: border-color 0.2s;
 }
-
 input[type="reset"]:hover { border-color: #a07040; }
+input[type="reset"]:focus-visible { outline: 2px solid #a07040; outline-offset: 2px; }
 
-/* PDF export button (LiveStock) */
 input#pdf-btn { padding: 8px 16px; }
 
 
 /* ============================================================
-   11. CARDS  (IncomingStock fp-card)
+   11. CARDS (IncomingStock fp-card)
    ============================================================ */
-.fp-card {
-    background-color: #ffffff;
-    border: 1px solid #d4c5a9;
-    margin-bottom: 16px;
-}
-
+.fp-card { background-color: #ffffff; border: 1px solid #d4c5a9; margin-bottom: 16px; }
 .fp-card-header {
-    background-color: #1a1a1a;
-    color: #c8a96e;
-    padding: 9px 16px;
-    font-size: 11px;
-    letter-spacing: 1px;
-    text-transform: uppercase;
+    background-color: #1a1a1a; color: #c8a96e;
+    padding: 9px 16px; font-size: 11px;
+    letter-spacing: 1px; text-transform: uppercase;
 }
-
 .fp-card-header .num {
-    border: 1px solid #c8a96e;
-    padding: 1px 6px;
-    font-family: "Courier New", monospace;
-    margin-right: 8px;
+    border: 1px solid #c8a96e; padding: 1px 6px;
+    font-family: "Courier New", monospace; margin-right: 8px;
 }
-
-.fp-card-body {
-    padding: 16px;
-}
+.fp-card-body { padding: 16px; }
 
 
 /* ============================================================
-   12. FIELDSET & LEGEND  (newProduct / stockHistory)
+   12. FIELDSET & LEGEND (newProduct)
    ============================================================ */
 fieldset {
     background-color: #ffffff;
     border: 1px solid #d4c5a9;
     border-top: 3px solid #c8a96e;
-    padding: 20px 22px;
-    margin-bottom: 18px;
+    padding: 20px 22px; margin-bottom: 18px;
 }
-
 legend {
-    font-size: 11px;
-    font-weight: bold;
-    color: #a07040;
-    text-transform: uppercase;
-    letter-spacing: 1.5px;
-    padding: 0 10px;
-    background-color: #ffffff;
+    font-size: 11px; font-weight: bold; color: #a07040;
+    text-transform: uppercase; letter-spacing: 1.5px;
+    padding: 0 10px; background-color: #ffffff;
 }
 
 
 /* ============================================================
    13. LABELS & FORM ELEMENTS
    ============================================================ */
-label,
-.form-label {
-    display: block;
-    font-size: 11px;
-    font-weight: bold;
-    color: #888888;
-    text-transform: uppercase;
-    letter-spacing: 1px;
-    margin-top: 14px;
-    margin-bottom: 5px;
+label, .form-label {
+    display: block; font-size: 11px; font-weight: bold;
+    color: #888888; text-transform: uppercase;
+    letter-spacing: 1px; margin-top: 14px; margin-bottom: 5px;
 }
-
 label:first-of-type { margin-top: 0; }
-
-label .req,
-.form-label .req { color: #c8a96e; }
+label .req, .form-label .req { color: #c8a96e; }
 
 input[type="text"],
 input[type="number"],
@@ -593,544 +472,395 @@ input[type="email"],
 input[type="url"],
 input[type="date"],
 input[type="datetime-local"],
-select,
-textarea,
-.form-control,
-.form-select {
-    width: 100%;
-    padding: 9px 12px;
-    font-family: Georgia, serif;
-    font-size: 13px;
+select, textarea,
+.form-control, .form-select {
+    width: 100%; padding: 9px 12px;
+    font-family: Georgia, serif; font-size: 13px;
     border: 1px solid #c8a96e;
-    background-color: #faf8f4;
-    color: #1a1a1a;
+    background-color: #faf8f4; color: #1a1a1a;
     border-radius: 0;
     transition: border-color 0.2s, background-color 0.2s;
 }
-
 input[type="text"]:focus,
 input[type="number"]:focus,
 input[type="email"]:focus,
 input[type="url"]:focus,
 input[type="date"]:focus,
 input[type="datetime-local"]:focus,
-select:focus,
-textarea:focus,
-.form-control:focus,
-.form-select:focus {
+select:focus, textarea:focus,
+.form-control:focus, .form-select:focus {
     outline: none;
-    border-color: #a07040;
-    background-color: #ffffff;
-    box-shadow: none;
+    border-color: #a07040; background-color: #ffffff;
+    box-shadow: 0 0 0 2px rgba(160,112,64,0.15);
 }
-
 input[type="text"]:hover,
 input[type="number"]:hover,
-select:hover,
-textarea:hover {
-    border-color: #a07040;
-}
+select:hover, textarea:hover { border-color: #a07040; }
 
-/* Scanned state (IncomingStock) */
 .form-control.scanned {
-    background-color: #f0f8f0;
-    border-color: #4a8a4a;
-    color: #1a4a1a;
+    background-color: #f0f8f0; border-color: #4a8a4a; color: #1a4a1a;
 }
-
-textarea {
-    resize: vertical;
-    min-height: 80px;
-    line-height: 1.6;
-}
+textarea { resize: vertical; min-height: 80px; line-height: 1.6; }
 
 input[type="file"] {
-    width: 100%;
-    padding: 8px 0;
-    font-size: 12px;
-    color: #666666;
-    cursor: pointer;
-    border: none;
-    background: transparent;
+    width: 100%; padding: 8px 0; font-size: 12px;
+    color: #666666; cursor: pointer; border: none; background: transparent;
 }
-
-.form-text {
-    font-size: 11px;
-    color: #aaaaaa;
-    margin-top: 3px;
-}
+.form-text { font-size: 11px; color: #aaaaaa; margin-top: 3px; }
 
 
 /* ============================================================
    14. RADIO / CHECKBOX
    ============================================================ */
-.radio-group,
-.checkbox-group {
-    margin-top: 6px;
+.radio-group, .checkbox-group { margin-top: 6px; }
+.radio-group label, .checkbox-group label {
+    display: inline-block; margin-top: 6px; margin-right: 22px;
+    font-weight: normal; font-size: 13px; color: #333333;
+    text-transform: none; letter-spacing: 0; cursor: pointer;
 }
-
-.radio-group label,
-.checkbox-group label {
-    display: inline-block;
-    margin-top: 6px;
-    margin-right: 22px;
-    font-weight: normal;
-    font-size: 13px;
-    color: #333333;
-    text-transform: none;
-    letter-spacing: 0;
-    cursor: pointer;
-}
-
 .radio-group input[type="radio"],
 .checkbox-group input[type="checkbox"] {
-    margin-right: 6px;
-    accent-color: #c8a96e;
-    cursor: pointer;
+    margin-right: 6px; accent-color: #c8a96e; cursor: pointer;
 }
 
 
 /* ============================================================
-   15. LAYOUT HELPERS  (δύο/τρεις στήλες)
+   15. LAYOUT HELPERS
    ============================================================ */
-.row-2 {
-    display: table;
-    width: 100%;
-    border-spacing: 14px 0;
-    margin-left: -14px;
-}
+.row-2 { display: flex; gap: 14px; }
+.row-2 .col { flex: 1; min-width: 0; }
+.row-3 { display: flex; gap: 14px; }
+.row-3 .col-3 { flex: 1; min-width: 0; }
 
-.col {
-    display: table-cell;
-    width: 50%;
-    vertical-align: top;
-}
+.barcode-row { display: flex; gap: 10px; align-items: flex-end; }
+.barcode-input { flex: 1; min-width: 0; }
+.barcode-btn-cell { flex-shrink: 0; }
 
-.row-3 {
-    display: table;
-    width: 100%;
-    border-spacing: 14px 0;
-    margin-left: -14px;
-}
-
-.col-3 {
-    display: table-cell;
-    width: 33.33%;
-    vertical-align: top;
-}
-
-/* Barcode row */
-.barcode-row       { display: table; width: 100%; }
-.barcode-input     { display: table-cell; width: 100%; padding-right: 10px; }
-.barcode-btn-cell  { display: table-cell; vertical-align: bottom; white-space: nowrap; }
-
-hr.divider {
-    border: none;
-    border-top: 1px solid #e8e0d0;
-    margin: 14px 0;
-}
+hr.divider { border: none; border-top: 1px solid #e8e0d0; margin: 14px 0; }
 
 
 /* ============================================================
-   16. PHOTO UPLOAD AREA  (newProduct)
+   16. PHOTO UPLOAD AREA (newProduct)
    ============================================================ */
 #photo-area {
-    border: 2px dashed #d4c5a9;
-    background-color: #faf8f4;
-    padding: 22px;
-    text-align: center;
-    margin-top: 4px;
+    border: 2px dashed #d4c5a9; background-color: #faf8f4;
+    padding: 22px; text-align: center; margin-top: 4px;
     transition: border-color 0.2s, background-color 0.2s;
 }
-
-#photo-area:hover {
-    border-color: #c8a96e;
-    background-color: #f5f0e8;
-}
-
-#photo-area p {
-    font-size: 12px;
-    color: #aaaaaa;
-    margin-top: 8px;
-}
-
+#photo-area:hover { border-color: #c8a96e; background-color: #f5f0e8; }
+#photo-area p { font-size: 12px; color: #aaaaaa; margin-top: 8px; }
 #photo-area p strong { color: #a07040; }
-
 #photo-preview {
-    max-width: 100%;
-    max-height: 200px;
-    display: none;
-    margin: 12px auto 0;
-    border: 1px solid #d4c5a9;
+    max-width: 100%; max-height: 200px;
+    display: none; margin: 12px auto 0; border: 1px solid #d4c5a9;
 }
 
 
 /* ============================================================
-   17. PRODUCT PREVIEW PANEL  (IncomingStock)
+   17. PRODUCT PREVIEW PANEL (IncomingStock)
    ============================================================ */
 #prod-preview {
     display: none;
-    background-color: #f0f8f0;
-    border: 1px solid #4a8a4a;
+    background-color: #f0f8f0; border: 1px solid #4a8a4a;
     border-left: 4px solid #4a8a4a;
-    padding: 10px 14px;
-    margin-top: 8px;
-    font-size: 13px;
+    padding: 10px 14px; margin-top: 8px; font-size: 13px;
 }
-
-#prod-preview.show {
-    display: flex;
-    justify-content: space-between;
-    align-items: flex-start;
-}
-
+#prod-preview.show { display: flex; justify-content: space-between; align-items: flex-start; }
 #pp-name { font-weight: bold; color: #1a4a1a; }
 #pp-code { font-family: "Courier New", monospace; font-size: 11px; color: #888888; }
 #pp-stock-val { font-family: "Courier New", monospace; font-size: 20px; font-weight: bold; }
-
 #code-err       { display: none; font-size: 12px; }
 #code-err.show  { display: block; }
 
 
 /* ============================================================
-   18. SUMMARY BAR  (IncomingStock)
+   18. SUMMARY BAR (IncomingStock)
    ============================================================ */
 #summary-bar {
     display: none;
-    background-color: #fff8ee;
-    border: 1px solid #c8a96e;
-    padding: 12px 16px;
-    margin-bottom: 12px;
+    background-color: #fff8ee; border: 1px solid #c8a96e;
+    padding: 12px 16px; margin-bottom: 12px;
 }
-
 #summary-bar.show {
-    display: grid;
-    grid-template-columns: 1fr 1fr 1fr;
-    gap: 8px;
-    text-align: center;
+    display: grid; grid-template-columns: 1fr 1fr 1fr;
+    gap: 8px; text-align: center;
 }
-
 .sum-label {
-    font-size: 10px;
-    text-transform: uppercase;
-    letter-spacing: 1px;
-    color: #888888;
-    margin-bottom: 3px;
+    font-size: 10px; text-transform: uppercase;
+    letter-spacing: 1px; color: #888888; margin-bottom: 3px;
 }
-
 .sum-val {
     font-family: "Courier New", monospace;
-    font-size: 16px;
-    font-weight: bold;
-    color: #7a5010;
+    font-size: 16px; font-weight: bold; color: #7a5010;
 }
 
 
 /* ============================================================
-   19. MESSAGES  (success / error / toast)
+   19. MESSAGES (success / error / toast)
    ============================================================ */
 #msg-success {
     display: none;
-    background-color: #d4edda;
-    border: 1px solid #c3e6cb;
+    background-color: #d4edda; border: 1px solid #c3e6cb;
     border-left: 4px solid #4a8a4a;
-    padding: 12px 18px;
-    color: #155724;
-    font-size: 13px;
-    margin-bottom: 18px;
+    padding: 12px 18px; color: #155724; font-size: 13px; margin-bottom: 18px;
 }
-
 #msg-error {
     display: none;
-    background-color: #f8d7da;
-    border: 1px solid #f5c6cb;
+    background-color: #f8d7da; border: 1px solid #f5c6cb;
     border-left: 4px solid #8B1A1A;
-    padding: 12px 18px;
-    color: #721c24;
-    font-size: 13px;
-    margin-bottom: 18px;
+    padding: 12px 18px; color: #721c24; font-size: 13px; margin-bottom: 18px;
 }
-
-/* Toast (IncomingStock) */
 #toast {
-    position: fixed;
-    bottom: 24px;
-    right: 24px;
-    background-color: #1a1a1a;
-    color: #c8a96e;
+    position: fixed; bottom: 24px; right: 24px;
+    background-color: #1a1a1a; color: #c8a96e;
     border: 1px solid #c8a96e;
-    padding: 12px 20px;
-    font-size: 13px;
-    letter-spacing: 1px;
-    opacity: 0;
-    transform: translateY(60px);
-    transition: all 0.3s ease;
-    z-index: 999;
+    padding: 12px 20px; font-size: 13px; letter-spacing: 1px;
+    opacity: 0; transform: translateY(60px);
+    transition: all 0.3s ease; z-index: 999;
 }
-
-#toast.show {
-    opacity: 1;
-    transform: none;
-}
+#toast.show { opacity: 1; transform: none; }
 
 
 /* ============================================================
-   20. SUBMIT BAR  (newProduct)
+   20. SUBMIT BAR (newProduct)
    ============================================================ */
 #submit-bar {
-    background-color: #ffffff;
-    border: 1px solid #d4c5a9;
+    background-color: #ffffff; border: 1px solid #d4c5a9;
     border-top: 3px solid #c8a96e;
-    padding: 18px 22px;
-    margin-bottom: 20px;
-    display: flex;
-    align-items: center;
-    gap: 8px;
+    padding: 18px 22px; margin-bottom: 20px;
+    display: flex; align-items: center; gap: 8px; flex-wrap: wrap;
 }
 
 
 /* ============================================================
-   21. ΠΙΝΑΚΕΣ  (LiveStock & stockHistory)
+   21. TABLES
    ============================================================ */
 #table-wrap {
-    border: 1px solid #d4c5a9;
-    background-color: #ffffff;
-    overflow: hidden;
+    border: 1px solid #d4c5a9; background-color: #ffffff; overflow: hidden;
 }
+.table-scroll { overflow-x: auto; }
 
 #table-header-bar {
-    background-color: #1a1a1a;
-    color: #c8a96e;
-    padding: 9px 14px;
-    font-size: 11px;
-    letter-spacing: 1px;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
+    background-color: #1a1a1a; color: #c8a96e;
+    padding: 9px 14px; font-size: 11px; letter-spacing: 1px;
+    display: flex; justify-content: space-between; align-items: center;
+    flex-wrap: wrap; gap: 6px;
 }
-
 #table-count { font-size: 11px; color: #888888; }
 
 #no-results {
-    display: none;
-    padding: 20px;
-    text-align: center;
-    font-size: 13px;
-    color: #888888;
-    font-style: italic;
+    display: none; padding: 20px; text-align: center;
+    font-size: 13px; color: #888888; font-style: italic;
 }
 
-/* Stock table (LiveStock) */
-table#stock-table,
-table#history-table {
-    width: 100%;
-    border-collapse: collapse;
-    font-size: 13px;
-    background-color: #ffffff;
+table#stock-table, table#history-table {
+    width: 100%; border-collapse: collapse;
+    font-size: 13px; background-color: #ffffff; min-width: 600px;
 }
-
-table#stock-table th,
-table#history-table th {
-    background-color: #1a1a1a;
-    color: #c8a96e;
-    padding: 10px 14px;
-    text-align: left;
-    font-weight: normal;
-    font-size: 11px;
-    letter-spacing: 1px;
-    text-transform: uppercase;
-    cursor: pointer;
-    white-space: nowrap;
+table#stock-table th, table#history-table th {
+    background-color: #1a1a1a; color: #c8a96e;
+    padding: 10px 14px; text-align: left;
+    font-weight: normal; font-size: 11px;
+    letter-spacing: 1px; text-transform: uppercase;
+    cursor: pointer; white-space: nowrap; user-select: none;
 }
+table#stock-table th:hover, table#history-table th:hover { color: #ffffff; }
+table#stock-table th.sorted-asc::after  { content: " ▲"; }
+table#stock-table th.sorted-desc::after { content: " ▼"; }
+table#history-table th.sorted-asc::after  { content: " ▲"; }
+table#history-table th.sorted-desc::after { content: " ▼"; }
 
-table#stock-table th.sorted,
-table#history-table th.sorted {
-    color: #ffffff;
+table#stock-table td, table#history-table td {
+    padding: 10px 14px; border-bottom: 1px solid #f0e8da;
+    vertical-align: middle; color: #1a1a1a;
 }
-
-table#stock-table td,
-table#history-table td {
-    padding: 10px 14px;
-    border-bottom: 1px solid #f0e8da;
-    vertical-align: middle;
-    color: #1a1a1a;
-}
-
 table#stock-table tr:last-child td,
-table#history-table tr:last-child td {
-    border-bottom: none;
-}
-
+table#history-table tr:last-child td { border-bottom: none; }
 table#stock-table tr:hover td,
-table#history-table tr:hover td {
-    background-color: #faf6f0;
-}
+table#history-table tr:hover td { background-color: #faf6f0; }
 
 
 /* ============================================================
-   22. TABLE HELPER CLASSES
+   22. TABLE HELPERS
    ============================================================ */
+span.code { font-family: "Courier New", monospace; font-size: 12px; color: #888888; }
+span.timestamp { font-size: 12px; color: #1a1a1a; display: block; }
+span.timestamp-time { font-size: 11px; color: #aaaaaa; font-family: "Courier New", monospace; }
+span.user-badge { font-size: 12px; color: #5a4010; }
+td.note-cell { font-size: 12px; color: #888888; font-style: italic; }
 
-/* Κωδικός προϊόντος */
-span.code {
-    font-family: "Courier New", monospace;
-    font-size: 12px;
-    color: #888888;
-}
-
-/* Timestamp */
-span.timestamp {
-    font-size: 12px;
-    color: #1a1a1a;
-    display: block;
-}
-
-span.timestamp-time {
-    font-size: 11px;
-    color: #aaaaaa;
-    font-family: "Courier New", monospace;
-}
-
-/* Υπάλληλος badge */
-span.user-badge {
-    font-size: 12px;
-    color: #5a4010;
-}
-
-/* Σημείωση */
-td.note-cell {
-    font-size: 12px;
-    color: #888888;
-    font-style: italic;
-}
-
-/* Ποσότητες */
-span.qty-ok,
-span.qty-in     { color: #1a5c1a; font-weight: bold; }
-span.qty-low,
-span.qty-warn   { color: #b87800; font-weight: bold; }
-span.qty-empty,
-span.qty-out    { color: #c0392b; font-weight: bold; }
-span.qty-neutral{ color: #555555; font-weight: bold; }
+span.qty-ok, span.qty-in     { color: #1a5c1a; font-weight: bold; }
+span.qty-low, span.qty-warn  { color: #b87800; font-weight: bold; }
+span.qty-empty, span.qty-out { color: #c0392b; font-weight: bold; }
+span.qty-neutral { color: #555555; font-weight: bold; }
 
 
 /* ============================================================
    23. BADGES
    ============================================================ */
-span.badge-ok {
-    background-color: #d4edda;
-    color: #155724;
-    padding: 2px 10px;
-    font-size: 11px;
-    border: 1px solid #c3e6cb;
-    letter-spacing: 0.5px;
-}
+span.badge-ok    { background-color: #d4edda; color: #155724; padding: 2px 10px; font-size: 11px; border: 1px solid #c3e6cb; letter-spacing: 0.5px; }
+span.badge-low   { background-color: #fff3cd; color: #856404; padding: 2px 10px; font-size: 11px; border: 1px solid #ffc107; letter-spacing: 0.5px; }
+span.badge-empty { background-color: #f8d7da; color: #721c24; padding: 2px 10px; font-size: 11px; border: 1px solid #f5c6cb; letter-spacing: 0.5px; }
 
-span.badge-low {
-    background-color: #fff3cd;
-    color: #856404;
-    padding: 2px 10px;
-    font-size: 11px;
-    border: 1px solid #ffc107;
-    letter-spacing: 0.5px;
-}
-
-span.badge-empty {
-    background-color: #f8d7da;
-    color: #721c24;
-    padding: 2px 10px;
-    font-size: 11px;
-    border: 1px solid #f5c6cb;
-    letter-spacing: 0.5px;
-}
-
-span.badge-in {
-    background-color: #d4edda;
-    color: #155724;
-    padding: 3px 8px;
-    font-size: 11px;
-    letter-spacing: 0.5px;
-}
-
-span.badge-out {
-    background-color: #f8d7da;
-    color: #721c24;
-    padding: 3px 8px;
-    font-size: 11px;
-    letter-spacing: 0.5px;
-}
-
-span.badge-reserve {
-    background-color: #fff8e1;
-    color: #7a5010;
-    padding: 3px 8px;
-    font-size: 11px;
-    letter-spacing: 0.5px;
-}
-
-span.badge-correction {
-    background-color: #ede0f5;
-    color: #4a1a6a;
-    padding: 3px 8px;
-    font-size: 11px;
-    letter-spacing: 0.5px;
-}
+span.badge-in         { background-color: #d4edda; color: #155724; padding: 3px 8px; font-size: 11px; letter-spacing: 0.5px; }
+span.badge-out        { background-color: #f8d7da; color: #721c24; padding: 3px 8px; font-size: 11px; letter-spacing: 0.5px; }
+span.badge-reserve    { background-color: #fff8e1; color: #7a5010; padding: 3px 8px; font-size: 11px; letter-spacing: 0.5px; }
+span.badge-correction { background-color: #ede0f5; color: #4a1a6a; padding: 3px 8px; font-size: 11px; letter-spacing: 0.5px; }
 
 
 /* ============================================================
-   24. PAGINATION  (stockHistory)
+   24. PAGINATION
    ============================================================ */
 #pagination {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    padding: 10px 14px;
-    border-top: 1px solid #f0e8da;
-    background-color: #faf8f4;
+    display: flex; justify-content: space-between; align-items: center;
+    padding: 10px 14px; border-top: 1px solid #f0e8da; background-color: #faf8f4;
+    flex-wrap: wrap; gap: 8px;
 }
-
 #pagination-info { font-size: 12px; color: #888888; }
-
-#pagination-btns { display: flex; gap: 4px; }
-
+#pagination-btns { display: flex; gap: 4px; flex-wrap: wrap; }
 .page-btn {
-    background-color: #ffffff;
-    border: 1px solid #d4c5a9;
-    color: #a07040;
-    padding: 5px 10px;
-    font-size: 12px;
-    font-family: Georgia, serif;
-    cursor: pointer;
+    background-color: #ffffff; border: 1px solid #d4c5a9;
+    color: #a07040; padding: 5px 10px; font-size: 12px;
+    font-family: Georgia, serif; cursor: pointer;
     transition: background-color 0.15s;
 }
-
 .page-btn:hover   { background-color: #f5f0e8; }
 .page-btn.active  { background-color: #1a1a1a; color: #c8a96e; border-color: #1a1a1a; }
 .page-btn:disabled{ opacity: 0.4; cursor: default; }
+.page-btn:focus-visible { outline: 2px solid #c8a96e; outline-offset: 2px; }
 
 
 /* ============================================================
    25. FOOTER
    ============================================================ */
-div#footer {
-    background-color: #1a1a1a;
-    color: #c8a96e;
-    text-align: center;
-    padding: 16px;
-    font-size: 11px;
-    letter-spacing: 0.5px;
-    margin-top: 40px;
+footer, div#footer {
+    background-color: #1a1a1a; color: #c8a96e;
+    text-align: center; padding: 16px; font-size: 11px;
+    letter-spacing: 0.5px; margin-top: 40px;
     border-top: 2px solid #c8a96e;
 }
+footer p, div#footer p { color: #c8a96e; }
 
-div#footer p { color: #c8a96e; }
-
-/* Inline footer (LiveStock / IncomingStock) */
 p#footer {
-    text-align: right;
-    font-size: 11px;
-    color: #aaaaaa;
-    margin-top: 12px;
+    text-align: right; font-size: 11px; color: #aaaaaa;
+    margin-top: 12px; border-top: 1px solid #d4c5a9; padding-top: 8px;
+}
+
+
+/* ============================================================
+   26. HOME-SPECIFIC
+   ============================================================ */
+#hero {
+    background-color: #1a1a1a; border-bottom: 3px solid #c8a96e;
+    padding: 48px 28px 44px; text-align: center;
+}
+#hero-logo {
+    border: 2px solid #c8a96e; display: inline-block;
+    padding: 16px 30px; margin-bottom: 16px;
+}
+#hero-logo .logo-main {
+    color: #ffffff; font-size: 26px; font-weight: bold;
+    letter-spacing: 3px; display: block; font-family: Georgia, serif;
+}
+#hero-logo .logo-accent {
+    color: #c8a96e; font-size: 12px; letter-spacing: 5px;
+    text-transform: uppercase; display: block; margin-top: 4px;
+}
+#hero h1 {
+    color: #c8a96e; font-size: 14px; font-weight: normal;
+    letter-spacing: 4px; text-transform: uppercase; margin: 16px 0 0;
+}
+#hero p { color: #888888; font-size: 12px; margin: 8px 0 0; letter-spacing: 0.5px; }
+.gold-divider { width: 60px; height: 1px; background-color: #c8a96e; margin: 14px auto; }
+
+#nav-grid {
+    display: grid; grid-template-columns: 1fr 1fr;
+    gap: 18px; max-width: 780px; margin: 0 auto;
+}
+.nav-card {
+    background-color: #ffffff; border: 1px solid #d4c5a9;
+    border-top: 3px solid #c8a96e; padding: 26px 22px;
+    text-decoration: none; color: inherit;
+    display: flex; flex-direction: column;
+    transition: border-color 0.25s, box-shadow 0.25s, transform 0.15s;
+    position: relative;
+}
+.nav-card:hover {
+    border-color: #c8a96e;
+    box-shadow: 0 4px 16px rgba(200,169,110,0.15);
+    transform: translateY(-2px);
+}
+.nav-card:active { transform: translateY(0); }
+.nav-card:focus-visible { outline: 2px solid #c8a96e; outline-offset: 3px; }
+.nav-card-number { position: absolute; top: 12px; right: 14px; font-family: "Courier New", monospace; font-size: 11px; color: #d4c5a9; letter-spacing: 1px; }
+.nav-card-title { font-size: 15px; font-weight: bold; color: #1a1a1a; margin-bottom: 6px; }
+.nav-card-desc  { font-size: 12px; color: #888888; line-height: 1.6; flex: 1; }
+.nav-card-arrow { display: inline-block; margin-top: 14px; font-size: 12px; color: #c8a96e; letter-spacing: 1px; text-transform: uppercase; font-weight: bold; }
+.nav-card:hover .nav-card-arrow { color: #1a1a1a; }
+
+#main.home { padding: 28px 28px 40px; max-width: 840px; margin: 0 auto; }
+#main.home > h2 { text-align: center; margin-bottom: 4px; }
+#main.home > p  { text-align: center; border-left: none; padding-left: 0; margin-bottom: 24px; }
+
+#sys-info {
+    display: flex; justify-content: center; gap: 24px;
+    flex-wrap: wrap; margin-top: 26px; padding-top: 14px;
     border-top: 1px solid #d4c5a9;
-    padding-top: 8px;
+}
+.sys-item { font-size: 11px; color: #aaaaaa; letter-spacing: 0.3px; }
+.sys-item strong { color: #888888; }
+
+
+/* ============================================================
+   27. RESPONSIVE (mobile-first adjustments)
+   ============================================================ */
+@media (max-width: 768px) {
+    #navbar { padding: 10px 16px; }
+    #navbar-links { display: none; }   /* hide nav links on mobile */
+    #navbar-right > div { display: none; } /* hide user info on mobile */
+
+    #main { padding: 16px 16px 40px; }
+    #main.home { padding: 16px; }
+
+    #hero { padding: 32px 16px 28px; }
+    #hero-logo .logo-main { font-size: 20px; }
+    #hero h1 { font-size: 12px; letter-spacing: 2px; }
+
+    #nav-grid { grid-template-columns: 1fr; }
+
+    #page-header { flex-direction: column; }
+    #live-badge { align-self: flex-start; }
+
+    #metrics { flex-direction: column; }
+    .metric-card { min-width: unset; }
+
+    #controls { flex-direction: column; align-items: stretch; }
+    #controls .filter-select, #controls input { width: 100%; }
+
+    #filters-row { flex-direction: column; }
+    .filter-group { width: 100%; }
+    #filters-actions { margin-left: 0; width: 100%; justify-content: flex-start; }
+
+    .table-scroll { overflow-x: auto; -webkit-overflow-scrolling: touch; }
+
+    .row-2 { flex-direction: column; }
+    .row-3 { flex-direction: column; }
+
+    #sys-info { gap: 12px; }
+
+    #pagination { flex-direction: column; align-items: flex-start; }
+
+    #submit-bar { flex-direction: column; align-items: stretch; }
+    #submit-bar input { margin: 0; width: 100%; text-align: center; }
+
+    .barcode-row { flex-direction: column; }
+
+    #summary-bar.show { grid-template-columns: 1fr; }
+}
+
+@media (max-width: 480px) {
+    #logo-text { font-size: 12px; }
+    #logo-sub { font-size: 9px; }
+    #hero-logo { padding: 12px 20px; }
+    #page-title, h1#page-title { font-size: 18px; }
 }

@@ -1,100 +1,119 @@
 <!DOCTYPE html>
-<html>
+<html lang="el">
 <head>
   <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Famiglia di Pasta - Live Stock</title>
- <link rel="stylesheet" href="famiglia_style.css">
+  <link rel="stylesheet" href="famiglia_style.css">
 </head>
 <body>
 
-  <!-- ===== NAVBAR ===== -->
-  <div id="navbar">
-    <div id="navbar-left">
-      <div id="logo-box">
-        <span id="logo-text">FAMIGLIA DI PASTA</span>
-        <span id="logo-sub">Σύστημα Διαχείρισης Αποθεμάτων</span>
-      </div>
+<a class="skip-nav" href="#main-content">Μετάβαση στο περιεχόμενο</a>
+
+<!-- ===== NAVBAR ===== -->
+<div id="navbar" role="banner">
+  <div id="navbar-left">
+    <a href="Home.html" id="logo-box" aria-label="Famiglia di Pasta - Αρχική">
+      <span id="logo-text">FAMIGLIA DI PASTA</span>
+      <span id="logo-sub">Σύστημα Διαχείρισης Αποθεμάτων</span>
+    </a>
+    <nav id="navbar-links" aria-label="Κύρια πλοήγηση">
+      <a href="Home.html">Κεντρική</a>
+      <a href="LiveStock.html" class="active" aria-current="page">Live Stock</a>
+      <a href="IncomingStock.html">Εισαγωγές</a>
+      <a href="stockHistory.html">Ιστορικό</a>
+      <a href="newProduct.html">Νέο Προϊόν</a>
+    </nav>
+  </div>
+  <div id="navbar-right">
+    <div>
+      <span id="user-name">Μ. Αθανασίου</span>
+      <span id="user-role">Υπεύθυνος Αποθήκης</span>
     </div>
-    <div id="navbar-right">
-      <div>
-        <span id="user-name">Μ. Αθανασίου</span><br>
-        <span id="user-role">Υπεύθυνος Αποθήκης</span>
-      </div>
-      <a id="logout-btn" href="#">Αποσύνδεση</a>
+    <a id="logout-btn" href="#" aria-label="Αποσύνδεση">Αποσύνδεση</a>
+  </div>
+</div>
+
+<!-- ===== MAIN ===== -->
+<main id="main-content">
+<div id="main">
+
+  <!-- Page Header -->
+  <div id="page-header">
+    <div>
+      <h1 id="page-title">Live Stock Αποθέματος</h1>
+      <p id="page-subtitle">Διαθεσιμότητα προϊόντων σε πραγματικό χρόνο</p>
+    </div>
+    <span id="live-badge" aria-live="polite">&#9679; ΖΩΝΤΑΝΑ &nbsp;&middot;&nbsp; ενημερώθηκε <span id="live-time">14:32</span></span>
+  </div>
+
+  <!-- Alert Bar -->
+  <div id="alert-bar" role="alert">
+    <strong>&#9888; Προσοχή:</strong> 2 προϊόντα με χαμηλό απόθεμα χρειάζονται προσοχή &nbsp;|&nbsp; 1 προϊόν έχει εξαντληθεί
+  </div>
+
+  <!-- Metric Cards -->
+  <div id="metrics" role="region" aria-label="Σύνοψη αποθέματος">
+    <div class="metric-card">
+      <p class="metric-label">Σύνολο κωδικών</p>
+      <p class="metric-value" id="count-total">24</p>
+    </div>
+    <div class="metric-card">
+      <p class="metric-label">Διαθέσιμα</p>
+      <p class="metric-value" id="count-ok">21</p>
+    </div>
+    <div class="metric-card">
+      <p class="metric-label">Χαμηλό απόθεμα</p>
+      <p class="metric-value-warn" id="count-low">2</p>
+    </div>
+    <div class="metric-card">
+      <p class="metric-label">Εξαντλημένα</p>
+      <p class="metric-value-danger" id="count-empty">1</p>
     </div>
   </div>
 
-  <!-- ===== MAIN ===== -->
-  <div id="main">
+  <!-- Controls -->
+  <div id="controls" role="search" aria-label="Φίλτρα αποθέματος">
+    <label for="search-box" class="skip-nav">Αναζήτηση</label>
+    <input id="search-box" type="search" placeholder="Αναζήτηση με κωδικό ή περιγραφή..."
+           aria-label="Αναζήτηση προϊόντος" autocomplete="off">
+    <select class="filter-select" id="filter-cat" aria-label="Φίλτρο κατηγορίας">
+      <option value="">Όλες οι κατηγορίες</option>
+      <option value="Ζυμαρικά">Ζυμαρικά</option>
+      <option value="Σάλτσες">Σάλτσες</option>
+      <option value="Αλεύρια">Αλεύρια</option>
+    </select>
+    <select class="filter-select" id="filter-status" aria-label="Φίλτρο κατάστασης">
+      <option value="">Όλες οι καταστάσεις</option>
+      <option value="Διαθέσιμο">Διαθέσιμο</option>
+      <option value="Χαμηλό">Χαμηλό</option>
+      <option value="Εξαντλημένο">Εξαντλημένο</option>
+    </select>
+    <input id="pdf-btn" type="button" value="&#8595; Εξαγωγή PDF" aria-label="Εξαγωγή σε PDF">
+  </div>
 
-    <!-- Page Header -->
-    <div id="page-header">
-      <div>
-        <h1 id="page-title">Live Stock Αποθέματος</h1>
-        <p id="page-subtitle">Διαθεσιμότητα προϊόντων σε πραγματικό χρόνο</p>
-      </div>
-      <span id="live-badge">&#9679; ΖΩΝΤΑΝΑ &nbsp;&middot;&nbsp; ενημερώθηκε 14:32</span>
+  <!-- Stock Table -->
+  <div id="table-wrap">
+    <div id="table-header-bar">
+      <span>Αποθέματα Προϊόντων</span>
+      <span id="table-count" aria-live="polite">Εμφάνιση 7 εγγραφών</span>
     </div>
-
-    <!-- Alert Bar -->
-    <div id="alert-bar">
-      <strong>&#9888; Προσοχή:</strong> 2 προϊόντα με χαμηλό απόθεμα χρειάζονται προσοχή &nbsp;|&nbsp; 1 προϊόν έχει εξαντληθεί
-    </div>
-
-    <!-- Metric Cards -->
-    <div id="metrics">
-      <div class="metric-card">
-        <p class="metric-label">Σύνολο κωδικών</p>
-        <p class="metric-value">24</p>
-      </div>
-      <div class="metric-card">
-        <p class="metric-label">Διαθέσιμα</p>
-        <p class="metric-value">21</p>
-      </div>
-      <div class="metric-card">
-        <p class="metric-label">Χαμηλό απόθεμα</p>
-        <p class="metric-value-warn">2</p>
-      </div>
-      <div class="metric-card">
-        <p class="metric-label">Εξαντλημένα</p>
-        <p class="metric-value-danger">1</p>
-      </div>
-    </div>
-
-    <!-- Controls -->
-    <div id="controls">
-      <input id="search-box" type="text" placeholder="Αναζήτηση με κωδικό ή περιγραφή...">
-      <select class="filter-select">
-        <option>Όλες οι κατηγορίες</option>
-        <option>Ζυμαρικά</option>
-        <option>Σάλτσες</option>
-        <option>Αλεύρια</option>
-      </select>
-      <select class="filter-select">
-        <option>Όλες οι καταστάσεις</option>
-        <option>Διαθέσιμο</option>
-        <option>Χαμηλό</option>
-        <option>Εξαντλημένο</option>
-      </select>
-      <input id="pdf-btn" type="button" value="&#8595; Εξαγωγή PDF">
-    </div>
-
-    <!-- Stock Table -->
-    <div id="table-wrap">
-      <table id="stock-table">
+    <div id="no-results" role="status">Δεν βρέθηκαν προϊόντα με τα επιλεγμένα φίλτρα.</div>
+    <div class="table-scroll">
+      <table id="stock-table" aria-label="Πίνακας αποθεμάτων">
         <thead>
           <tr>
-            <th>Κωδικός</th>
-            <th>Περιγραφή</th>
-            <th>Κατηγορία</th>
-            <th>Διαθέσιμο</th>
-            <th>Δεσμευμένο</th>
-            <th>Κατάσταση</th>
-            <th>Τελευταία καταχ.</th>
+            <th scope="col">Κωδικός</th>
+            <th scope="col">Περιγραφή</th>
+            <th scope="col">Κατηγορία</th>
+            <th scope="col">Διαθέσιμο</th>
+            <th scope="col">Δεσμευμένο</th>
+            <th scope="col">Κατάσταση</th>
+            <th scope="col">Τελευταία καταχ.</th>
           </tr>
         </thead>
-        <tbody>
-          <tr>
+        <tbody id="stock-body">
+          <tr data-cat="Ζυμαρικά" data-status="Διαθέσιμο" data-search="fp-001 σπαγγέτι νο5 ζυμαρικά">
             <td><span class="code">FP-001</span></td>
             <td>Σπαγγέτι Νο5</td>
             <td>Ζυμαρικά</td>
@@ -103,7 +122,7 @@
             <td><span class="badge-ok">Διαθέσιμο</span></td>
             <td><span class="timestamp">19/04 &middot; 13:41</span></td>
           </tr>
-          <tr>
+          <tr data-cat="Ζυμαρικά" data-status="Διαθέσιμο" data-search="fp-002 πένες ριγκάτε ζυμαρικά">
             <td><span class="code">FP-002</span></td>
             <td>Πένες Ριγκάτε</td>
             <td>Ζυμαρικά</td>
@@ -112,7 +131,7 @@
             <td><span class="badge-ok">Διαθέσιμο</span></td>
             <td><span class="timestamp">19/04 &middot; 11:20</span></td>
           </tr>
-          <tr>
+          <tr data-cat="Ζυμαρικά" data-status="Χαμηλό" data-search="fp-007 φαρφάλες ζυμαρικά">
             <td><span class="code">FP-007</span></td>
             <td>Φαρφάλες</td>
             <td>Ζυμαρικά</td>
@@ -121,7 +140,7 @@
             <td><span class="badge-low">Χαμηλό</span></td>
             <td><span class="timestamp">19/04 &middot; 09:05</span></td>
           </tr>
-          <tr>
+          <tr data-cat="Σάλτσες" data-status="Χαμηλό" data-search="fp-012 σάλτσα τομάτας σάλτσες">
             <td><span class="code">FP-012</span></td>
             <td>Σάλτσα Τομάτας</td>
             <td>Σάλτσες</td>
@@ -130,7 +149,7 @@
             <td><span class="badge-low">Χαμηλό</span></td>
             <td><span class="timestamp">18/04 &middot; 17:30</span></td>
           </tr>
-          <tr>
+          <tr data-cat="Αλεύρια" data-status="Εξαντλημένο" data-search="fp-015 αλεύρι ολικής αλεύρια">
             <td><span class="code">FP-015</span></td>
             <td>Αλεύρι Ολικής</td>
             <td>Αλεύρια</td>
@@ -139,7 +158,7 @@
             <td><span class="badge-empty">Εξαντλημένο</span></td>
             <td><span class="timestamp">18/04 &middot; 08:12</span></td>
           </tr>
-          <tr>
+          <tr data-cat="Ζυμαρικά" data-status="Διαθέσιμο" data-search="fp-019 λαζάνια ζυμαρικά">
             <td><span class="code">FP-019</span></td>
             <td>Λαζάνια</td>
             <td>Ζυμαρικά</td>
@@ -148,7 +167,7 @@
             <td><span class="badge-ok">Διαθέσιμο</span></td>
             <td><span class="timestamp">19/04 &middot; 14:10</span></td>
           </tr>
-          <tr>
+          <tr data-cat="Ζυμαρικά" data-status="Διαθέσιμο" data-search="fp-023 ριγκατόνι ζυμαρικά">
             <td><span class="code">FP-023</span></td>
             <td>Ριγκατόνι</td>
             <td>Ζυμαρικά</td>
@@ -160,11 +179,64 @@
         </tbody>
       </table>
     </div>
+  </div>
 
-    <!-- Footer -->
-    <p id="footer">Σύστημα ενημερώνεται αυτόματα &nbsp;&middot;&nbsp; Τελευταία ανανέωση: 19/04/2026, 14:32:08</p>
+  <p id="footer" aria-live="polite">Σύστημα ενημερώνεται αυτόματα &nbsp;&middot;&nbsp; Τελευταία ανανέωση: 19/04/2026, <span id="last-update">14:32:08</span></p>
 
-  </div><!-- end #main -->
+</div>
+</main>
+
+<script>
+  /* ---- Live clock ---- */
+  function updateClock() {
+    var now = new Date();
+    var h = String(now.getHours()).padStart(2,'0');
+    var m = String(now.getMinutes()).padStart(2,'0');
+    var s = String(now.getSeconds()).padStart(2,'0');
+    document.getElementById('live-time').textContent = h + ':' + m;
+    document.getElementById('last-update').textContent = h + ':' + m + ':' + s;
+  }
+  updateClock();
+  setInterval(updateClock, 30000);
+
+  /* ---- Filter logic ---- */
+  function applyFilters() {
+    var search = document.getElementById('search-box').value.toLowerCase().trim();
+    var cat    = document.getElementById('filter-cat').value;
+    var status = document.getElementById('filter-status').value;
+    var rows   = document.querySelectorAll('#stock-body tr');
+    var visible = 0;
+
+    rows.forEach(function(row) {
+      var matchSearch = !search || row.dataset.search.includes(search);
+      var matchCat    = !cat    || row.dataset.cat === cat;
+      var matchStatus = !status || row.dataset.status === status;
+      var show = matchSearch && matchCat && matchStatus;
+      row.style.display = show ? '' : 'none';
+      if (show) visible++;
+    });
+
+    document.getElementById('no-results').style.display = visible === 0 ? 'block' : 'none';
+    document.getElementById('table-count').textContent  = 'Εμφάνιση ' + visible + ' εγγραφών';
+  }
+
+  document.getElementById('search-box').addEventListener('input', applyFilters);
+  document.getElementById('filter-cat').addEventListener('change', applyFilters);
+  document.getElementById('filter-status').addEventListener('change', applyFilters);
+
+  /* ---- PDF export ---- */
+  document.getElementById('pdf-btn').addEventListener('click', function() {
+    window.print();
+  });
+</script>
+
+<style>
+  @media print {
+    #navbar, #controls, #alert-bar, p#footer { display: none; }
+    #main { padding: 0; max-width: 100%; }
+    #table-wrap { border: none; }
+  }
+</style>
 
 </body>
 </html>

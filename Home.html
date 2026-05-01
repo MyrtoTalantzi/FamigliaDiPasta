@@ -5,199 +5,37 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Famiglia di Pasta – Κεντρική</title>
   <link rel="stylesheet" href="famiglia_style.css">
-  <style>
-    /* ===== HOME-SPECIFIC STYLES ===== */
-
-    /* Hero section */
-    #hero {
-      background-color: #1a1a1a;
-      border-bottom: 3px solid #c8a96e;
-      padding: 52px 28px 48px;
-      text-align: center;
-    }
-
-    #hero-logo {
-      border: 2px solid #c8a96e;
-      display: inline-block;
-      padding: 18px 32px;
-      margin-bottom: 18px;
-    }
-
-    #hero-logo .logo-main {
-      color: #ffffff;
-      font-size: 28px;
-      font-weight: bold;
-      letter-spacing: 3px;
-      display: block;
-      font-family: Georgia, "Times New Roman", serif;
-    }
-
-    #hero-logo .logo-accent {
-      color: #c8a96e;
-      font-size: 13px;
-      letter-spacing: 5px;
-      text-transform: uppercase;
-      display: block;
-      margin-top: 4px;
-    }
-
-    #hero h1 {
-      color: #c8a96e;
-      font-size: 15px;
-      font-weight: normal;
-      letter-spacing: 4px;
-      text-transform: uppercase;
-      margin: 18px 0 0 0;
-    }
-
-    #hero p {
-      color: #888888;
-      font-size: 12px;
-      margin: 8px 0 0 0;
-      letter-spacing: 0.5px;
-    }
-
-    /* Decorative divider */
-    .gold-divider {
-      width: 60px;
-      height: 1px;
-      background-color: #c8a96e;
-      margin: 16px auto;
-    }
-
-    /* Navigation cards grid */
-    #nav-grid {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 18px;
-      max-width: 780px;
-      margin: 0 auto;
-      padding: 0;
-    }
-
-    .nav-card {
-      background-color: #ffffff;
-      border: 1px solid #d4c5a9;
-      border-top: 3px solid #c8a96e;
-      padding: 28px 24px;
-      text-decoration: none;
-      color: inherit;
-      display: flex;
-      flex-direction: column;
-      transition: border-color 0.25s, box-shadow 0.25s, transform 0.15s;
-      position: relative;
-      overflow: hidden;
-    }
-
-    .nav-card:hover {
-      border-color: #c8a96e;
-      box-shadow: 0 4px 16px rgba(200, 169, 110, 0.15);
-      transform: translateY(-2px);
-    }
-
-    .nav-card:active {
-      transform: translateY(0);
-    }
-
-    .nav-card-number {
-      position: absolute;
-      top: 14px;
-      right: 16px;
-      font-family: "Courier New", monospace;
-      font-size: 11px;
-      color: #d4c5a9;
-      letter-spacing: 1px;
-    }
-
-    .nav-card-title {
-      font-size: 16px;
-      font-weight: bold;
-      color: #1a1a1a;
-      margin-bottom: 6px;
-    }
-
-    .nav-card-desc {
-      font-size: 12px;
-      color: #888888;
-      line-height: 1.6;
-      flex: 1;
-    }
-
-    .nav-card-arrow {
-      display: inline-block;
-      margin-top: 16px;
-      font-size: 12px;
-      color: #c8a96e;
-      letter-spacing: 1px;
-      text-transform: uppercase;
-      font-weight: bold;
-    }
-
-    .nav-card:hover .nav-card-arrow {
-      color: #1a1a1a;
-    }
-
-    /* Main area overrides for home */
-    #main.home {
-      padding: 28px 28px 40px;
-      max-width: 840px;
-      margin: 0 auto;
-    }
-
-    #main.home > h2 {
-      text-align: center;
-      margin-bottom: 4px;
-    }
-
-    #main.home > p {
-      text-align: center;
-      border-left: none;
-      padding-left: 0;
-      margin-bottom: 26px;
-    }
-
-    /* System info bar */
-    #sys-info {
-      display: flex;
-      justify-content: center;
-      gap: 24px;
-      margin-top: 28px;
-      padding-top: 16px;
-      border-top: 1px solid #d4c5a9;
-    }
-
-    .sys-item {
-      font-size: 11px;
-      color: #aaaaaa;
-      letter-spacing: 0.3px;
-    }
-
-    .sys-item strong {
-      color: #888888;
-    }
-  </style>
 </head>
 <body>
 
+<a class="skip-nav" href="#main-content">Μετάβαση στο περιεχόμενο</a>
+
 <!-- ===== NAVBAR ===== -->
-<div id="navbar">
+<div id="navbar" role="banner">
   <div id="navbar-left">
-    <div id="logo-box">
+    <a href="Home.html" id="logo-box" aria-label="Famiglia di Pasta - Αρχική">
       <span id="logo-text">FAMIGLIA DI PASTA</span>
       <span id="logo-sub">Σύστημα Διαχείρισης Αποθεμάτων</span>
-    </div>
+    </a>
+    <nav id="navbar-links" aria-label="Κύρια πλοήγηση">
+      <a href="Home.html" class="active" aria-current="page">Κεντρική</a>
+      <a href="LiveStock.html">Live Stock</a>
+      <a href="IncomingStock.html">Εισαγωγές</a>
+      <a href="stockHistory.html">Ιστορικό</a>
+      <a href="newProduct.html">Νέο Προϊόν</a>
+    </nav>
   </div>
   <div id="navbar-right">
     <div>
-      <span id="user-name">Μ. Αθανασίου</span><br>
+      <span id="user-name">Μ. Αθανασίου</span>
       <span id="user-role">Υπεύθυνος Αποθήκης</span>
     </div>
-    <a id="logout-btn" href="#">Αποσύνδεση</a>
+    <a id="logout-btn" href="#" aria-label="Αποσύνδεση από το σύστημα">Αποσύνδεση</a>
   </div>
 </div>
 
 <!-- ===== HERO ===== -->
-<div id="hero">
+<div id="hero" role="img" aria-label="Famiglia di Pasta, dal 1985">
   <div id="hero-logo">
     <span class="logo-main">Famiglia di Pasta</span>
     <span class="logo-accent">dal 1985</span>
@@ -208,60 +46,54 @@
 </div>
 
 <!-- ===== MAIN ===== -->
-<div id="main" class="home">
+<main id="main-content" id="main" class="home">
 
   <h2>Πλοήγηση</h2>
   <p>Επιλέξτε μία από τις παρακάτω ενότητες για να συνεχίσετε.</p>
 
-  <div id="nav-grid">
+  <nav id="nav-grid" aria-label="Ενότητες συστήματος">
 
-    <!-- 1. Live Stock -->
     <a class="nav-card" href="LiveStock.html">
-      <span class="nav-card-number">01</span>
+      <span class="nav-card-number" aria-hidden="true">01</span>
       <span class="nav-card-title">Live Stock Αποθέματος</span>
       <span class="nav-card-desc">Παρακολούθηση διαθεσιμότητας προϊόντων σε πραγματικό χρόνο. Κατάσταση αποθεμάτων, ειδοποιήσεις χαμηλού stock.</span>
-      <span class="nav-card-arrow">Άνοιγμα &rarr;</span>
+      <span class="nav-card-arrow" aria-hidden="true">Άνοιγμα &rarr;</span>
     </a>
 
-    <!-- 2. Εισαγωγές Αποθέματος -->
     <a class="nav-card" href="IncomingStock.html">
-      <span class="nav-card-number">02</span>
+      <span class="nav-card-number" aria-hidden="true">02</span>
       <span class="nav-card-title">Εισαγωγές Αποθέματος</span>
       <span class="nav-card-desc">Καταχώρηση νέας παραλαβής προϊόντος στην αποθήκη. Barcode scanner, ποσότητα, ημερομηνία παραλαβής.</span>
-      <span class="nav-card-arrow">Άνοιγμα &rarr;</span>
+      <span class="nav-card-arrow" aria-hidden="true">Άνοιγμα &rarr;</span>
     </a>
 
-    <!-- 3. Ιστορικό Κινήσεων -->
     <a class="nav-card" href="stockHistory.html">
-      <span class="nav-card-number">03</span>
+      <span class="nav-card-number" aria-hidden="true">03</span>
       <span class="nav-card-title">Ιστορικό Κινήσεων</span>
       <span class="nav-card-desc">Πλήρες αρχείο εισροών, εκροών και δεσμεύσεων ανά κωδικό και χρονική περίοδο. Αναζήτηση &amp; φίλτρα.</span>
-      <span class="nav-card-arrow">Άνοιγμα &rarr;</span>
+      <span class="nav-card-arrow" aria-hidden="true">Άνοιγμα &rarr;</span>
     </a>
 
-    <!-- 4. Νέο Προϊόν -->
     <a class="nav-card" href="newProduct.html">
-      <span class="nav-card-number">04</span>
+      <span class="nav-card-number" aria-hidden="true">04</span>
       <span class="nav-card-title">Νέο Προϊόν</span>
       <span class="nav-card-desc">Εισαγωγή νέου προϊόντος στο σύστημα αποθήκης. Barcode, τιμολόγηση, συσκευασία, φωτογραφία.</span>
-      <span class="nav-card-arrow">Άνοιγμα &rarr;</span>
+      <span class="nav-card-arrow" aria-hidden="true">Άνοιγμα &rarr;</span>
     </a>
 
-  </div>
+  </nav>
 
-  <!-- System Info -->
-  <div id="sys-info">
-    <span class="sys-item"><strong>Έκδοση:</strong> 1.0</span>
+  <div id="sys-info" aria-label="Πληροφορίες συστήματος">
+    <span class="sys-item"><strong>Έκδοση:</strong> 2.0</span>
     <span class="sys-item"><strong>Κωδικοί:</strong> 24 προϊόντα</span>
     <span class="sys-item"><strong>Τελευταία ενημέρωση:</strong> 19/04/2026, 14:32</span>
   </div>
 
-</div>
+</main>
 
-<!-- ===== FOOTER ===== -->
-<div id="footer">
-  <p>Famiglia di Pasta &copy; 2025 &bull; Σύστημα Διαχείρισης Αποθήκης &bull; Έκδοση 1.0</p>
-</div>
+<footer>
+  <p>Famiglia di Pasta &copy; 2025 &bull; Σύστημα Διαχείρισης Αποθήκης &bull; Έκδοση 2.0</p>
+</footer>
 
 </body>
 </html>
