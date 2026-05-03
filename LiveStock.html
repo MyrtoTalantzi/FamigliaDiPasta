@@ -56,11 +56,11 @@
   <div id="metrics" role="region" aria-label="Σύνοψη αποθέματος">
     <div class="metric-card">
       <p class="metric-label">Σύνολο κωδικών</p>
-      <p class="metric-value" id="count-total">24</p>
+      <p class="metric-value" id="count-total">7</p>
     </div>
     <div class="metric-card">
       <p class="metric-label">Διαθέσιμα</p>
-      <p class="metric-value" id="count-ok">21</p>
+      <p class="metric-value" id="count-ok">4</p>
     </div>
     <div class="metric-card">
       <p class="metric-label">Χαμηλό απόθεμα</p>
@@ -79,9 +79,10 @@
            aria-label="Αναζήτηση προϊόντος" autocomplete="off">
     <select class="filter-select" id="filter-cat" aria-label="Φίλτρο κατηγορίας">
       <option value="">Όλες οι κατηγορίες</option>
-      <option value="Ζυμαρικά">Ζυμαρικά</option>
-      <option value="Σάλτσες">Σάλτσες</option>
-      <option value="Αλεύρια">Αλεύρια</option>
+      <option value="Ατομικά">Ατομικά</option>
+      <option value="Χύμα">Χύμα</option>
+      <option value="Συσκευασμένα">Συσκευασμένα</option>
+      <option value="Αρτοσκευάσματα">Αρτοσκευάσματα</option>
     </select>
     <select class="filter-select" id="filter-status" aria-label="Φίλτρο κατάστασης">
       <option value="">Όλες οι καταστάσεις</option>
@@ -113,66 +114,66 @@
           </tr>
         </thead>
         <tbody id="stock-body">
-          <tr data-cat="Ζυμαρικά" data-status="Διαθέσιμο" data-search="fp-001 σπαγγέτι νο5 ζυμαρικά">
-            <td><span class="code">FP-001</span></td>
-            <td>Σπαγγέτι Νο5</td>
-            <td>Ζυμαρικά</td>
-            <td><span class="qty-ok">1.240 kg</span></td>
-            <td>320 kg</td>
+          <tr data-cat="Ατομικά" data-status="Διαθέσιμο" data-search="a01 σφολιάτες ατομικά">
+            <td><span class="code">A01</span></td>
+            <td>Σφολιάτες ατομικά</td>
+            <td>Ατομικά</td>
+            <td><span class="qty-ok">1.240 τεμ.</span></td>
+            <td>320 τεμ.</td>
             <td><span class="badge-ok">Διαθέσιμο</span></td>
             <td><span class="timestamp">19/04 &middot; 13:41</span></td>
           </tr>
-          <tr data-cat="Ζυμαρικά" data-status="Διαθέσιμο" data-search="fp-002 πένες ριγκάτε ζυμαρικά">
-            <td><span class="code">FP-002</span></td>
-            <td>Πένες Ριγκάτε</td>
-            <td>Ζυμαρικά</td>
-            <td><span class="qty-ok">890 kg</span></td>
-            <td>150 kg</td>
+          <tr data-cat="Ατομικά" data-status="Διαθέσιμο" data-search="a04 κρουασίνια ατομικά">
+            <td><span class="code">A04</span></td>
+            <td>Κρουασίνια</td>
+            <td>Ατομικά</td>
+            <td><span class="qty-ok">890 τεμ.</span></td>
+            <td>150 τεμ.</td>
             <td><span class="badge-ok">Διαθέσιμο</span></td>
             <td><span class="timestamp">19/04 &middot; 11:20</span></td>
           </tr>
-          <tr data-cat="Ζυμαρικά" data-status="Χαμηλό" data-search="fp-007 φαρφάλες ζυμαρικά">
-            <td><span class="code">FP-007</span></td>
-            <td>Φαρφάλες</td>
-            <td>Ζυμαρικά</td>
-            <td><span class="qty-low">85 kg</span></td>
-            <td>60 kg</td>
+          <tr data-cat="Χύμα" data-status="Χαμηλό" data-search="x01 σφολιάτες μίνι χύμα">
+            <td><span class="code">X01</span></td>
+            <td>Σφολιάτες μίνι χύμα</td>
+            <td>Χύμα</td>
+            <td><span class="qty-low">85 τεμ.</span></td>
+            <td>60 τεμ.</td>
             <td><span class="badge-low">Χαμηλό</span></td>
             <td><span class="timestamp">19/04 &middot; 09:05</span></td>
           </tr>
-          <tr data-cat="Σάλτσες" data-status="Χαμηλό" data-search="fp-012 σάλτσα τομάτας σάλτσες">
-            <td><span class="code">FP-012</span></td>
-            <td>Σάλτσα Τομάτας</td>
-            <td>Σάλτσες</td>
+          <tr data-cat="Συσκευασμένα" data-status="Χαμηλό" data-search="s01 πίτες famiglia συσκευασμένα">
+            <td><span class="code">S01</span></td>
+            <td>Πίτες Famiglia</td>
+            <td>Συσκευασμένα</td>
             <td><span class="qty-low">40 τεμ.</span></td>
             <td>40 τεμ.</td>
             <td><span class="badge-low">Χαμηλό</span></td>
             <td><span class="timestamp">18/04 &middot; 17:30</span></td>
           </tr>
-          <tr data-cat="Αλεύρια" data-status="Εξαντλημένο" data-search="fp-015 αλεύρι ολικής αλεύρια">
-            <td><span class="code">FP-015</span></td>
-            <td>Αλεύρι Ολικής</td>
-            <td>Αλεύρια</td>
-            <td><span class="qty-empty">0 kg</span></td>
+          <tr data-cat="Αρτοσκευάσματα" data-status="Εξαντλημένο" data-search="b04 φρατζόλες αρτοσκευάσματα">
+            <td><span class="code">B04</span></td>
+            <td>Φρατζόλες 350-400γρ</td>
+            <td>Αρτοσκευάσματα</td>
+            <td><span class="qty-empty">0 τεμ.</span></td>
             <td>&mdash;</td>
             <td><span class="badge-empty">Εξαντλημένο</span></td>
             <td><span class="timestamp">18/04 &middot; 08:12</span></td>
           </tr>
-          <tr data-cat="Ζυμαρικά" data-status="Διαθέσιμο" data-search="fp-019 λαζάνια ζυμαρικά">
-            <td><span class="code">FP-019</span></td>
-            <td>Λαζάνια</td>
-            <td>Ζυμαρικά</td>
-            <td><span class="qty-ok">560 kg</span></td>
-            <td>80 kg</td>
+          <tr data-cat="Αρτοσκευάσματα" data-status="Διαθέσιμο" data-search="b01 μπαγκέτες αρτοσκευάσματα">
+            <td><span class="code">B01</span></td>
+            <td>Μπαγκέτες 250γρ+</td>
+            <td>Αρτοσκευάσματα</td>
+            <td><span class="qty-ok">560 τεμ.</span></td>
+            <td>80 τεμ.</td>
             <td><span class="badge-ok">Διαθέσιμο</span></td>
             <td><span class="timestamp">19/04 &middot; 14:10</span></td>
           </tr>
-          <tr data-cat="Ζυμαρικά" data-status="Διαθέσιμο" data-search="fp-023 ριγκατόνι ζυμαρικά">
-            <td><span class="code">FP-023</span></td>
-            <td>Ριγκατόνι</td>
-            <td>Ζυμαρικά</td>
-            <td><span class="qty-ok">430 kg</span></td>
-            <td>100 kg</td>
+          <tr data-cat="Χύμα" data-status="Διαθέσιμο" data-search="x07 κροκέτες χύμα">
+            <td><span class="code">X07</span></td>
+            <td>Κροκέτες</td>
+            <td>Χύμα</td>
+            <td><span class="qty-ok">430 τεμ.</span></td>
+            <td>100 τεμ.</td>
             <td><span class="badge-ok">Διαθέσιμο</span></td>
             <td><span class="timestamp">19/04 &middot; 10:55</span></td>
           </tr>

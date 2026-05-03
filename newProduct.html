@@ -82,7 +82,7 @@
         <div class="col">
           <label for="product_code">Κωδικός Προϊόντος <span class="req" aria-label="υποχρεωτικό">*</span></label>
           <input type="text" id="product_code" name="product_code"
-                 placeholder="πχ. FP-001" autocomplete="off">
+                 placeholder="πχ. A01" autocomplete="off">
         </div>
         <div class="col">
           <label for="status">Κατάσταση <span class="req" aria-label="υποχρεωτικό">*</span></label>
@@ -270,10 +270,56 @@
   }
 
   var subcategories = {
-    atomika: ['Σφολιάτες ατομικά','Σφολιάτες χειροποίητες πατητές','Χειροποίητες Σφολιάτες','Κρουασίνια','Ζύμες κουρού','Κουλούρια Θεσσαλονίκης','Κουλούρια','Φλογέρες ατομικά','Κρουασάν ατομικά','Μπριός','Αρτοζύμες','Πίτσες σκεπαστές','Χειροποίητα βέργας','Μπουγάτσες'],
-    xyma: ['Σφολιάτες μίνι χύμα','Μίνι κουρού','Βέργας μίνι χύμα','Κρουασανάκια μίνι χύμα','Κουλουρίνια μίνι χύμα','Μπριός μίνι','Κροκέτες','Γλυκά μίνι'],
-    syskevasmena: ['Πίτσες Famiglia','Σφολιάτες Μίνι','Πίτες - ταψιά','Στριφτές Πίτες','Μίνι κουρού','Κουλουρίνια','Μπουγάτσες','Μπισκότα','Μίνι Βέργας','Ρολλίνια'],
-    artoskeyasmata: ['Μπαγκέτες 250γρ+','Μπαγκέτες Σάντουιτς 120-150γρ','Ψωμάκια Golden Selection 30-65γρ','Φρατζόλες 350-400γρ','Τσιαπάτα Σάντουιτς 70-130γρ','Μίνι Κουβέρ 30γρ','Φόρμες Τοστ','Ψωμάκια Burgers']
+    atomika: [
+      { code: 'A01', name: 'Σφολιάτες ατομικά' },
+      { code: 'A02', name: 'Σφολιάτες χειροποίητες πατητές' },
+      { code: 'A03', name: 'Χειροποίητες Σφολιάτες' },
+      { code: 'A04', name: 'Κρουασίνια' },
+      { code: 'A05', name: 'Ζύμες κουρού' },
+      { code: 'A06', name: 'Γεμιστά κουλούρια Θεσσαλονίκης' },
+      { code: 'A07', name: 'Κουλούρια' },
+      { code: 'A08', name: 'Φλογέρες ατομικά' },
+      { code: 'A09', name: 'Κρουασάν ατομικά' },
+      { code: 'A10', name: 'Μπριός' },
+      { code: 'A11', name: 'Ατομικές πίτες' },
+      { code: 'A12', name: 'Πίτες σκεπαστές' },
+      { code: 'A13', name: 'Χειροποίητα βέργας' },
+      { code: 'A14', name: 'Πίτες χωριάτικες ταψί' },
+      { code: 'A15', name: 'Μπουγάτσες' },
+      { code: 'A16', name: 'Κρουασάν προσυσκευασμένα' }
+    ],
+    xyma: [
+      { code: 'X01', name: 'Σφολιάτες μίνι χύμα' },
+      { code: 'X02', name: 'Μίνι κουρού' },
+      { code: 'X03', name: 'Βέργας μίνι χύμα' },
+      { code: 'X04', name: 'Κρουασανάκια μίνι χύμα' },
+      { code: 'X05', name: 'Κουλουρίνια μίνι χύμα' },
+      { code: 'X06', name: 'Μπριός μίνι' },
+      { code: 'X07', name: 'Κροκέτες' },
+      { code: 'X08', name: 'Γλυκά μίνι' }
+    ],
+    syskevasmena: [
+      { code: 'S01', name: 'Πίτες Famiglia' },
+      { code: 'S02', name: 'Σφολιάτες Μίνι' },
+      { code: 'S03', name: 'Πίτες - ταψιά' },
+      { code: 'S04', name: 'Στριφτές Πίτες' },
+      { code: 'S05', name: 'Μίνι κουρού' },
+      { code: 'S06', name: 'Κουλουρίνια' },
+      { code: 'S07', name: 'Μπουγάτσες' },
+      { code: 'S08', name: 'Μπισκότα' },
+      { code: 'S09', name: 'Μίνι Βέργας' },
+      { code: 'S10', name: 'Ρολλίνια' }
+    ],
+    artoskeyasmata: [
+      { code: 'B01', name: 'Μπαγκέτες 250γρ+' },
+      { code: 'B02', name: 'Μπαγκέτες Σάντουιτς 120-150γρ' },
+      { code: 'B03', name: 'Ψωμάκια Golden Selection 30-65γρ' },
+      { code: 'B04', name: 'Φρατζόλες 350-400γρ' },
+      { code: 'B05', name: 'Τσιαπάτα Σάντουιτς 70-130γρ' },
+      { code: 'B06', name: 'Μίνι Κουβέρ "Μόνο Απόψυξη" 30γρ' },
+      { code: 'B07', name: 'Φόρμες Τοστ 800, 950 και 1350γρ' },
+      { code: 'B08', name: 'Ψωμάκια Burgers' }
+    ]
   };
 
   function updateSubcategory() {
@@ -283,17 +329,19 @@
 
     var first = document.createElement('option');
     if (!cat || !subcategories[cat]) {
-      first.text = '-- Πρώτα επιλέξτε κατηγορία --';
+      first.value = '';
+      first.text  = '-- Πρώτα επιλέξτε κατηγορία --';
       subSel.appendChild(first);
       return;
     }
-    first.text = '-- Επιλέξτε υποκατηγορία --';
+    first.value = '';
+    first.text  = '-- Επιλέξτε υποκατηγορία --';
     subSel.appendChild(first);
 
     subcategories[cat].forEach(function(item) {
       var opt   = document.createElement('option');
-      opt.value = item.toLowerCase().replace(/\s+/g, '_');
-      opt.text  = item;
+      opt.value = item.code;
+      opt.text  = item.code + ' – ' + item.name;
       subSel.appendChild(opt);
     });
   }

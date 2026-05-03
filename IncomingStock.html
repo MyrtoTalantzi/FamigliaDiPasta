@@ -63,7 +63,7 @@
     <div class="fp-card-header"><span class="num" aria-hidden="true">1</span>Στοιχεία Προϊόντος</div>
     <div class="p-3" style="padding:16px">
       <label for="prod-code">Κωδικός Προϊόντος <span class="req" aria-label="υποχρεωτικό">*</span></label>
-      <input type="text" id="prod-code" placeholder="π.χ. FP-001"
+      <input type="text" id="prod-code" placeholder="π.χ. A01"
              oninput="handleCode(this.value)" autocomplete="off"
              aria-describedby="code-hint code-err">
       <div class="form-text" id="code-hint">Χρησιμοποιήστε το scanner ή πληκτρολογήστε τον κωδικό</div>
@@ -117,7 +117,7 @@
       </div>
 
       <label for="comment">Σχόλιο <span style="text-transform:none;letter-spacing:0;font-size:11px;font-weight:normal">(προαιρετικό)</span></label>
-      <textarea id="comment" rows="3" placeholder="π.χ. Παραλαβή από αποθήκη Μελιγαλά, παρτίδα #2025-04…"></textarea>
+      <textarea id="comment" rows="3" placeholder="π.χ. Παραλαβή από αποθήκη παραγωγής, παρτίδα #2025-04…"></textarea>
     </div>
   </div>
 
@@ -135,13 +135,52 @@
 
 <script>
   var products = {
-    'FP-001': { name: 'Σπαγγέτι Νο5',    stock: 1240 },
-    'FP-002': { name: 'Πένες Ριγκάτε',    stock: 890  },
-    'FP-007': { name: 'Φαρφάλες',         stock: 85   },
-    'FP-012': { name: 'Σάλτσα Τομάτας',   stock: 40   },
-    'FP-015': { name: 'Αλεύρι Ολικής',    stock: 0    },
-    'FP-019': { name: 'Λαζάνια',          stock: 560  },
-    'FP-023': { name: 'Ριγκατόνι',        stock: 430  }
+    /* ── ΑΤΟΜΙΚΑ ── */
+    'A01': { name: 'Σφολιάτες ατομικά',                  stock: 1240 },
+    'A02': { name: 'Σφολιάτες χειροποίητες πατητές',     stock: 560  },
+    'A03': { name: 'Χειροποίητες Σφολιάτες',             stock: 430  },
+    'A04': { name: 'Κρουασίνια',                          stock: 890  },
+    'A05': { name: 'Ζύμες κουρού',                        stock: 320  },
+    'A06': { name: 'Γεμιστά κουλούρια Θεσσαλονίκης',    stock: 210  },
+    'A07': { name: 'Κουλούρια',                           stock: 780  },
+    'A08': { name: 'Φλογέρες ατομικά',                   stock: 150  },
+    'A09': { name: 'Κρουασάν ατομικά',                   stock: 95   },
+    'A10': { name: 'Μπριός',                              stock: 340  },
+    'A11': { name: 'Ατομικές πίτες',                      stock: 60   },
+    'A12': { name: 'Πίτες σκεπαστές',                    stock: 480  },
+    'A13': { name: 'Χειροποίητα βέργας',                 stock: 270  },
+    'A14': { name: 'Πίτες χωριάτικες ταψί',              stock: 0    },
+    'A15': { name: 'Μπουγάτσες',                          stock: 130  },
+    'A16': { name: 'Κρουασάν προσυσκευασμένα',           stock: 85   },
+    /* ── ΧΥΜΑ ── */
+    'X01': { name: 'Σφολιάτες μίνι χύμα',                stock: 85   },
+    'X02': { name: 'Μίνι κουρού',                         stock: 620  },
+    'X03': { name: 'Βέργας μίνι χύμα',                   stock: 310  },
+    'X04': { name: 'Κρουασανάκια μίνι χύμα',             stock: 450  },
+    'X05': { name: 'Κουλουρίνια μίνι χύμα',              stock: 900  },
+    'X06': { name: 'Μπριός μίνι',                         stock: 40   },
+    'X07': { name: 'Κροκέτες',                            stock: 430  },
+    'X08': { name: 'Γλυκά μίνι',                          stock: 180  },
+    /* ── ΣΥΣΚΕΥΑΣΜΕΝΑ ── */
+    'S01': { name: 'Πίτες Famiglia',                      stock: 40   },
+    'S02': { name: 'Σφολιάτες Μίνι',                     stock: 720  },
+    'S03': { name: 'Πίτες - ταψιά',                      stock: 390  },
+    'S04': { name: 'Στριφτές Πίτες',                     stock: 260  },
+    'S05': { name: 'Μίνι κουρού',                         stock: 510  },
+    'S06': { name: 'Κουλουρίνια',                         stock: 830  },
+    'S07': { name: 'Μπουγάτσες',                          stock: 110  },
+    'S08': { name: 'Μπισκότα',                            stock: 1500 },
+    'S09': { name: 'Μίνι Βέργας',                        stock: 670  },
+    'S10': { name: 'Ρολλίνια',                            stock: 0    },
+    /* ── ΑΡΤΟΣΚΕΥΑΣΜΑΤΑ ── */
+    'B01': { name: 'Μπαγκέτες 250γρ+',                   stock: 560  },
+    'B02': { name: 'Μπαγκέτες Σάντουιτς 120-150γρ',      stock: 340  },
+    'B03': { name: 'Ψωμάκια Golden Selection 30-65γρ',   stock: 920  },
+    'B04': { name: 'Φρατζόλες 350-400γρ',                stock: 0    },
+    'B05': { name: 'Τσιαπάτα Σάντουιτς 70-130γρ',        stock: 210  },
+    'B06': { name: 'Μίνι Κουβέρ "Μόνο Απόψυξη" 30γρ',  stock: 75   },
+    'B07': { name: 'Φόρμες Τοστ 800, 950 και 1350γρ',    stock: 480  },
+    'B08': { name: 'Ψωμάκια Burgers',                    stock: 630  }
   };
 
   var currentStock = null;
@@ -163,7 +202,7 @@
     inp.classList.remove('scanned');
     currentStock = null;
 
-    if (code.length < 4) { updateSummary(); return; }
+    if (code.length < 2) { updateSummary(); return; }
 
     if (products[code]) {
       var p = products[code];
